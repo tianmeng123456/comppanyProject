@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseLoadPlaceMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseLoadPlace">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="placeNo" jdbcType="NVARCHAR" property="placeNo" />
+    <result column="placeName" jdbcType="NVARCHAR" property="placeName" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, placeNo, placeName, remark, flag, mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseLoadPlace
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseLoadPlace
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseLoadPlace">
+    insert into BaseLoadPlace (id, placeNo, placeName, 
+      remark, flag, mark
+      )
+    values (#{id,jdbcType=BIGINT}, #{placeNo,jdbcType=NVARCHAR}, #{placeName,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseLoadPlace">
+    insert into BaseLoadPlace
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="placeNo != null">
+        placeNo,
+      </if>
+      <if test="placeName != null">
+        placeName,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="placeNo != null">
+        #{placeNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="placeName != null">
+        #{placeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseLoadPlace">
+    update BaseLoadPlace
+    <set>
+      <if test="placeNo != null">
+        placeNo = #{placeNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="placeName != null">
+        placeName = #{placeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseLoadPlace">
+    update BaseLoadPlace
+    set placeNo = #{placeNo,jdbcType=NVARCHAR},
+      placeName = #{placeName,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="getLoadPlaceList" resultType="Map">
+    select *
+    from BaseLoadPlace l
+    <where>
+      <if test="place.id != null">
+        and l.id = #{place.id}
+      </if>
+      <if test="place.placeNo != null and place.placeNo !=''">
+        and l.placeNo = #{place.placeNo}
+      </if>
+      <if test="place.placeName != null and place.placeName !=''">
+        and l.placeName = #{place.placeName}
+      </if>
+      <if test="place.remark != null and place.remark !=''">
+        and l.remark = #{place.remark}
+      </if>
+      <if test="place.flag != null">
+        and l.flag = #{place.flag}
+      </if>
+      <if test="place.mark != null">
+        and l.mark = #{place.mark}
+      </if>
+    </where>
+    order by l.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getLoadPlaceListCount" resultType="int">
+    select count(*)
+    from BaseLoadPlace l
+    <where>
+      <if test="place.id != null">
+        and l.id = #{place.id}
+      </if>
+      <if test="place.placeNo != null and place.placeNo !=''">
+        and l.placeNo = #{place.placeNo}
+      </if>
+      <if test="place.placeName != null and place.placeName !=''">
+        and l.placeName = #{place.placeName}
+      </if>
+      <if test="place.remark != null and place.remark !=''">
+        and l.remark = #{place.remark}
+      </if>
+      <if test="place.flag != null">
+        and l.flag = #{place.flag}
+      </if>
+      <if test="place.mark != null">
+        and l.mark = #{place.mark}
+      </if>
+    </where>
+  </select>
+
+  <select id="checkNo" resultType="com.boyo.wuhang.entity.base.BaseLoadPlace">
+    select *
+    from BaseLoadPlace
+    where placeNo = #{placeNo}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+</mapper>

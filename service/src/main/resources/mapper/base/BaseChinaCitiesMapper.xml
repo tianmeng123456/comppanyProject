@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseChinaCitiesMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseChinaCities">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="provinceNo" jdbcType="INTEGER" property="provinceNo" />
+    <result column="province" jdbcType="NVARCHAR" property="province" />
+    <result column="cityNo" jdbcType="INTEGER" property="cityNo" />
+    <result column="city" jdbcType="NVARCHAR" property="city" />
+    <result column="districtNo" jdbcType="INTEGER" property="districtNo" />
+    <result column="district" jdbcType="NVARCHAR" property="district" />
+    <result column="departureId" jdbcType="BIGINT" property="departureId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseChinaCities">
+    insert into BaseChinaCities (id, provinceNo, province, 
+      cityNo, city, districtNo, 
+      district, departureId)
+    values (#{id,jdbcType=INTEGER}, #{provinceNo,jdbcType=INTEGER}, #{province,jdbcType=NVARCHAR}, 
+      #{cityNo,jdbcType=INTEGER}, #{city,jdbcType=NVARCHAR}, #{districtNo,jdbcType=INTEGER}, 
+      #{district,jdbcType=NVARCHAR}, #{departureId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseChinaCities">
+    insert into BaseChinaCities
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="provinceNo != null">
+        provinceNo,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="cityNo != null">
+        cityNo,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="districtNo != null">
+        districtNo,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="departureId != null">
+        departureId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="provinceNo != null">
+        #{provinceNo,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=NVARCHAR},
+      </if>
+      <if test="cityNo != null">
+        #{cityNo,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=NVARCHAR},
+      </if>
+      <if test="districtNo != null">
+        #{districtNo,jdbcType=INTEGER},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=NVARCHAR},
+      </if>
+      <if test="departureId != null">
+        #{departureId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseChinaCities">
+    update BaseChinaCities
+    <set>
+      <if test="provinceNo != null">
+        provinceNo = #{provinceNo,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=NVARCHAR},
+      </if>
+      <if test="cityNo != null">
+        cityNo = #{cityNo,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=NVARCHAR},
+      </if>
+      <if test="districtNo != null">
+        districtNo = #{districtNo,jdbcType=INTEGER},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=NVARCHAR},
+      </if>
+      <if test="departureId != null">
+        departureId = #{departureId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseChinaCities">
+    update BaseChinaCities
+    set provinceNo = #{provinceNo,jdbcType=INTEGER},
+    province = #{province,jdbcType=NVARCHAR},
+    cityNo = #{cityNo,jdbcType=INTEGER},
+    city = #{city,jdbcType=NVARCHAR},
+    districtNo = #{districtNo,jdbcType=INTEGER},
+    district = #{district,jdbcType=NVARCHAR},
+    departureId = #{departureId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getProvinceList" resultType="String">
+    select distinct province
+    from BaseChinaCities
+    order by province
+  </select>
+  
+  <select id="getCityList" resultType="String">
+    select distinct city
+    from BaseChinaCities
+    where province = #{province}
+    order by city
+  </select>
+  
+  <select id="getDistrictList" resultType="String">
+    select distinct district
+    from BaseChinaCities
+    where province = #{province} and city = #{city}
+    order by district
+  </select>
+  
+  <select id="selectByDetailAddrList" resultType="com.boyo.wuhang.entity.base.BaseChinaCities">
+    select *
+    from BaseChinaCities
+    where province = #{province} and city = #{city} and district = #{district}
+    order by province
+  </select>
+
+  <select id="selectByDepartureId" resultType="com.boyo.wuhang.entity.base.BaseChinaCities">
+    select *
+    from BaseChinaCities
+    where departureId = #{departureId}
+  </select>
+</mapper>

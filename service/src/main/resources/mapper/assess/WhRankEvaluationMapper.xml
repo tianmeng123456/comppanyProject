@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhRankEvaluationMapper">
+	<resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhRankEvaluation">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="wRank" jdbcType="NVARCHAR" property="wRank"/>
+		<result column="grade" jdbcType="NVARCHAR" property="grade"/>
+		<result column="wLevel" jdbcType="INTEGER" property="wLevel"/>
+		<result column="detail" jdbcType="NVARCHAR" property="detail"/>
+		<result column="evaluationId" jdbcType="BIGINT" property="evaluationId"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, wRank, grade, wLevel, detail, evaluationId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from WhRankEvaluation
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete
+		from WhRankEvaluation
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhRankEvaluation">
+		insert into WhRankEvaluation (id, wRank, grade,
+		                              wLevel, detail, evaluationId)
+		values (#{id,jdbcType=BIGINT}, #{wRank,jdbcType=NVARCHAR}, #{grade,jdbcType=NVARCHAR},
+		        #{wLevel,jdbcType=INTEGER}, #{detail,jdbcType=NVARCHAR}, #{evaluationId,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhRankEvaluation"
+	        useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into WhRankEvaluation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="wRank != null">
+				wRank,
+			</if>
+			<if test="grade != null">
+				grade,
+			</if>
+			<if test="wLevel != null">
+				wLevel,
+			</if>
+			<if test="detail != null">
+				detail,
+			</if>
+			<if test="evaluationId != null">
+				evaluationId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="wRank != null">
+				#{wRank,jdbcType=NVARCHAR},
+			</if>
+			<if test="grade != null">
+				#{grade,jdbcType=NVARCHAR},
+			</if>
+			<if test="wLevel != null">
+				#{wLevel,jdbcType=INTEGER},
+			</if>
+			<if test="detail != null">
+				#{detail,jdbcType=NVARCHAR},
+			</if>
+			<if test="evaluationId != null">
+				#{evaluationId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhRankEvaluation">
+		update WhRankEvaluation
+		<set>
+			<if test="wRank != null">
+				wRank = #{wRank,jdbcType=NVARCHAR},
+			</if>
+			<if test="grade != null">
+				grade = #{grade,jdbcType=NVARCHAR},
+			</if>
+			<if test="wLevel != null">
+				wLevel = #{wLevel,jdbcType=INTEGER},
+			</if>
+			<if test="detail != null">
+				detail = #{detail,jdbcType=NVARCHAR},
+			</if>
+			<if test="evaluationId != null">
+				evaluationId = #{evaluationId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhRankEvaluation">
+		update WhRankEvaluation
+		set wRank         = #{wRank,jdbcType=NVARCHAR},
+		    grade        = #{grade,jdbcType=NVARCHAR},
+		    wLevel        = #{wLevel,jdbcType=INTEGER},
+		    detail       = #{detail,jdbcType=NVARCHAR},
+		    evaluationId = #{evaluationId,jdbcType=BIGINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<delete id="deleteByEvaluationId">
+		delete
+		from WhRankEvaluation
+		where evaluationId = #{evaluationId}
+	</delete>
+	
+	<select id="getByEvaluationId" resultMap="BaseResultMap">
+		select *
+		from WhRankEvaluation
+		where evaluationId = #{evaluationId}
+	</select>
+	
+	<select id="getDepartureString" resultType="String">
+		select stuff((select ',[' + d.dName + ']'
+		              from  (
+			                    select distinct d.id from WhEvaluation e join WhRankEvaluation r on e.id = r.evaluationId
+			                                                             join WhRankPrice p on r.id = p.rankId join BaseDeparture d on p.departureId = d.id
+			                    where e.id = #{evaluationId}
+		                    )as t
+			                    join BaseDeparture d on t.id = d.id
+		              order by d.dCode for xml path ('')), 1, 1, '')
+	</select>
+	
+	<select id="getRankRecordByEvaluationId" resultType="Map">
+		select  a.*
+		from (
+			     select r.*,wrp.price,BD.dName as departureName
+			     from WhRankEvaluation r join WhRankPrice WRP on r.id = WRP.rankId
+			                             join BaseDeparture BD on WRP.departureId = BD.id
+			     where evaluationId = #{evaluationId}
+		     ) as t pivot ( sum(t.price) for [departureName] in (${departureString}) ) a
+		order by a.wLevel asc
+	</select>
+</mapper>

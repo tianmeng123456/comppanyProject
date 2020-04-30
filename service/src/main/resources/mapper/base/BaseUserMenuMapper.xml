@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseUserMenuMapper">
+	<resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseUserMenu">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="userId" jdbcType="BIGINT" property="userId"/>
+		<result column="menuId" jdbcType="INTEGER" property="menuId"/>
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="addAuth" jdbcType="INTEGER" property="addAuth"/>
+		<result column="editAuth" jdbcType="INTEGER" property="editAuth"/>
+		<result column="delAuth" jdbcType="INTEGER" property="delAuth"/>
+		<result column="readyingAuth" jdbcType="INTEGER" property="readyingAuth"/>
+		<result column="returnAuth" jdbcType="INTEGER" property="returnAuth"/>
+		<result column="checkAuth" jdbcType="INTEGER" property="checkAuth"/>
+		<result column="uncheckAuth" jdbcType="INTEGER" property="uncheckAuth"/>
+		<result column="accountingAuth" jdbcType="INTEGER" property="accountingAuth"/>
+		<result column="unAccountingAuth" jdbcType="INTEGER" property="unAccountingAuth"/>
+		<result column="printAuth" jdbcType="INTEGER" property="printAuth"/>
+		<result column="excelAuth" jdbcType="INTEGER" property="excelAuth"/>
+		<result column="changeQuery" jdbcType="INTEGER" property="changeQuery"/>
+		<result column="allQuery" jdbcType="INTEGER" property="allQuery"/>
+		<result column="bindStatus" jdbcType="INTEGER" property="bindStatus"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+				id, userId, menuId, createTime, addAuth, editAuth, delAuth, readyingAuth, returnAuth,
+				checkAuth, uncheckAuth, accountingAuth, unAccountingAuth, printAuth, excelAuth, changeQuery,
+				allQuery, bindStatus
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from BaseUserMenu
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete
+		from BaseUserMenu
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseUserMenu">
+		insert into BaseUserMenu (id, userId, menuId,
+		                          createTime, addAuth, editAuth,
+		                          delAuth, readyingAuth, returnAuth,
+		                          checkAuth, uncheckAuth, accountingAuth,
+		                          unAccountingAuth, printAuth, excelAuth,
+		                          changeQuery, allQuery, bindStatus)
+		values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{menuId,jdbcType=INTEGER},
+		        #{createTime,jdbcType=TIMESTAMP}, #{addAuth,jdbcType=INTEGER}, #{editAuth,jdbcType=INTEGER},
+		        #{delAuth,jdbcType=INTEGER}, #{readyingAuth,jdbcType=INTEGER}, #{returnAuth,jdbcType=INTEGER},
+		        #{checkAuth,jdbcType=INTEGER}, #{uncheckAuth,jdbcType=INTEGER}, #{accountingAuth,jdbcType=INTEGER},
+		        #{unAccountingAuth,jdbcType=INTEGER}, #{printAuth,jdbcType=INTEGER}, #{excelAuth,jdbcType=INTEGER},
+		        #{changeQuery,jdbcType=INTEGER}, #{allQuery,jdbcType=INTEGER}, #{bindStatus,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseUserMenu">
+		insert into BaseUserMenu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="menuId != null">
+				menuId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="addAuth != null">
+				addAuth,
+			</if>
+			<if test="editAuth != null">
+				editAuth,
+			</if>
+			<if test="delAuth != null">
+				delAuth,
+			</if>
+			<if test="readyingAuth != null">
+				readyingAuth,
+			</if>
+			<if test="returnAuth != null">
+				returnAuth,
+			</if>
+			<if test="checkAuth != null">
+				checkAuth,
+			</if>
+			<if test="uncheckAuth != null">
+				uncheckAuth,
+			</if>
+			<if test="accountingAuth != null">
+				accountingAuth,
+			</if>
+			<if test="unAccountingAuth != null">
+				unAccountingAuth,
+			</if>
+			<if test="printAuth != null">
+				printAuth,
+			</if>
+			<if test="excelAuth != null">
+				excelAuth,
+			</if>
+			<if test="changeQuery != null">
+				changeQuery,
+			</if>
+			<if test="allQuery != null">
+				allQuery,
+			</if>
+			<if test="bindStatus != null">
+				bindStatus,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="menuId != null">
+				#{menuId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addAuth != null">
+				#{addAuth,jdbcType=INTEGER},
+			</if>
+			<if test="editAuth != null">
+				#{editAuth,jdbcType=INTEGER},
+			</if>
+			<if test="delAuth != null">
+				#{delAuth,jdbcType=INTEGER},
+			</if>
+			<if test="readyingAuth != null">
+				#{readyingAuth,jdbcType=INTEGER},
+			</if>
+			<if test="returnAuth != null">
+				#{returnAuth,jdbcType=INTEGER},
+			</if>
+			<if test="checkAuth != null">
+				#{checkAuth,jdbcType=INTEGER},
+			</if>
+			<if test="uncheckAuth != null">
+				#{uncheckAuth,jdbcType=INTEGER},
+			</if>
+			<if test="accountingAuth != null">
+				#{accountingAuth,jdbcType=INTEGER},
+			</if>
+			<if test="unAccountingAuth != null">
+				#{unAccountingAuth,jdbcType=INTEGER},
+			</if>
+			<if test="printAuth != null">
+				#{printAuth,jdbcType=INTEGER},
+			</if>
+			<if test="excelAuth != null">
+				#{excelAuth,jdbcType=INTEGER},
+			</if>
+			<if test="changeQuery != null">
+				#{changeQuery,jdbcType=INTEGER},
+			</if>
+			<if test="allQuery != null">
+				#{allQuery,jdbcType=INTEGER},
+			</if>
+			<if test="bindStatus != null">
+				#{bindStatus,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseUserMenu">
+		update BaseUserMenu
+		<set>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="menuId != null">
+				menuId = #{menuId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addAuth != null">
+				addAuth = #{addAuth,jdbcType=INTEGER},
+			</if>
+			<if test="editAuth != null">
+				editAuth = #{editAuth,jdbcType=INTEGER},
+			</if>
+			<if test="delAuth != null">
+				delAuth = #{delAuth,jdbcType=INTEGER},
+			</if>
+			<if test="readyingAuth != null">
+				readyingAuth = #{readyingAuth,jdbcType=INTEGER},
+			</if>
+			<if test="returnAuth != null">
+				returnAuth = #{returnAuth,jdbcType=INTEGER},
+			</if>
+			<if test="checkAuth != null">
+				checkAuth = #{checkAuth,jdbcType=INTEGER},
+			</if>
+			<if test="uncheckAuth != null">
+				uncheckAuth = #{uncheckAuth,jdbcType=INTEGER},
+			</if>
+			<if test="accountingAuth != null">
+				accountingAuth = #{accountingAuth,jdbcType=INTEGER},
+			</if>
+			<if test="unAccountingAuth != null">
+				unAccountingAuth = #{unAccountingAuth,jdbcType=INTEGER},
+			</if>
+			<if test="printAuth != null">
+				printAuth = #{printAuth,jdbcType=INTEGER},
+			</if>
+			<if test="excelAuth != null">
+				excelAuth = #{excelAuth,jdbcType=INTEGER},
+			</if>
+			<if test="changeQuery != null">
+				changeQuery = #{changeQuery,jdbcType=INTEGER},
+			</if>
+			<if test="allQuery != null">
+				allQuery = #{allQuery,jdbcType=INTEGER},
+			</if>
+			<if test="bindStatus != null">
+				bindStatus = #{bindStatus,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseUserMenu">
+		update BaseUserMenu
+		set userId           = #{userId,jdbcType=BIGINT},
+		    menuId           = #{menuId,jdbcType=INTEGER},
+		    createTime       = #{createTime,jdbcType=TIMESTAMP},
+		    addAuth          = #{addAuth,jdbcType=INTEGER},
+		    editAuth         = #{editAuth,jdbcType=INTEGER},
+		    delAuth          = #{delAuth,jdbcType=INTEGER},
+		    readyingAuth     = #{readyingAuth,jdbcType=INTEGER},
+		    returnAuth       = #{returnAuth,jdbcType=INTEGER},
+		    checkAuth        = #{checkAuth,jdbcType=INTEGER},
+		    uncheckAuth      = #{uncheckAuth,jdbcType=INTEGER},
+		    accountingAuth   = #{accountingAuth,jdbcType=INTEGER},
+		    unAccountingAuth = #{unAccountingAuth,jdbcType=INTEGER},
+		    printAuth        = #{printAuth,jdbcType=INTEGER},
+		    excelAuth        = #{excelAuth,jdbcType=INTEGER},
+		    changeQuery      = #{changeQuery,jdbcType=INTEGER},
+		    allQuery         = #{allQuery,jdbcType=INTEGER},
+		    bindStatus       = #{bindStatus,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByUnique" resultMap="BaseResultMap">
+		select *
+		from BaseUserMenu
+		where userId = #{userId}
+		  and menuId = #{menuId}
+	</select>
+
+	<delete id="deleteByUserId">
+		delete
+		from BaseUserMenu
+		where userId = #{userId}
+	</delete>
+
+	<delete id="deleteByMenuId">
+		delete
+		from BaseUserMenu
+		where menuId = #{menuId}
+	</delete>
+	
+	<select id="getUserMenuList" resultType="Map">
+		select um.*, m.menuName, m.parentId, m.depth
+		from BaseUserMenu um join BaseMenu m on um.menuId = m.id
+		where userId = #{userId}
+		order by m.sort asc
+	</select>
+	
+	<select id="getUserMenuTree" resultType="Map">
+		select um.*, m.menuName, m.parentId, m.depth, m.label, m.link
+		from BaseUserMenu um join BaseMenu m on um.menuId = m.id
+		where userId = #{userId} and um.bindStatus = 1
+		order by m.sort asc
+	</select>
+</mapper>

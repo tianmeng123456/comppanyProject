@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseEmployeeMapper">
+	<resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseEmployee">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="employeeNo" jdbcType="NVARCHAR" property="employeeNo"/>
+		<result column="employeeName" jdbcType="NVARCHAR" property="employeeName"/>
+		<result column="departmentId" jdbcType="BIGINT" property="departmentId"/>
+		<result column="gender" jdbcType="NVARCHAR" property="gender"/>
+		<result column="isMarried" jdbcType="INTEGER" property="isMarried"/>
+		<result column="birthday" jdbcType="DATE" property="birthday"/>
+		<result column="identityCard" jdbcType="VARCHAR" property="identityCard"/>
+		<result column="bank" jdbcType="NVARCHAR" property="bank"/>
+		<result column="bankAccount" jdbcType="VARCHAR" property="bankAccount"/>
+		<result column="onBoardingTime" jdbcType="DATE" property="onBoardingTime"/>
+		<result column="leaveTime" jdbcType="DATE" property="leaveTime"/>
+		<result column="education" jdbcType="NVARCHAR" property="education"/>
+		<result column="tel" jdbcType="VARCHAR" property="tel"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="contactAddress" jdbcType="NVARCHAR" property="contactAddress"/>
+		<result column="isLeave" jdbcType="INTEGER" property="isLeave"/>
+		<result column="remark" jdbcType="NVARCHAR" property="remark"/>
+		<result column="userId" jdbcType="BIGINT" property="userId"/>
+		<result column="postId" jdbcType="BIGINT" property="postId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+				id, employeeNo, employeeName, departmentId, gender, isMarried, birthday, identityCard,
+				bank, bankAccount, onBoardingTime, leaveTime, education, tel, email, contactAddress,
+				isLeave, remark, userId, postId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from BaseEmployee
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete
+		from BaseEmployee
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseEmployee">
+		insert into BaseEmployee (id, employeeNo, employeeName,
+		                          departmentId, gender, isMarried,
+		                          birthday, identityCard, bank,
+		                          bankAccount, onBoardingTime, leaveTime,
+		                          education, tel, email,
+		                          contactAddress, isLeave, remark,
+		                          userId,postId)
+		values (#{id,jdbcType=BIGINT}, #{employeeNo,jdbcType=NVARCHAR}, #{employeeName,jdbcType=NVARCHAR},
+		        #{departmentId,jdbcType=BIGINT}, #{gender,jdbcType=NVARCHAR}, #{isMarried,jdbcType=INTEGER},
+		        #{birthday,jdbcType=DATE}, #{identityCard,jdbcType=VARCHAR}, #{bank,jdbcType=NVARCHAR},
+		        #{bankAccount,jdbcType=VARCHAR}, #{onBoardingTime,jdbcType=DATE}, #{leaveTime,jdbcType=DATE},
+		        #{education,jdbcType=NVARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		        #{contactAddress,jdbcType=NVARCHAR}, #{isLeave,jdbcType=INTEGER}, #{remark,jdbcType=NVARCHAR},
+		        #{userId,jdbcType=BIGINT},#{postId,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseEmployee"
+	        useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into BaseEmployee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="employeeNo != null">
+				employeeNo,
+			</if>
+			<if test="employeeName != null">
+				employeeName,
+			</if>
+			<if test="departmentId != null">
+				departmentId,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="isMarried != null">
+				isMarried,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="identityCard != null">
+				identityCard,
+			</if>
+			<if test="bank != null">
+				bank,
+			</if>
+			<if test="bankAccount != null">
+				bankAccount,
+			</if>
+			<if test="onBoardingTime != null">
+				onBoardingTime,
+			</if>
+			<if test="leaveTime != null">
+				leaveTime,
+			</if>
+			<if test="education != null">
+				education,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="contactAddress != null">
+				contactAddress,
+			</if>
+			<if test="isLeave != null">
+				isLeave,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="postId != null">
+				postId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="employeeNo != null">
+				#{employeeNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="employeeName != null">
+				#{employeeName,jdbcType=NVARCHAR},
+			</if>
+			<if test="departmentId != null">
+				#{departmentId,jdbcType=BIGINT},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=NVARCHAR},
+			</if>
+			<if test="isMarried != null">
+				#{isMarried,jdbcType=INTEGER},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="identityCard != null">
+				#{identityCard,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=NVARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="onBoardingTime != null">
+				#{onBoardingTime,jdbcType=DATE},
+			</if>
+			<if test="leaveTime != null">
+				#{leaveTime,jdbcType=DATE},
+			</if>
+			<if test="education != null">
+				#{education,jdbcType=NVARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="contactAddress != null">
+				#{contactAddress,jdbcType=NVARCHAR},
+			</if>
+			<if test="isLeave != null">
+				#{isLeave,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="postId != null">
+				#{postId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseEmployee">
+		update BaseEmployee
+		<set>
+			<if test="employeeNo != null">
+				employeeNo = #{employeeNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="employeeName != null">
+				employeeName = #{employeeName,jdbcType=NVARCHAR},
+			</if>
+			<if test="departmentId != null">
+				departmentId = #{departmentId,jdbcType=BIGINT},
+			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=NVARCHAR},
+			</if>
+			<if test="isMarried != null">
+				isMarried = #{isMarried,jdbcType=INTEGER},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="identityCard != null">
+				identityCard = #{identityCard,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				bank = #{bank,jdbcType=NVARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				bankAccount = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="onBoardingTime != null">
+				onBoardingTime = #{onBoardingTime,jdbcType=DATE},
+			</if>
+			<if test="leaveTime != null">
+				leaveTime = #{leaveTime,jdbcType=DATE},
+			</if>
+			<if test="education != null">
+				education = #{education,jdbcType=NVARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="contactAddress != null">
+				contactAddress = #{contactAddress,jdbcType=NVARCHAR},
+			</if>
+			<if test="isLeave != null">
+				isLeave = #{isLeave,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="postId != null">
+				postId = #{postId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseEmployee">
+		update BaseEmployee
+		set employeeNo     = #{employeeNo,jdbcType=NVARCHAR},
+		    employeeName   = #{employeeName,jdbcType=NVARCHAR},
+		    departmentId   = #{departmentId,jdbcType=BIGINT},
+		    gender         = #{gender,jdbcType=NVARCHAR},
+		    isMarried      = #{isMarried,jdbcType=INTEGER},
+		    birthday       = #{birthday,jdbcType=DATE},
+		    identityCard   = #{identityCard,jdbcType=VARCHAR},
+		    bank           = #{bank,jdbcType=NVARCHAR},
+		    bankAccount    = #{bankAccount,jdbcType=VARCHAR},
+		    onBoardingTime = #{onBoardingTime,jdbcType=DATE},
+		    leaveTime      = #{leaveTime,jdbcType=DATE},
+		    education      = #{education,jdbcType=NVARCHAR},
+		    tel            = #{tel,jdbcType=VARCHAR},
+		    email          = #{email,jdbcType=VARCHAR},
+		    contactAddress = #{contactAddress,jdbcType=NVARCHAR},
+		    isLeave        = #{isLeave,jdbcType=INTEGER},
+		    remark         = #{remark,jdbcType=NVARCHAR},
+		    userId         = #{userId,jdbcType=BIGINT},
+		    postId         = #{postId,jdbcType=BIGINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="checkNo" resultMap="BaseResultMap">
+		select *
+		from BaseEmployee
+		where employeeNo = #{employeeNo}
+		<if test="id != null">
+			and id != #{id}
+		</if>
+	</select>
+
+	<select id="getEmployeeList" resultType="Map">
+		select e.*, d.deptName
+		from BaseEmployee e join BaseDept d on e.departmentId = d.id
+		<where>
+			<if test="record.id != null">
+				and e.id = #{record.id}
+			</if>
+			<if test="record.employeeNo != null and record.employeeNo != ''">
+				and e.employeeNo like concat('%',#{record.employeeNo},'%')
+			</if>
+			<if test="record.employeeName != null and record.employeeName != ''">
+				and e.employeeName like concat('%',#{record.employeeName},'%')
+			</if>
+			<if test="record.departmentId != null">
+				and e.departmentId = #{record.departmentId}
+			</if>
+			<if test="record.gender != null and record.gender != ''">
+				and e.gender = #{record.gender}
+			</if>
+			<if test="record.isMarried != null">
+				and e.isMarried = #{record.isMarried}
+			</if>
+			<if test="record.birthday != null">
+				and e.birthday = #{record.birthday}
+			</if>
+			<if test="record.identityCard != null and record.identityCard != ''">
+				and e.identityCard like concat('%',#{record.identityCard},'%')
+			</if>
+			<if test="record.bank != null and record.bank">
+				and e.bank like concat('%',#{record.bank},'%')
+			</if>
+			<if test="record.bankAccount != null and record.bankAccount != ''">
+				and e.bankAccount like concat('%',#{record.bankAccount},'%')
+			</if>
+			<if test="record.onBoardingTime != null">
+				and e.onBoardingTime = #{record.onBoardingTime}
+			</if>
+			<if test="record.leaveTime != null">
+				and e.leaveTime = #{record.leaveTime}
+			</if>
+			<if test="record.education != null and record.education != ''">
+				and e.education = #{record.education}
+			</if>
+			<if test="record.tel != null and record.tel != ''">
+				and e.tel like concat('%',#{record.tel},'%')
+			</if>
+			<if test="record.email != null and record.email != ''">
+				and e.email like concat('%',#{record.email},'%')
+			</if>
+			<if test="record.contactAddress != null and record.contactAddress != ''">
+				and e.contactAddress like concat('%',#{record.contactAddress},'%')
+			</if>
+			<if test="record.isLeave != null">
+				and e.isLeave = #{record.isLeave}
+			</if>
+		</where>
+		order by e.id
+		offset #{page.start, jdbcType=NUMERIC} rows
+		fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+	</select>
+
+	<select id="getEmployeeListCount" resultType="int">
+		select count(*)
+		from BaseEmployee e join BaseDept d on e.departmentId = d.id
+		<where>
+			<if test="id != null">
+				and e.id = #{id}
+			</if>
+			<if test="employeeNo != null and employeeNo != ''">
+				and e.employeeNo like concat('%',#{employeeNo},'%')
+			</if>
+			<if test="employeeName != null and employeeName != ''">
+				and e.employeeName like concat('%',#{employeeName},'%')
+			</if>
+			<if test="departmentId != null">
+				and e.departmentId = #{departmentId}
+			</if>
+			<if test="gender != null and gender != ''">
+				and e.gender = #{gender}
+			</if>
+			<if test="isMarried != null">
+				and e.isMarried = #{isMarried}
+			</if>
+			<if test="birthday != null">
+				and e.birthday = #{birthday}
+			</if>
+			<if test="identityCard != null and identityCard != ''">
+				and e.identityCard like concat('%',#{identityCard},'%')
+			</if>
+			<if test="bank != null and bank">
+				and e.bank like concat('%',#{bank},'%')
+			</if>
+			<if test="bankAccount != null and bankAccount != ''">
+				and e.bankAccount like concat('%',#{bankAccount},'%')
+			</if>
+			<if test="onBoardingTime != null">
+				and e.onBoardingTime = #{onBoardingTime}
+			</if>
+			<if test="leaveTime != null">
+				and e.leaveTime = #{leaveTime}
+			</if>
+			<if test="education != null and education != ''">
+				and e.education = #{education}
+			</if>
+			<if test="tel != null and tel != ''">
+				and e.tel like concat('%',#{tel},'%')
+			</if>
+			<if test="email != null and email != ''">
+				and e.email like concat('%',#{email},'%')
+			</if>
+			<if test="contactAddress != null and contactAddress != ''">
+				and e.contactAddress like concat('%',#{contactAddress},'%')
+			</if>
+			<if test="isLeave != null">
+				and e.isLeave = #{isLeave}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getEmployeeByUserId" resultMap="BaseResultMap">
+		select * from BaseEmployee where userId = #{userId}
+	</select>
+
+	<select id="getEmployeeByPostId" resultMap="BaseResultMap">
+		select * from BaseEmployee where postId = #{postId}
+	</select>
+</mapper>

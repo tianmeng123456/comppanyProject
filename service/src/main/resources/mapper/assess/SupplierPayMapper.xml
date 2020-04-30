@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.SupplierPayMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.SupplierPay">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="bankName" jdbcType="NVARCHAR" property="bankName" />
+    <result column="payDate" jdbcType="TIMESTAMP" property="payDate" />
+    <result column="payMoney" jdbcType="NUMERIC" property="payMoney" />
+    <result column="serialNumber" jdbcType="NVARCHAR" property="serialNumber" />
+    <result column="supplierId" jdbcType="BIGINT" property="supplierId" />
+    <result column="supplierName" jdbcType="NVARCHAR" property="supplierName" />
+    <result column="bankAccount" jdbcType="NVARCHAR" property="bankAccount" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bankName, payDate, payMoney, serialNumber, supplierId, supplierName, bankAccount, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SupplierPay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from SupplierPay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.SupplierPay">
+    insert into SupplierPay (id, bankName, payDate, 
+      payMoney, serialNumber, supplierId, 
+      supplierName, bankAccount, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{bankName,jdbcType=NVARCHAR}, #{payDate,jdbcType=TIMESTAMP}, 
+      #{payMoney,jdbcType=NUMERIC}, #{serialNumber,jdbcType=NVARCHAR}, #{supplierId,jdbcType=BIGINT}, 
+      #{supplierName,jdbcType=NVARCHAR}, #{bankAccount,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.SupplierPay"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into SupplierPay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bankName != null">
+        bankName,
+      </if>
+      <if test="payDate != null">
+        payDate,
+      </if>
+      <if test="payMoney != null">
+        payMoney,
+      </if>
+      <if test="serialNumber != null">
+        serialNumber,
+      </if>
+      <if test="supplierId != null">
+        supplierId,
+      </if>
+      <if test="supplierName != null">
+        supplierName,
+      </if>
+      <if test="bankAccount != null">
+        bankAccount,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=NVARCHAR},
+      </if>
+      <if test="payDate != null">
+        #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payMoney != null">
+        #{payMoney,jdbcType=NUMERIC},
+      </if>
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.SupplierPay">
+    update SupplierPay
+    <set>
+      <if test="bankName != null">
+        bankName = #{bankName,jdbcType=NVARCHAR},
+      </if>
+      <if test="payDate != null">
+        payDate = #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payMoney != null">
+        payMoney = #{payMoney,jdbcType=NUMERIC},
+      </if>
+      <if test="serialNumber != null">
+        serialNumber = #{serialNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplierId = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null">
+        supplierName = #{supplierName,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        bankAccount = #{bankAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.SupplierPay">
+    update SupplierPay
+    set bankName = #{bankName,jdbcType=NVARCHAR},
+      payDate = #{payDate,jdbcType=TIMESTAMP},
+      payMoney = #{payMoney,jdbcType=NUMERIC},
+      serialNumber = #{serialNumber,jdbcType=NVARCHAR},
+      supplierId = #{supplierId,jdbcType=BIGINT},
+      supplierName = #{supplierName,jdbcType=NVARCHAR},
+      bankAccount = #{bankAccount,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<select id="selectSerialNumber" resultMap="BaseResultMap">
+		select * from SupplierPay
+		where serialNumber = #{serialNumber}
+	</select>
+
+  <select id="getSupplierPayList" resultType="Map">
+    select  *
+    from SupplierPay p
+    <where>
+      <if test="pay.bankName != null and pay.bankName !=''">
+        and p.bankName = #{pay.bankName}
+      </if>
+      <if test="pay.payDate != null and pay.payDate !=''">
+        and p.payDate = #{pay.payDate}
+      </if>
+      <if test="pay.payMoney != null and pay.payMoney !=''">
+        and p.payMoney = #{pay.payMoney}
+      </if>
+      <if test="pay.serialNumber != null and pay.serialNumber != ''">
+        and p.serialNumber = #{pay.serialNumber}
+      </if>
+      <if test="pay.supplierId != null">
+        and p.supplierId = #{pay.supplierId}
+      </if>
+      <if test="pay.supplierName != null and pay.supplierName != ''">
+        and p.supplierName = #{pay.supplierName}
+      </if>
+      <if test="pay.bankAccount != null and pay.bankAccount !=''">
+        and p.bankAccount = #{pay.bankAccount}
+      </if>
+      <if test="pay.remark != null and pay.remark !=''">
+        and p.remark = #{pay.remark}
+      </if>
+      <if test="pay.id != null">
+        and p.id = #{pay.id}
+      </if>
+    </where>
+    order by p.id desc
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getSupplierPayListCount" resultType="int">
+    select  count(*)
+    from SupplierPay p
+    <where>
+      <if test="pay.bankName != null and pay.bankName !=''">
+        and p.bankName = #{pay.bankName}
+      </if>
+      <if test="pay.payDate != null and pay.payDate !=''">
+        and p.payDate = #{pay.payDate}
+      </if>
+      <if test="pay.payMoney != null and pay.payMoney !=''">
+        and p.payMoney = #{pay.payMoney}
+      </if>
+      <if test="pay.serialNumber != null and pay.serialNumber != ''">
+        and p.serialNumber = #{pay.serialNumber}
+      </if>
+      <if test="pay.supplierId != null">
+        and p.supplierId = #{pay.supplierId}
+      </if>
+      <if test="pay.supplierName != null and pay.supplierName != ''">
+        and p.supplierName = #{pay.supplierName}
+      </if>
+      <if test="pay.bankAccount != null and pay.bankAccount !=''">
+        and p.bankAccount = #{pay.bankAccount}
+      </if>
+      <if test="pay.remark != null and pay.remark !=''">
+        and p.remark = #{pay.remark}
+      </if>
+      <if test="pay.id != null">
+        and p.id = #{pay.id}
+      </if>
+    </where>
+  </select>
+</mapper>

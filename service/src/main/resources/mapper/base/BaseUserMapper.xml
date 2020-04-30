@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseUserMapper">
+	<resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseUser">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="userNo" jdbcType="NVARCHAR" property="userNo"/>
+		<result column="userPassword" jdbcType="NVARCHAR" property="userPassword"/>
+		<result column="userStatus" jdbcType="INTEGER" property="userStatus"/>
+		<result column="loginIP" jdbcType="VARCHAR" property="loginIP"/>
+		<result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+		<result column="tryLogCount" jdbcType="INTEGER" property="tryLogCount"/>
+		<result column="roleId" jdbcType="BIGINT" property="roleId"/>
+		<result column="roleCode" jdbcType="NVARCHAR" property="roleCode"/>
+		<result column="userName" jdbcType="NVARCHAR" property="userName"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+				id, userNo, userPassword, userStatus, loginIP, lastLoginTime, tryLogCount, roleId,
+				roleCode, userName
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from BaseUser
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete
+		from BaseUser
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseUser">
+		insert into BaseUser (id, userNo, userPassword,
+		                      userStatus, loginIP, lastLoginTime,
+		                      tryLogCount, roleId, roleCode,
+		                      userName)
+		values (#{id,jdbcType=BIGINT}, #{userNo,jdbcType=NVARCHAR}, #{userPassword,jdbcType=NVARCHAR},
+		        #{userStatus,jdbcType=INTEGER}, #{loginIP,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP},
+		        #{tryLogCount,jdbcType=INTEGER}, #{roleId,jdbcType=BIGINT}, #{roleCode,jdbcType=NVARCHAR},
+		        #{userName,jdbcType=NVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseUser"
+	        useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into BaseUser
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userNo != null">
+				userNo,
+			</if>
+			<if test="userPassword != null">
+				userPassword,
+			</if>
+			<if test="userStatus != null">
+				userStatus,
+			</if>
+			<if test="loginIP != null">
+				loginIP,
+			</if>
+			<if test="lastLoginTime != null">
+				lastLoginTime,
+			</if>
+			<if test="tryLogCount != null">
+				tryLogCount,
+			</if>
+			<if test="roleId != null">
+				roleId,
+			</if>
+			<if test="roleCode != null">
+				roleCode,
+			</if>
+			<if test="userName != null">
+				userName,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userNo != null">
+				#{userNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="userPassword != null">
+				#{userPassword,jdbcType=NVARCHAR},
+			</if>
+			<if test="userStatus != null">
+				#{userStatus,jdbcType=INTEGER},
+			</if>
+			<if test="loginIP != null">
+				#{loginIP,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tryLogCount != null">
+				#{tryLogCount,jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=BIGINT},
+			</if>
+			<if test="roleCode != null">
+				#{roleCode,jdbcType=NVARCHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=NVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseUser">
+		update BaseUser
+		<set>
+			<if test="userNo != null">
+				userNo = #{userNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="userPassword != null">
+				userPassword = #{userPassword,jdbcType=NVARCHAR},
+			</if>
+			<if test="userStatus != null">
+				userStatus = #{userStatus,jdbcType=INTEGER},
+			</if>
+			<if test="loginIP != null">
+				loginIP = #{loginIP,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				lastLoginTime = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tryLogCount != null">
+				tryLogCount = #{tryLogCount,jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				roleId = #{roleId,jdbcType=BIGINT},
+			</if>
+			<if test="roleCode != null">
+				roleCode = #{roleCode,jdbcType=NVARCHAR},
+			</if>
+			<if test="userName != null">
+				userName = #{userName,jdbcType=NVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseUser">
+		update BaseUser
+		set userNo        = #{userNo,jdbcType=NVARCHAR},
+		    userPassword  = #{userPassword,jdbcType=NVARCHAR},
+		    userStatus    = #{userStatus,jdbcType=INTEGER},
+		    loginIP       = #{loginIP,jdbcType=VARCHAR},
+		    lastLoginTime = #{lastLoginTime,jdbcType=TIMESTAMP},
+		    tryLogCount   = #{tryLogCount,jdbcType=INTEGER},
+		    roleId        = #{roleId,jdbcType=BIGINT},
+		    roleCode      = #{roleCode,jdbcType=NVARCHAR},
+		    userName      = #{userName,jdbcType=NVARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="checkNo" resultMap="BaseResultMap">
+		select *
+		from BaseUser
+		where userNo = #{userNo}
+		<if test="id != null">
+			and id != #{id}
+		</if>
+	</select>
+
+	<select id="getUserByNo" resultMap="BaseResultMap">
+		select *
+		from BaseUser
+		where userNo = #{userNo}
+	</select>
+	
+	<select id="getUserListAll" resultMap="BaseResultMap">
+		select * from BaseUser u join BaseRole r on u.roleId = r.id
+		where r.targetSystem = #{targetSystem}
+	</select>
+
+	<select id="getUserList" resultType="Map">
+		select u.*, r.roleName
+		from BaseUser u join BaseRole r on u.roleId = r.id
+		<where>
+			<if test="user.id != null">
+				and u.id = #{user.id}
+			</if>
+			<if test="user.userName != null and user.userName != ''">
+				and u.userName like concat('%',#{user.userName})
+			</if>
+			<if test="targetSystem != null and targetSystem != ''">
+				and r.targetSystem = #{targetSystem}
+			</if>
+		</where>
+		order by u.id
+		offset #{page.start, jdbcType=NUMERIC} rows
+		fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+	</select>
+
+	<select id="getUserListCount" resultType="int">
+		select count(*)
+		from BaseUser u join BaseRole r on u.roleId = r.id
+		<where>
+			<if test="user.id != null">
+				and u.id = #{user.id}
+			</if>
+			<if test="user.userName != null and user.userName != ''">
+				and u.userName like concat('%',#{user.userName})
+			</if>
+			<if test="targetSystem != null and targetSystem != ''">
+				and r.targetSystem = #{targetSystem}
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseSupplierBankMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseSupplierBank">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="bank" jdbcType="NVARCHAR" property="bank" />
+    <result column="bankAccount" jdbcType="VARCHAR" property="bankAccount" />
+    <result column="supplierId" jdbcType="BIGINT" property="supplierId" />
+    <result column="bankName" jdbcType="NVARCHAR" property="bankName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bank, bankAccount, supplierId,bankName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseSupplierBank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseSupplierBank
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseSupplierBank">
+    insert into BaseSupplierBank (id, bank, bankAccount, 
+      supplierId,bankName)
+    values (#{id,jdbcType=BIGINT}, #{bank,jdbcType=NVARCHAR}, #{bankAccount,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=BIGINT},#{bankName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseSupplierBank">
+    insert into BaseSupplierBank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="bankAccount != null">
+        bankAccount,
+      </if>
+      <if test="supplierId != null">
+        supplierId,
+      </if>
+      <if test="bankName != null">
+        bankName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseSupplierBank">
+    update BaseSupplierBank
+    <set>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        bankAccount = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplierId = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="bankName != NULL">
+        bankName = #{bankName,,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseSupplierBank">
+    update BaseSupplierBank
+    set bank = #{bank,jdbcType=NVARCHAR},
+      bankAccount = #{bankAccount,jdbcType=VARCHAR},
+      supplierId = #{supplierId,jdbcType=BIGINT},
+      bankName = #{bankName,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectBySupplierId" resultType="com.boyo.wuhang.entity.base.BaseSupplierBank">
+    select *
+    from BaseSupplierBank
+    where supplierId = #{supplierId}
+  </select>
+
+  <select id="getSupplierBankList" resultType="Map">
+    select *
+    from BaseSupplierBank b
+    <where>
+      <if test="bank.id != null">
+        and b.id = #{bank.id}
+      </if>
+      <if test="bank.bank != null and bank.bank !=''">
+        and b.bank = #{bank.bank}
+      </if>
+      <if test="bank.bankAccount != null and bank.bankAccount !=''">
+        and b.bankAccount = #{bank.bankAccount}
+      </if>
+      <if test="bank.supplierId != null ">
+        and b.supplierId = #{bank.supplierId}
+      </if>
+      <if test="bank.bankName != null and bank.bankName != ''">
+        and d.bankName = #{bank.bankName}
+      </if>
+    </where>
+    order by b.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getSupplierBankListCount" resultType="int">
+    select count(*)
+    from BaseSupplierBank b
+    <where>
+      <if test="bank.id != null">
+        and b.id = #{bank.id}
+      </if>
+      <if test="bank.bank != null and bank.bank !=''">
+        and b.bank = #{bank.bank}
+      </if>
+      <if test="bank.bankAccount != null and bank.bankAccount !=''">
+        and b.bankAccount = #{bank.bankAccount}
+      </if>
+      <if test="bank.supplierId != null ">
+        and b.supplierId = #{bank.supplierId}
+      </if>
+      <if test="bank.bankName != null and bank.bankName != ''">
+        and d.bankName = #{bank.bankName}
+      </if>
+    </where>
+  </select>
+</mapper>

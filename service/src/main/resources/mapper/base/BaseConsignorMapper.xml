@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseConsignorMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseConsignor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="consignorName" jdbcType="NVARCHAR" property="consignorName" />
+    <result column="bank" jdbcType="NVARCHAR" property="bank" />
+    <result column="bankAccount" jdbcType="NVARCHAR" property="bankAccount" />
+    <result column="supplierId" jdbcType="BIGINT" property="supplierId" />
+    <result column="identityCard" jdbcType="VARCHAR" property="identityCard" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, consignorName, bank, bankAccount, supplierId,identityCard,remark,sort
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseConsignor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseConsignor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseConsignor">
+    insert into BaseConsignor (id, consignorName, bank, 
+      bankAccount, supplierId,identityCard,remark,sort)
+    values (#{id,jdbcType=BIGINT}, #{consignorName,jdbcType=NVARCHAR}, #{bank,jdbcType=NVARCHAR}, 
+      #{bankAccount,jdbcType=NVARCHAR}, #{supplierId,jdbcType=BIGINT},#{identityCard,jdbcType=VARCHAR},
+      #{remark,jdbcType=NVARCHAR},#{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseConsignor">
+    insert into BaseConsignor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="consignorName != null">
+        consignorName,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="bankAccount != null">
+        bankAccount,
+      </if>
+      <if test="supplierId != null">
+        supplierId,
+      </if>
+        <if test="identityCard != null">
+            identityCard,
+        </if>
+        <if test="remark != null">
+            remark,
+        </if>
+        <if test="sort != null">
+            sort,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="consignorName != null">
+        #{consignorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+        <if test="identityCard != null">
+            #{identityCard,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null">
+            #{remark,jdbcType=NVARCHAR},
+        </if>
+        <if test="sort != null">
+            #{sort,jdbcType=INTEGER}
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseConsignor">
+    update BaseConsignor
+    <set>
+      <if test="consignorName != null">
+        consignorName = #{consignorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        bankAccount = #{bankAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplierId = #{supplierId,jdbcType=BIGINT},
+      </if>
+        <if test="identityCard != null">
+          identityCard = #{identityCard,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null">
+          remark = #{remark,jdbcType=NVARCHAR},
+        </if>
+        <if test="sort != null">
+          sort = #{sort,jdbcType=INTEGER},
+        </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseConsignor">
+    update BaseConsignor
+    set consignorName = #{consignorName,jdbcType=NVARCHAR},
+      bank = #{bank,jdbcType=NVARCHAR},
+      bankAccount = #{bankAccount,jdbcType=NVARCHAR},
+      supplierId = #{supplierId,jdbcType=BIGINT},
+      identityCard = #{identityCard,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      sort = #{sort,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="getConsignorList" resultType="map">
+    select c.*,s.supplierName
+    from BaseConsignor c
+    join BaseSupplier s on c.supplierId=s.id
+    <where>
+      <if test="consignor.id != null">
+        and c.id = #{consignor.id}
+      </if>
+      <if test="consignor.consignorName != null and consignor.consignorName != ''">
+        and c.consignorName like CONCAT('%', #{consignor.consignorName},'%')
+      </if>
+      <if test="consignor.bank != null and consignor.bank != ''">
+        and c.bank = #{consignor.bank}
+      </if>
+      <if test="consignor.bankAccount != null and consignor.bankAccount !=''">
+        and c.bankAccount = #{consignor.bankAccount}
+      </if>
+      <if test="consignor.supplierId != null and consignor.supplierId != ''">
+        and c.supplierId = #{consignor.supplierId}
+      </if>
+    </where>
+    order by c.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getConsignorListCount" resultType="int">
+    select count(*)
+    from (
+    select c.*,s.supplierName
+    from BaseConsignor c
+    join BaseSupplier s on c.supplierId=s.id
+    <where>
+      <if test="consignor.id != null">
+        and c.id = #{consignor.id}
+      </if>
+      <if test="consignor.consignorName != null and consignor.consignorName != ''">
+        and c.consignorName like CONCAT('%', #{consignor.consignorName},'%')
+      </if>
+      <if test="consignor.bank != null and consignor.bank != ''">
+        and c.bank = #{consignor.bank}
+      </if>
+      <if test="consignor.bankAccount != null and consignor.bankAccount !=''">
+        and c.bankAccount = #{consignor.bankAccount}
+      </if>
+      <if test="consignor.supplierId != null and consignor.supplierId != ''">
+        and c.supplierId = #{consignor.supplierId}
+      </if>
+    </where>
+    ) as f
+  </select>
+
+
+  <select id="selectConsignorBySupplierId" resultType="com.boyo.wuhang.entity.base.BaseConsignor">
+    select * from BaseConsignor
+    where supplierId = #{supplierId}
+  </select>
+</mapper>

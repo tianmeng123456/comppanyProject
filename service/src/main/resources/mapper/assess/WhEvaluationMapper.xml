@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhEvaluationMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhEvaluation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="execDate" jdbcType="TIMESTAMP" property="execDate" />
+    <result column="editDate" jdbcType="TIMESTAMP" property="editDate" />
+    <result column="checkDate" jdbcType="TIMESTAMP" property="checkDate" />
+    <result column="editPerson" jdbcType="NVARCHAR" property="editPerson" />
+    <result column="checkPerson" jdbcType="NVARCHAR" property="checkPerson" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="isArchived" jdbcType="INTEGER" property="isArchived" />
+    <result column="endDate" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+	  <result column="evaluationNo" jdbcType="NVARCHAR" property="evaluationNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, execDate, editDate, checkDate, editPerson, checkPerson, remark, isArchived, endDate, 
+    flag, mark, createTime, evaluationNo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhEvaluation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhEvaluation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhEvaluation">
+    insert into WhEvaluation (id, execDate, editDate, 
+      checkDate, editPerson, checkPerson, 
+      remark, isArchived, endDate, 
+      flag, mark, createTime, evaluationNo
+      )
+    values (#{id,jdbcType=BIGINT}, #{execDate,jdbcType=TIMESTAMP}, #{editDate,jdbcType=TIMESTAMP}, 
+      #{checkDate,jdbcType=TIMESTAMP}, #{editPerson,jdbcType=NVARCHAR}, #{checkPerson,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{isArchived,jdbcType=INTEGER}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{evaluationNo,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhEvaluation"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhEvaluation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="execDate != null">
+        execDate,
+      </if>
+      <if test="editDate != null">
+        editDate,
+      </if>
+      <if test="checkDate != null">
+        checkDate,
+      </if>
+      <if test="editPerson != null">
+        editPerson,
+      </if>
+      <if test="checkPerson != null">
+        checkPerson,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="isArchived != null">
+        isArchived,
+      </if>
+      <if test="endDate != null">
+        endDate,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+	    <if test="evaluationNo != null">
+		    evaluationNo,
+	    </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="execDate != null">
+        #{execDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editDate != null">
+        #{editDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDate != null">
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPerson != null">
+        #{editPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkPerson != null">
+        #{checkPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="isArchived != null">
+        #{isArchived,jdbcType=INTEGER},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+	    <if test="evaluationNo != null">
+		    #{evaluationNo,jdbcType=NVARCHAR},
+	    </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhEvaluation">
+    update WhEvaluation
+    <set>
+      <if test="execDate != null">
+        execDate = #{execDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editDate != null">
+        editDate = #{editDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDate != null">
+        checkDate = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPerson != null">
+        editPerson = #{editPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkPerson != null">
+        checkPerson = #{checkPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="isArchived != null">
+        isArchived = #{isArchived,jdbcType=INTEGER},
+      </if>
+      <if test="endDate != null">
+        endDate = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+	    <if test="evaluationNo != null">
+		    evaluationNo = #{evaluationNo,jdbcType=NVARCHAR},
+	    </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhEvaluation">
+    update WhEvaluation
+    set execDate = #{execDate,jdbcType=TIMESTAMP},
+      editDate = #{editDate,jdbcType=TIMESTAMP},
+      checkDate = #{checkDate,jdbcType=TIMESTAMP},
+      editPerson = #{editPerson,jdbcType=NVARCHAR},
+      checkPerson = #{checkPerson,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      isArchived = #{isArchived,jdbcType=INTEGER},
+      endDate = #{endDate,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+        evaluationNo = #{evaluationNo,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<select id="checkNo" resultMap="BaseResultMap">
+		select * from WhEvaluation
+		where evaluationNo = #{evaluationNo}
+	</select>
+	
+	<select id="getEvaluationList" resultType="Map">
+		select CONVERT(varchar(100), execDate, 120) as execTime,
+        CONVERT(varchar(100), createTime, 120) as createTime,*
+        from WhEvaluation
+		<where>
+			<if test="record.evaluationNo != null and record.evaluationNo != ''">
+				and evaluationNo = #{record.evaluationNo}
+			</if>
+			<if test="record.flag != null">
+				and flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and mark = #{record.mark}
+			</if>
+            <if test="record.createStartDate != null and record.createEndDate != null">
+                and createTime between #{record.createStartDate} and #{record.createEndDate}
+            </if>
+            <if test="record.createStartDate != null and record.createEndDate == null">
+                and createTime > #{record.createStartDate}
+            </if>
+            <if test="record.createStartDate == null and record.createEndDate != null">
+                and #{record.createEndDate} > createTime
+            </if>
+		</where>
+		order by id desc
+		offset #{page.start, jdbcType=NUMERIC} rows
+		fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+	</select>
+	
+	<select id="getEvaluationCount" resultType="int">
+		select count(*)
+		from WhEvaluation
+		<where>
+			<if test="record.evaluationNo != null and record.evaluationNo != ''">
+				and evaluationNo = #{record.evaluationNo}
+			</if>
+			<if test="record.flag != null">
+				and flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and mark = #{record.mark}
+			</if>
+            <if test="record.createStartDate != null and record.createEndDate != null">
+                and createTime between #{record.createStartDate} and #{record.createEndDate}
+            </if>
+            <if test="record.createStartDate != null and record.createEndDate == null">
+                and createTime > #{record.createStartDate}
+            </if>
+            <if test="record.createStartDate == null and record.createEndDate != null">
+                and #{record.createEndDate} > createTime
+            </if>
+		</where>
+	</select>
+	
+	<select id="getNewestEvaluation" resultMap="BaseResultMap">
+		select * from WhEvaluation where flag = 1
+	</select>
+	
+	<select id="getExecRankList" resultType="Map">
+		select r.id as rankId, r.wRank, r.grade, r.wLevel
+		from WhEvaluation e join WhRankEvaluation r on e.id = r.evaluationId
+		where e.flag != 0 and (( #{arriveWeighTime} >= e.execDate and e.endDate > #{arriveWeighTime})
+			or ( #{arriveWeighTime} >= e.execDate and e.endDate is null))
+	</select>
+
+    <select id="getETodayCount" resultType="int">
+		select count(*) from WhEvaluation
+		where convert(nvarchar(10),createTime,120) = convert(nvarchar(10),getDate(),120)
+	</select>
+</mapper>

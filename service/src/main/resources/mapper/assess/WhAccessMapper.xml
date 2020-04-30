@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhAccessMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhAccess">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="accessNo" jdbcType="NVARCHAR" property="accessNo" />
+    <result column="Impurities" jdbcType="NUMERIC" property="impurities" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="accessPerson" jdbcType="NVARCHAR" property="accessPerson" />
+    <result column="employeeId" jdbcType="BIGINT" property="employeeId" />
+    <result column="editPerson" jdbcType="NVARCHAR" property="editPerson" />
+    <result column="managerId" jdbcType="BIGINT" property="managerId" />
+    <result column="checkTime" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+    <result column="deliverId" jdbcType="BIGINT" property="deliverId" />
+    <result column="priceAdjust" jdbcType="NUMERIC" property="priceAdjust" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+	  <result column="sumAdjust" jdbcType="NUMERIC" property="sumAdjust" />
+	  <result column="loadPlaceId" jdbcType="BIGINT" property="loadPlaceId" />
+	  <result column="over60" jdbcType="INTEGER" property="over60" />
+	  <result column="employeeId2" jdbcType="BIGINT" property="employeeId" />
+	  <result column="accessPerson2" jdbcType="NVARCHAR" property="accessPerson" />
+      <result column="submitTime" jdbcType="TIMESTAMP" property="submitTime" />
+      <result column="adoptTime" jdbcType="TIMESTAMP" property="adoptTime" />
+      <result column="custom" jdbcType="NUMERIC" property="custom" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, accessNo, Impurities, remark, accessPerson, employeeId, editPerson, managerId, checkTime,
+    flag, mark, deliverId, priceAdjust, createTime, sumAdjust, loadPlaceId, over60, employeeId2,
+    accessPerson2,submitTime,adoptTime,custom
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhAccess
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhAccess
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhAccess">
+    insert into WhAccess (id, accessNo, Impurities, 
+      remark, accessPerson, employeeId, 
+      editPerson, managerId, checkTime, 
+      flag, mark, deliverId, 
+      priceAdjust, createTime, sumAdjust, loadPlaceId, 
+      over60, employeeId2, accessPerson2,submitTime,adoptTime,
+      custom
+      )
+    values (#{id,jdbcType=BIGINT}, #{accessNo,jdbcType=NVARCHAR}, #{impurities,jdbcType=NUMERIC}, 
+      #{remark,jdbcType=NVARCHAR}, #{accessPerson,jdbcType=NVARCHAR}, #{employeeId,jdbcType=BIGINT}, 
+      #{editPerson,jdbcType=NVARCHAR}, #{managerId,jdbcType=BIGINT}, #{checkTime,jdbcType=TIMESTAMP},
+      #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}, #{deliverId,jdbcType=BIGINT}, 
+      #{priceAdjust,jdbcType=NUMERIC}, #{createTime,jdbcType=TIMESTAMP},
+      #{sumAdjust,jdbcType=NUMERIC}, #{loadPlaceId,jdbcType=BIGINT}, #{over60,jdbcType=INTEGER},
+            #{employeeId2,jdbcType=BIGINT}, #{accessPerson2,jdbcType=NVARCHAR},
+            #{submitTime,jdbcType=TIMESTAMP},#{adoptTime,jdbcType=TIMESTAMP},
+            #{custom,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhAccess"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhAccess
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accessNo != null">
+        accessNo,
+      </if>
+      <if test="impurities != null">
+        Impurities,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="accessPerson != null">
+        accessPerson,
+      </if>
+      <if test="employeeId != null">
+        employeeId,
+      </if>
+      <if test="editPerson != null">
+        editPerson,
+      </if>
+      <if test="managerId != null">
+        managerId,
+      </if>
+      <if test="checkTime != null">
+        checkTime,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="deliverId != null">
+        deliverId,
+      </if>
+      <if test="priceAdjust != null">
+        priceAdjust,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+	    <if test="sumAdjust != null">
+		    sumAdjust,
+	    </if>
+	    <if test="loadPlaceId != null">
+		    loadPlaceId,
+	    </if>
+	    <if test="over60 != null">
+		    over60,
+	    </if>
+	    <if test="employeeId2 != null">
+		    employeeId2,
+	    </if>
+	    <if test="accessPerson2 != null">
+		    accessPerson2,
+	    </if>
+        <if test="submitTime != null">
+            submitTime,
+        </if>
+        <if test="adoptTime != null">
+            adoptTime,
+        </if>
+        <if test="custom != null">
+            custom,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accessNo != null">
+        #{accessNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="impurities != null">
+        #{impurities,jdbcType=NUMERIC},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="accessPerson != null">
+        #{accessPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="editPerson != null">
+        #{editPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="managerId != null">
+        #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="deliverId != null">
+        #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="priceAdjust != null">
+        #{priceAdjust,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+	    <if test="sumAdjust != null">
+		    #{sumAdjust,jdbcType=NUMERIC},
+	    </if>
+	    <if test="loadPlaceId != null">
+		    #{loadPlaceId,jdbcType=BIGINT},
+	    </if>
+	    <if test="over60 != null">
+		    #{over60,jdbcType=INTEGER},
+	    </if>
+	    <if test="employeeId2 != null">
+		    #{employeeId2,jdbcType=BIGINT},
+	    </if>
+	    <if test="accessPerson2 != null">
+		    #{accessPerson2,jdbcType=NVARCHAR},
+	    </if>
+	    <if test="submitTime != null">
+            #{submitTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="adoptTime != null">
+            #{adoptTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="custom != null">
+            #{custom,jdbcType=NUMERIC},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhAccess">
+    update WhAccess
+    <set>
+      <if test="accessNo != null">
+        accessNo = #{accessNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="impurities != null">
+        Impurities = #{impurities,jdbcType=NUMERIC},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="accessPerson != null">
+        accessPerson = #{accessPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="employeeId != null">
+        employeeId = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="editPerson != null">
+        editPerson = #{editPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="managerId != null">
+        managerId = #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="checkTime != null">
+        checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="deliverId != null">
+        deliverId = #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="priceAdjust != null">
+        priceAdjust = #{priceAdjust,jdbcType=NUMERIC},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+	    <if test="sumAdjust != null">
+		    sumAdjust = #{sumAdjust,jdbcType=NUMERIC},
+	    </if>
+	    <if test="loadPlaceId != null">
+		    loadPlaceId = #{loadPlaceId,jdbcType=BIGINT},
+	    </if>
+	    <if test="over60 != null">
+		    over60 = #{over60,jdbcType=INTEGER},
+	    </if>
+	    <if test="employeeId2 != null">
+		    employeeId2 = #{employeeId2,jdbcType=BIGINT},
+	    </if>
+	    <if test="accessPerson2 != null">
+		    accessPerson2 = #{accessPerson2,jdbcType=NVARCHAR},
+	    </if>
+        <if test="submitTime != null">
+            submitTime = #{submitTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="adoptTime != null">
+            adoptTime = #{adoptTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="custom != null">
+            custom = #{custom,jdbcType=NUMERIC},
+        </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhAccess">
+    update WhAccess
+    set accessNo = #{accessNo,jdbcType=NVARCHAR},
+      Impurities = #{impurities,jdbcType=NUMERIC},
+      remark = #{remark,jdbcType=NVARCHAR},
+      accessPerson = #{accessPerson,jdbcType=NVARCHAR},
+      employeeId = #{employeeId,jdbcType=BIGINT},
+      editPerson = #{editPerson,jdbcType=NVARCHAR},
+      managerId = #{managerId,jdbcType=BIGINT},
+      checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER},
+      deliverId = #{deliverId,jdbcType=BIGINT},
+      priceAdjust = #{priceAdjust,jdbcType=NUMERIC},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+        sumAdjust = #{sumAdjust,jdbcType=NUMERIC},
+        loadPlaceId = #{loadPlaceId,jdbcType=BIGINT},
+        over60 = #{over60,jdbcType=INTEGER},
+        employeeId2 = #{employeeId2,jdbcType=BIGINT},
+        accessPerson2 = #{accessPerson2,jdbcType=NVARCHAR},
+        submitTime = #{submitTime,jdbcType=TIMESTAMP},
+        adoptTime = #{adoptTime,jdbcType=TIMESTAMP},
+        custom = #{custom,jdbcType=NUMERIC}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<select id="checkNo" resultMap="BaseResultMap">
+		select * from WhAccess where accessNo = #{accessNo}
+	</select>
+	
+	<select id="getTodayCount" resultType="int">
+		select isnull(replace(ltrim(replace(max(right(accessNo,4)),'0',' ')),' ','0'),0)
+		from WhAccess
+		where convert(nvarchar(10),createTime,120) = convert(nvarchar(10),getDate(),120)
+	</select>
+	
+	<select id="getAccessList" resultType="Map">
+		select a.*,d.deliverNo,CONVERT(varchar(100), a.createTime, 120) as createDate,
+        s.supplierName,d.consignorName,d.carNumber
+		from WhAccess a join WhDeliver d on a.deliverId = d.id
+        left join BaseSupplier s on s.id=d.supplierId
+		<where>
+			<if test="record.id != null">
+				and a.id = #{record.id}
+			</if>
+			<if test="record.accessNo != null and record.accessNo != ''">
+				and a.accessNo like concat('%',#{record.accessNo},'%')
+			</if>
+			<if test="record.employeeId != null">
+				and a.employeeId = #{record.employeeId}
+			</if>
+			<if test="record.managerId != null">
+				and a.managerId = #{record.managerId}
+			</if>
+			<if test="record.flag != null">
+				and a.flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and a.mark = #{record.mark}
+			</if>
+			<if test="record.deliverId != null">
+				and a.deliverId = #{record.deliverId}
+			</if>
+			<if test="record.loadPlaceId != null">
+				and a.loadPlaceId = #{loadPlaceId}
+			</if>
+			<if test="record.over60 != null">
+				and a.over60 = #{over60}
+			</if>
+			<if test="record.employeeId2 != null">
+				and a.employeeId2 = #{record.employeeId2}
+			</if>
+            <if test="record.startDate != null and record.endDate != null">
+                and a.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and a.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > a.createTime
+            </if>
+		</where>
+		order by a.id desc
+		offset #{page.start, jdbcType=NUMERIC} rows
+		fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+	</select>
+	
+	<select id="getAccessListCount" resultType="int">
+		select count(*)
+		from WhAccess a join WhDeliver d on a.deliverId = d.id
+        left join BaseSupplier s on s.id=d.supplierId
+		<where>
+			<if test="record.id != null">
+				and a.id = #{record.id}
+			</if>
+			<if test="record.accessNo != null and record.accessNo != ''">
+				and a.accessNo like concat('%',#{record.accessNo},'%')
+			</if>
+			<if test="record.employeeId != null">
+				and a.employeeId = #{record.employeeId}
+			</if>
+			<if test="record.managerId != null">
+				and a.managerId = #{record.managerId}
+			</if>
+			<if test="record.flag != null">
+				and a.flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and a.mark = #{record.mark}
+			</if>
+			<if test="record.deliverId != null">
+				and a.deliverId = #{record.deliverId}
+			</if>
+			<if test="record.loadPlaceId != null">
+				and a.loadPlaceId = #{loadPlaceId}
+			</if>
+			<if test="record.over60 != null">
+				and a.over60 = #{over60}
+			</if>
+			<if test="record.employeeId2 != null">
+				and a.employeeId2 = #{record.employeeId2}
+			</if>
+            <if test="record.startDate != null and record.endDate != null">
+                and a.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and a.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > a.createTime
+            </if>
+		</where>
+	</select>
+
+    <select id="getPriceByDeliverId" resultType="Map">
+        select
+        cast(round(sum(a.Impurities/1000),2) as numeric(5,4)) as impurities,
+          sum(isnull(b.priceAdjust,0)) priceAdjust,
+          sum(((isnull(b.proportion,0)/100) * p.price) + isnull(b.priceAdjust,0)) as sumPrice
+        from
+          WhAccess a
+        join  WhAccessDetail b on b.accessId = a.id
+        join  WhDeliver d on d.id = a.deliverId
+        join  WhRankPrice p on p.departureId = d.departureId and p.rankId = b.rankId
+        where a.deliverId = #{deliverId} and a.mark=1
+        group by a.deliverId
+    </select>
+
+    <select id="getAccessByDeliverId" resultType="com.boyo.wuhang.entity.assess.WhAccess">
+        select *
+        from WhAccess
+        where deliverId  = #{deliverId}
+    </select>
+</mapper>

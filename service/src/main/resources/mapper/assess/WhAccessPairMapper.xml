@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhAccessPairMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhAccessPair">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="employeeId1" jdbcType="BIGINT" property="employeeId1" />
+    <result column="accessPerson1" jdbcType="NVARCHAR" property="accessPerson1" />
+    <result column="employeeId2" jdbcType="BIGINT" property="employeeId2" />
+    <result column="accessPerson2" jdbcType="NVARCHAR" property="accessPerson2" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, employeeId1, accessPerson1, employeeId2, accessPerson2, flag, mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhAccessPair
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhAccessPair
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhAccessPair">
+    insert into WhAccessPair (id, employeeId1, accessPerson1, 
+      employeeId2, accessPerson2, flag, 
+      mark)
+    values (#{id,jdbcType=BIGINT}, #{employeeId1,jdbcType=BIGINT}, #{accessPerson1,jdbcType=NVARCHAR}, 
+      #{employeeId2,jdbcType=BIGINT}, #{accessPerson2,jdbcType=NVARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{mark,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhAccessPair"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhAccessPair
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeId1 != null">
+        employeeId1,
+      </if>
+      <if test="accessPerson1 != null">
+        accessPerson1,
+      </if>
+      <if test="employeeId2 != null">
+        employeeId2,
+      </if>
+      <if test="accessPerson2 != null">
+        accessPerson2,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId1 != null">
+        #{employeeId1,jdbcType=BIGINT},
+      </if>
+      <if test="accessPerson1 != null">
+        #{accessPerson1,jdbcType=NVARCHAR},
+      </if>
+      <if test="employeeId2 != null">
+        #{employeeId2,jdbcType=BIGINT},
+      </if>
+      <if test="accessPerson2 != null">
+        #{accessPerson2,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhAccessPair">
+    update WhAccessPair
+    <set>
+      <if test="employeeId1 != null">
+        employeeId1 = #{employeeId1,jdbcType=BIGINT},
+      </if>
+      <if test="accessPerson1 != null">
+        accessPerson1 = #{accessPerson1,jdbcType=NVARCHAR},
+      </if>
+      <if test="employeeId2 != null">
+        employeeId2 = #{employeeId2,jdbcType=BIGINT},
+      </if>
+      <if test="accessPerson2 != null">
+        accessPerson2 = #{accessPerson2,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhAccessPair">
+    update WhAccessPair
+    set employeeId1 = #{employeeId1,jdbcType=BIGINT},
+      accessPerson1 = #{accessPerson1,jdbcType=NVARCHAR},
+      employeeId2 = #{employeeId2,jdbcType=BIGINT},
+      accessPerson2 = #{accessPerson2,jdbcType=NVARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<select id="getPairByTwoId" resultMap="BaseResultMap">
+		select *
+		from WhAccessPair
+		where employeeId1 = #{record.employeeId1} and employeeId2 = #{record.employeeId2}
+	</select>
+	
+	<select id="getPairByEmployeeId" resultMap="BaseResultMap">
+		select *
+		from WhAccessPair
+		where employeeId1 = #{employeeId} or employeeId2 = #{employeeId}
+	</select>
+	
+	<select id="getPairList" resultMap="BaseResultMap">
+		select *
+		from WhAccessPair
+	</select>
+</mapper>

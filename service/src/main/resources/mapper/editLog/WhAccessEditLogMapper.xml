@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.editLog.WhAccessEditLogMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="a_accessNo_log" jdbcType="NVARCHAR" property="a_accessNo_log" />
+    <result column="a_Impurities_log" jdbcType="NUMERIC" property="a_Impurities_log" />
+    <result column="a_remark_log" jdbcType="NVARCHAR" property="a_remark_log" />
+    <result column="a_accessPerson_log" jdbcType="NVARCHAR" property="a_accessPerson_log" />
+    <result column="a_employeeId_log" jdbcType="BIGINT" property="a_employeeId_log" />
+    <result column="a_editPerson_log" jdbcType="NVARCHAR" property="a_editPerson_log" />
+    <result column="a_managerId_log" jdbcType="BIGINT" property="a_managerId_log" />
+    <result column="a_checkTime_log" jdbcType="TIMESTAMP" property="a_checkTime_log" />
+    <result column="a_flag_log" jdbcType="INTEGER" property="a_flag_log" />
+    <result column="a_mark_log" jdbcType="INTEGER" property="a_mark_log" />
+    <result column="a_deliverId_log" jdbcType="BIGINT" property="a_deliverId_log" />
+    <result column="a_priceAdjust_log" jdbcType="NUMERIC" property="a_priceAdjust_log" />
+    <result column="a_createTime_log" jdbcType="TIMESTAMP" property="a_createTime_log" />
+    <result column="a_sumAdjust_log" jdbcType="NUMERIC" property="a_sumAdjust_log" />
+    <result column="a_loadPlaceId_log" jdbcType="BIGINT" property="a_loadPlaceId_log" />
+    <result column="a_over60_log" jdbcType="INTEGER" property="a_over60_log" />
+    <result column="a_employeeId2_log" jdbcType="BIGINT" property="a_employeeId2_log" />
+    <result column="a_accessPerson2_log" jdbcType="NVARCHAR" property="a_accessPerson2_log" />
+    <result column="a_submitTime_log" jdbcType="TIMESTAMP" property="a_submitTime_log" />
+    <result column="a_adoptTime_log" jdbcType="TIMESTAMP" property="a_adoptTime_log" />
+    <result column="createId" jdbcType="BIGINT" property="createId" />
+    <result column="createName" jdbcType="NVARCHAR" property="createName" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, a_accessNo_log, a_Impurities_log, a_remark_log, a_accessPerson_log, a_employeeId_log, 
+    a_editPerson_log, a_managerId_log, a_checkTime_log, a_flag_log, a_mark_log, a_deliverId_log, 
+    a_priceAdjust_log, a_createTime_log, a_sumAdjust_log, a_loadPlaceId_log, a_over60_log, 
+    a_employeeId2_log, a_accessPerson2_log, a_submitTime_log, a_adoptTime_log, createId, 
+    createName,createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhAccessEditLog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhAccessEditLog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    insert into WhAccessEditLog (id, a_accessNo_log, a_Impurities_log, 
+      a_remark_log, a_accessPerson_log, a_employeeId_log, 
+      a_editPerson_log, a_managerId_log, a_checkTime_log, 
+      a_flag_log, a_mark_log, a_deliverId_log, 
+      a_priceAdjust_log, a_createTime_log, 
+      a_sumAdjust_log, a_loadPlaceId_log, a_over60_log, 
+      a_employeeId2_log, a_accessPerson2_log, 
+      a_submitTime_log, a_adoptTime_log, 
+      createId, createName,createTime
+      )
+    values (#{id,jdbcType=BIGINT}, #{a_accessNo_log,jdbcType=NVARCHAR}, #{a_Impurities_log,jdbcType=NUMERIC}, 
+      #{a_remark_log,jdbcType=NVARCHAR}, #{a_accessPerson_log,jdbcType=NVARCHAR}, #{a_employeeId_log,jdbcType=BIGINT}, 
+      #{a_editPerson_log,jdbcType=NVARCHAR}, #{a_managerId_log,jdbcType=BIGINT}, #{a_checkTime_log,jdbcType=TIMESTAMP}, 
+      #{a_flag_log,jdbcType=INTEGER}, #{a_mark_log,jdbcType=INTEGER}, #{a_deliverId_log,jdbcType=BIGINT}, 
+      #{a_priceAdjust_log,jdbcType=NUMERIC}, #{a_createTime_log,jdbcType=TIMESTAMP}, 
+      #{a_sumAdjust_log,jdbcType=NUMERIC}, #{a_loadPlaceId_log,jdbcType=BIGINT}, #{a_over60_log,jdbcType=INTEGER}, 
+      #{a_employeeId2_log,jdbcType=BIGINT}, #{a_accessPerson2_log,jdbcType=NVARCHAR}, 
+      #{a_submitTime_log,jdbcType=TIMESTAMP}, #{a_adoptTime_log,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=BIGINT}, #{createName,jdbcType=NVARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditLog"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhAccessEditLog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="a_accessNo_log != null">
+        a_accessNo_log,
+      </if>
+      <if test="a_Impurities_log != null">
+        a_Impurities_log,
+      </if>
+      <if test="a_remark_log != null">
+        a_remark_log,
+      </if>
+      <if test="a_accessPerson_log != null">
+        a_accessPerson_log,
+      </if>
+      <if test="a_employeeId_log != null">
+        a_employeeId_log,
+      </if>
+      <if test="a_editPerson_log != null">
+        a_editPerson_log,
+      </if>
+      <if test="a_managerId_log != null">
+        a_managerId_log,
+      </if>
+      <if test="a_checkTime_log != null">
+        a_checkTime_log,
+      </if>
+      <if test="a_flag_log != null">
+        a_flag_log,
+      </if>
+      <if test="a_mark_log != null">
+        a_mark_log,
+      </if>
+      <if test="a_deliverId_log != null">
+        a_deliverId_log,
+      </if>
+      <if test="a_priceAdjust_log != null">
+        a_priceAdjust_log,
+      </if>
+      <if test="a_createTime_log != null">
+        a_createTime_log,
+      </if>
+      <if test="a_sumAdjust_log != null">
+        a_sumAdjust_log,
+      </if>
+      <if test="a_loadPlaceId_log != null">
+        a_loadPlaceId_log,
+      </if>
+      <if test="a_over60_log != null">
+        a_over60_log,
+      </if>
+      <if test="a_employeeId2_log != null">
+        a_employeeId2_log,
+      </if>
+      <if test="a_accessPerson2_log != null">
+        a_accessPerson2_log,
+      </if>
+      <if test="a_submitTime_log != null">
+        a_submitTime_log,
+      </if>
+      <if test="a_adoptTime_log != null">
+        a_adoptTime_log,
+      </if>
+      <if test="createId != null">
+        createId,
+      </if>
+      <if test="createName != null">
+        createName,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="a_accessNo_log != null">
+        #{a_accessNo_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_Impurities_log != null">
+        #{a_Impurities_log,jdbcType=NUMERIC},
+      </if>
+      <if test="a_remark_log != null">
+        #{a_remark_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_accessPerson_log != null">
+        #{a_accessPerson_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_employeeId_log != null">
+        #{a_employeeId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_editPerson_log != null">
+        #{a_editPerson_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_managerId_log != null">
+        #{a_managerId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_checkTime_log != null">
+        #{a_checkTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a_flag_log != null">
+        #{a_flag_log,jdbcType=INTEGER},
+      </if>
+      <if test="a_mark_log != null">
+        #{a_mark_log,jdbcType=INTEGER},
+      </if>
+      <if test="a_deliverId_log != null">
+        #{a_deliverId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_priceAdjust_log != null">
+        #{a_priceAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="a_createTime_log != null">
+        #{a_createTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a_sumAdjust_log != null">
+        #{a_sumAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="a_loadPlaceId_log != null">
+        #{a_loadPlaceId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_over60_log != null">
+        #{a_over60_log,jdbcType=INTEGER},
+      </if>
+      <if test="a_employeeId2_log != null">
+        #{a_employeeId2_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_accessPerson2_log != null">
+        #{a_accessPerson2_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_submitTime_log != null">
+        #{a_submitTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a_adoptTime_log != null">
+        #{a_adoptTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=NVARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    update WhAccessEditLog
+    <set>
+      <if test="a_accessNo_log != null">
+        a_accessNo_log = #{a_accessNo_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_Impurities_log != null">
+        a_Impurities_log = #{a_Impurities_log,jdbcType=NUMERIC},
+      </if>
+      <if test="a_remark_log != null">
+        a_remark_log = #{a_remark_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_accessPerson_log != null">
+        a_accessPerson_log = #{a_accessPerson_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_employeeId_log != null">
+        a_employeeId_log = #{a_employeeId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_editPerson_log != null">
+        a_editPerson_log = #{a_editPerson_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_managerId_log != null">
+        a_managerId_log = #{a_managerId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_checkTime_log != null">
+        a_checkTime_log = #{a_checkTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a_flag_log != null">
+        a_flag_log = #{a_flag_log,jdbcType=INTEGER},
+      </if>
+      <if test="a_mark_log != null">
+        a_mark_log = #{a_mark_log,jdbcType=INTEGER},
+      </if>
+      <if test="a_deliverId_log != null">
+        a_deliverId_log = #{a_deliverId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_priceAdjust_log != null">
+        a_priceAdjust_log = #{a_priceAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="a_createTime_log != null">
+        a_createTime_log = #{a_createTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a_sumAdjust_log != null">
+        a_sumAdjust_log = #{a_sumAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="a_loadPlaceId_log != null">
+        a_loadPlaceId_log = #{a_loadPlaceId_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_over60_log != null">
+        a_over60_log = #{a_over60_log,jdbcType=INTEGER},
+      </if>
+      <if test="a_employeeId2_log != null">
+        a_employeeId2_log = #{a_employeeId2_log,jdbcType=BIGINT},
+      </if>
+      <if test="a_accessPerson2_log != null">
+        a_accessPerson2_log = #{a_accessPerson2_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="a_submitTime_log != null">
+        a_submitTime_log = #{a_submitTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="a_adoptTime_log != null">
+        a_adoptTime_log = #{a_adoptTime_log,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        createId = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        createName = #{createName,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_wRank_log != null">
+        d_wRank_log = #{d_wRank_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_grade_log != null">
+        d_grade_log = #{d_grade_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_wLevel_log != null">
+        d_wLevel_log = #{d_wLevel_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_proportion_log != null">
+        d_proportion_log = #{d_proportion_log,jdbcType=NUMERIC},
+      </if>
+      <if test="d_priceAdjust_log != null">
+        d_priceAdjust_log = #{d_priceAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="d_accessId_log != null">
+        d_accessId_log = #{d_accessId_log,jdbcType=BIGINT},
+      </if>
+      <if test="d_rankId_log != null">
+        d_rankId_log = #{d_rankId_log,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    update WhAccessEditLog
+    set a_accessNo_log = #{a_accessNo_log,jdbcType=NVARCHAR},
+      a_Impurities_log = #{a_Impurities_log,jdbcType=NUMERIC},
+      a_remark_log = #{a_remark_log,jdbcType=NVARCHAR},
+      a_accessPerson_log = #{a_accessPerson_log,jdbcType=NVARCHAR},
+      a_employeeId_log = #{a_employeeId_log,jdbcType=BIGINT},
+      a_editPerson_log = #{a_editPerson_log,jdbcType=NVARCHAR},
+      a_managerId_log = #{a_managerId_log,jdbcType=BIGINT},
+      a_checkTime_log = #{a_checkTime_log,jdbcType=TIMESTAMP},
+      a_flag_log = #{a_flag_log,jdbcType=INTEGER},
+      a_mark_log = #{a_mark_log,jdbcType=INTEGER},
+      a_deliverId_log = #{a_deliverId_log,jdbcType=BIGINT},
+      a_priceAdjust_log = #{a_priceAdjust_log,jdbcType=NUMERIC},
+      a_createTime_log = #{a_createTime_log,jdbcType=TIMESTAMP},
+      a_sumAdjust_log = #{a_sumAdjust_log,jdbcType=NUMERIC},
+      a_loadPlaceId_log = #{a_loadPlaceId_log,jdbcType=BIGINT},
+      a_over60_log = #{a_over60_log,jdbcType=INTEGER},
+      a_employeeId2_log = #{a_employeeId2_log,jdbcType=BIGINT},
+      a_accessPerson2_log = #{a_accessPerson2_log,jdbcType=NVARCHAR},
+      a_submitTime_log = #{a_submitTime_log,jdbcType=TIMESTAMP},
+      a_adoptTime_log = #{a_adoptTime_log,jdbcType=TIMESTAMP},
+      createId = #{createId,jdbcType=BIGINT},
+      createName = #{createName,jdbcType=NVARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getAccessEditLogList" resultType="Map">
+    select e.*
+    from WhAccessEditLog e
+    <where>
+      <if test="log.id != null">
+        and e.id = #{log.id}
+      </if>
+      <if test="log.a_accessNo_log != null and log.a_accessNo_log != ''">
+        and e.a_accessNo_log = #{log.a_accessNo_log}
+      </if>
+      <if test="log.a_Impurities_log != null and log.a_Impurities_log != ''">
+        and e.a_Impurities_log = #{log.a_Impurities_log}
+      </if>
+      <if test="log.a_remark_log != null and log.a_remark_log != ''">
+        and e.a_remark_log = #{log.a_remark_log}
+      </if>
+      <if test="log.a_accessPerson_log != null and log.a_accessPerson_log != ''">
+        and e.a_accessPerson_log = #{log.a_accessPerson_log}
+      </if>
+      <if test="log.a_employeeId_log != null ">
+        and e.a_employeeId_log = #{log.a_employeeId_log}
+      </if>
+      <if test="log.a_editPerson_log != null and log.a_editPerson_log != ''">
+        and e.a_editPerson_log = #{log.a_editPerson_log}
+      </if>
+      <if test="log.a_managerId_log != null and log.a_managerId_log != ''">
+        and e.a_managerId_log = #{log.a_managerId_log}
+      </if>
+      <if test="log.a_checkTime_log != null and log.a_checkTime_log != ''">
+        and e.a_checkTime_log = #{log.a_checkTime_log}
+      </if>
+      <if test="log.a_flag_log != null and log.a_flag_log != ''">
+        and e.a_flag_log = #{log.a_flag_log}
+      </if>
+      <if test="log.a_mark_log != null and log.a_mark_log != ''">
+        and e.a_mark_log = #{log.a_mark_log}
+      </if>
+      <if test="log.a_deliverId_log != null and log.a_deliverId_log != ''">
+        and e.a_deliverId_log = #{log.a_deliverId_log}
+      </if>
+      <if test="log.a_priceAdjust_log != null and log.a_priceAdjust_log != ''">
+        and e.a_priceAdjust_log = #{log.a_priceAdjust_log}
+      </if>
+      <if test="log.a_createTime_log != null and log.a_createTime_log != ''">
+        and e.a_createTime_log = #{log.a_createTime_log}
+      </if>
+      <if test="log.a_sumAdjust_log != null and log.a_sumAdjust_log != ''">
+        and e.a_sumAdjust_log = #{log.a_sumAdjust_log}
+      </if>
+      <if test="log.a_loadPlaceId_log != null and log.a_loadPlaceId_log != ''">
+        and e.a_loadPlaceId_log = #{log.a_loadPlaceId_log}
+      </if>
+      <if test="log.a_over60_log != null and log.a_over60_log != ''">
+        and e.a_over60_log = #{log.a_over60_log}
+      </if>
+      <if test="log.a_employeeId2_log != null">
+        and e.a_employeeId2_log = #{log.a_employeeId2_log}
+      </if>
+      <if test="log.a_accessPerson2_log != null and log.a_accessPerson2_log !=''">
+        and e.a_accessPerson2_log = #{log.a_accessPerson2_log}
+      </if>
+      <if test="log.a_submitTime_log != null and log.a_submitTime_log !=''">
+        and e.a_submitTime_log = #{log.a_submitTime_log}
+      </if>
+      <if test="log.a_adoptTime_log != null and log.a_adoptTime_log !=''">
+        and e.a_adoptTime_log = #{log.a_adoptTime_log}
+      </if>
+      <if test="log.createId != null">
+        and e.createId = #{log.createId}
+      </if>
+      <if test="log.createName != null and log.createName !=''">
+        and e.createName = #{log.createName}
+      </if>
+    </where>
+    order by e.id desc
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getAccessEditLogListCount" resultType="int">
+    select count(*)
+    from WhAccessEditLog e left join WhDeliver d on d.id=e.a_deliverId_log
+    <where>
+      <if test="log.id != null">
+        and e.id = #{log.id}
+      </if>
+      <if test="log.a_accessNo_log != null and log.a_accessNo_log != ''">
+        and e.a_accessNo_log = #{log.a_accessNo_log}
+      </if>
+      <if test="log.a_Impurities_log != null and log.a_Impurities_log != ''">
+        and e.a_Impurities_log = #{log.a_Impurities_log}
+      </if>
+      <if test="log.a_remark_log != null and log.a_remark_log != ''">
+        and e.a_remark_log = #{log.a_remark_log}
+      </if>
+      <if test="log.a_accessPerson_log != null and log.a_accessPerson_log != ''">
+        and e.a_accessPerson_log = #{log.a_accessPerson_log}
+      </if>
+      <if test="log.a_employeeId_log != null ">
+        and e.a_employeeId_log = #{log.a_employeeId_log}
+      </if>
+      <if test="log.a_editPerson_log != null and log.a_editPerson_log != ''">
+        and e.a_editPerson_log = #{log.a_editPerson_log}
+      </if>
+      <if test="log.a_managerId_log != null and log.a_managerId_log != ''">
+        and e.a_managerId_log = #{log.a_managerId_log}
+      </if>
+      <if test="log.a_checkTime_log != null and log.a_checkTime_log != ''">
+        and e.a_checkTime_log = #{log.a_checkTime_log}
+      </if>
+      <if test="log.a_flag_log != null and log.a_flag_log != ''">
+        and e.a_flag_log = #{log.a_flag_log}
+      </if>
+      <if test="log.a_mark_log != null and log.a_mark_log != ''">
+        and e.a_mark_log = #{log.a_mark_log}
+      </if>
+      <if test="log.a_deliverId_log != null and log.a_deliverId_log != ''">
+        and e.a_deliverId_log = #{log.a_deliverId_log}
+      </if>
+      <if test="log.a_priceAdjust_log != null and log.a_priceAdjust_log != ''">
+        and e.a_priceAdjust_log = #{log.a_priceAdjust_log}
+      </if>
+      <if test="log.a_createTime_log != null and log.a_createTime_log != ''">
+        and e.a_createTime_log = #{log.a_createTime_log}
+      </if>
+      <if test="log.a_sumAdjust_log != null and log.a_sumAdjust_log != ''">
+        and e.a_sumAdjust_log = #{log.a_sumAdjust_log}
+      </if>
+      <if test="log.a_loadPlaceId_log != null and log.a_loadPlaceId_log != ''">
+        and e.a_loadPlaceId_log = #{log.a_loadPlaceId_log}
+      </if>
+      <if test="log.a_over60_log != null and log.a_over60_log != ''">
+        and e.a_over60_log = #{log.a_over60_log}
+      </if>
+      <if test="log.a_employeeId2_log != null">
+        and e.a_employeeId2_log = #{log.a_employeeId2_log}
+      </if>
+      <if test="log.a_accessPerson2_log != null and log.a_accessPerson2_log !=''">
+        and e.a_accessPerson2_log = #{log.a_accessPerson2_log}
+      </if>
+      <if test="log.a_submitTime_log != null and log.a_submitTime_log !=''">
+        and e.a_submitTime_log = #{log.a_submitTime_log}
+      </if>
+      <if test="log.a_adoptTime_log != null and log.a_adoptTime_log !=''">
+        and e.a_adoptTime_log = #{log.a_adoptTime_log}
+      </if>
+      <if test="log.createId != null">
+        and e.createId = #{log.createId}
+      </if>
+      <if test="log.createName != null and log.createName !=''">
+        and e.createName = #{log.createName}
+      </if>
+    </where>
+  </select>
+
+  <insert id="insertAccessData" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    insert into WhAccessEditLog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="a_accessNo_log != null">
+        a_accessNo_log,
+      </if>
+      <if test="a_Impurities_log != null">
+        a_Impurities_log,
+      </if>
+      <if test="a_remark_log != null">
+        a_remark_log,
+      </if>
+      <if test="a_accessPerson_log != null">
+        a_accessPerson_log,
+      </if>
+      <if test="a_employeeId_log != null">
+        a_employeeId_log,
+      </if>
+      <if test="a_editPerson_log != null">
+        a_editPerson_log,
+      </if>
+      <if test="a_managerId_log != null">
+        a_managerId_log,
+      </if>
+      <if test="a_checkTime_log != null">
+        a_checkTime_log,
+      </if>
+      <if test="a_flag_log != null">
+        a_flag_log,
+      </if>
+      <if test="a_mark_log != null">
+        a_mark_log,
+      </if>
+      <if test="a_deliverId_log != null">
+        a_deliverId_log,
+      </if>
+      <if test="a_priceAdjust_log != null">
+        a_priceAdjust_log,
+      </if>
+      <if test="a_createTime_log != null">
+        a_createTime_log,
+      </if>
+      <if test="a_sumAdjust_log != null">
+        a_sumAdjust_log,
+      </if>
+      <if test="a_loadPlaceId_log != null">
+        a_loadPlaceId_log,
+      </if>
+      <if test="a_over60_log != null">
+        a_over60_log,
+      </if>
+      <if test="a_employeeId2_log != null">
+        a_employeeId2_log,
+      </if>
+      <if test="a_accessPerson2_log != null">
+        a_accessPerson2_log,
+      </if>
+      <if test="a_submitTime_log != null">
+        a_submitTime_log,
+      </if>
+      <if test="a_adoptTime_log != null">
+        a_adoptTime_log,
+      </if>
+      <if test="d_wRank_log != null">
+        d_wRank_log,
+      </if>
+      <if test="d_grade_log != null">
+        d_grade_log,
+      </if>
+      <if test="d_wLevel_log != null">
+        d_wLevel_log,
+      </if>
+      <if test="d_proportion_log != null">
+        d_proportion_log,
+      </if>
+      <if test="d_priceAdjust_log != null">
+        d_priceAdjust_log,
+      </if>
+      <if test="d_accessId_log != null">
+        d_accessId_log,
+      </if>
+      <if test="d_rankId_log != null">
+        d_rankId_log,
+      </if>
+    </trim>
+      select a.accessNo,a.Impurities,a.remark,a.accessPerson,a.employeeId,a.editPerson,a.managerId,a.checkTime,
+      a.flag,a.mark,a.deliverId,a.priceAdjust,a.createTime,a.sumAdjust,a.loadPlaceId,a.over60,a.employeeId2,
+      a.accessPerson2,a.submitTime,a.adoptTime,d.wRank,d.grade,d.wLevel,d.proportion,d.priceAdjust,d.accessId,
+      d.rankId
+      from WhAccess a join WhAccessDetail d on d.accessId=a.id
+      where a.id = #{id}
+  </insert>
+
+  <select id="selectById" resultType="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    select *
+    from WhAccessEditLog
+    where d_accessId_log = #{d_accessId_log}
+  </select>
+
+  <update id="updateByAccessId" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditLog">
+    update WhAccessEditLog
+    <set>
+      <if test="createId != null">
+        createId = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        createName = #{createName,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where d_rankId_log = #{d_rankId_log}
+  </update>
+</mapper>

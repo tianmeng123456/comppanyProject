@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhDeliverCarWeighRecordMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhDeliverCarWeighRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="deliverId" jdbcType="BIGINT" property="deliverId" />
+    <result column="carId" jdbcType="BIGINT" property="carId" />
+    <result column="grossWeigh" jdbcType="NUMERIC" property="grossWeigh" />
+    <result column="weighTime" jdbcType="TIMESTAMP" property="weighTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, deliverId, carId, grossWeigh, weighTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhDeliverCarWeighRecord
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhDeliverCarWeighRecord
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhDeliverCarWeighRecord">
+    insert into WhDeliverCarWeighRecord (id, deliverId, carId, 
+      grossWeigh, weighTime)
+    values (#{id,jdbcType=BIGINT}, #{deliverId,jdbcType=BIGINT}, #{carId,jdbcType=BIGINT}, 
+      #{grossWeigh,jdbcType=NUMERIC}, #{weighTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliverCarWeighRecord">
+    insert into WhDeliverCarWeighRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deliverId != null">
+        deliverId,
+      </if>
+      <if test="carId != null">
+        carId,
+      </if>
+      <if test="grossWeigh != null">
+        grossWeigh,
+      </if>
+      <if test="weighTime != null">
+        weighTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deliverId != null">
+        #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="carId != null">
+        #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="grossWeigh != null">
+        #{grossWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="weighTime != null">
+        #{weighTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliverCarWeighRecord">
+    update WhDeliverCarWeighRecord
+    <set>
+      <if test="deliverId != null">
+        deliverId = #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="carId != null">
+        carId = #{carId,jdbcType=BIGINT},
+      </if>
+      <if test="grossWeigh != null">
+        grossWeigh = #{grossWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="weighTime != null">
+        weighTime = #{weighTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhDeliverCarWeighRecord">
+    update WhDeliverCarWeighRecord
+    set deliverId = #{deliverId,jdbcType=BIGINT},
+      carId = #{carId,jdbcType=BIGINT},
+      grossWeigh = #{grossWeigh,jdbcType=NUMERIC},
+      weighTime = #{weighTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getNetWeight" resultType="java.math.BigDecimal">
+    select
+      gw.weight - tw.aweight as weight
+    from
+      (select sum(w.grossWeigh) as weight
+      from WhDeliverCarWeighRecord w
+        where w.deliverId = #{record.deliverId}) as gw,
+      (select sum(d.tareWeight) as aweight
+      from WhDeliverCarWeighRecord c
+             left join WhDeliveryDetails d on c.carId = d.id
+        where
+           c.deliverId = #{record.deliverId}
+        group by
+           c.deliverId,
+           d.tareWeight) as tw
+  </select>
+</mapper>

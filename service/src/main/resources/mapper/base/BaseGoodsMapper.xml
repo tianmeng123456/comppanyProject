@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseGoods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="goodsName" jdbcType="NVARCHAR" property="goodsName" />
+    <result column="goodsSpec" jdbcType="NVARCHAR" property="goodsSpec" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+    <result column="goodsCode" jdbcType="NVARCHAR" property="goodsCode" />
+    <result column="goodsSpec2" jdbcType="NVARCHAR" property="goodsSpec2" />
+    <result column="model1" jdbcType="NVARCHAR" property="model1" />
+    <result column="model2" jdbcType="NVARCHAR" property="model2" />
+    <result column="goodsName2" jdbcType="NVARCHAR" property="goodsName2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goodsName, goodsSpec, flag, mark, goodsCode, goodsSpec2, model1, model2,goodsName2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseGoods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseGoods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseGoods">
+    insert into BaseGoods (id, goodsName, goodsSpec, 
+      flag, mark, goodsCode,goodsSpec2, model1, model2,
+      goodsName2
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodsName,jdbcType=NVARCHAR}, #{goodsSpec,jdbcType=NVARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}, #{goodsCode,jdbcType=NVARCHAR},
+      #{goodsSpec2,jdbcType=NVARCHAR},#{model1,jdbcType=NVARCHAR},#{model2,jdbcType=NVARCHAR},
+      #{goodsName2,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseGoods">
+    insert into BaseGoods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsName != null">
+        goodsName,
+      </if>
+      <if test="goodsSpec != null">
+        goodsSpec,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="goodsCode != null">
+        goodsCode,
+      </if>
+      <if test="goodsSpec2 != null">
+        goodsSpec2,
+      </if>
+      <if test="model1 != null">
+        model1,
+      </if>
+      <if test="model2 != null">
+        model2,
+      </if>
+      <if test="goodsName != null">
+        goodsName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=NVARCHAR},
+      </if>
+      <if test="goodsSpec != null">
+        #{goodsSpec,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="goodsSpec2 != null">
+        #{goodsSpec2,jdbcType=NVARCHAR},
+      </if>
+      <if test="model1 != null">
+        #{model1,jdbcType=NVARCHAR},
+      </if>
+      <if test="model2 != null">
+        #{model2,jdbcType=NVARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName2,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseGoods">
+    update BaseGoods
+    <set>
+      <if test="goodsName != null">
+        goodsName = #{goodsName,jdbcType=NVARCHAR},
+      </if>
+      <if test="goodsSpec != null">
+        goodsSpec = #{goodsSpec,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCode != null">
+        goodsCode = #{goodsCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="goodsSpec2 != null">
+        goodsSpec2 = #{goodsSpec2,jdbcType=NVARCHAR},
+      </if>
+      <if test="model1 != null">
+        model1 = #{model1,jdbcType=NVARCHAR},
+      </if>
+      <if test="model2 != null">
+        model2 = #{model2,jdbcType=NVARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goodsName = #{goodsName2,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseGoods">
+    update BaseGoods
+    set goodsName = #{goodsName,jdbcType=NVARCHAR},
+      goodsSpec = #{goodsSpec,jdbcType=NVARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER},
+      goodsCode = #{goodsCode,jdbcType=NVARCHAR},
+      goodsSpec2 = #{goodsSpec2,jdbcType=NVARCHAR},
+      model1 = #{model1,jdbcType=NVARCHAR},
+      model2 = #{model2,jdbcType=NVARCHAR},
+      goodsName = #{goodsName2,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getGoodsList" resultType="Map">
+    select *
+    from BaseGoods g
+    <where>
+      <if test="goods.id != null">
+        and g.id = #{goods.id}
+      </if>
+      <if test="goods.goodsName != null and goods.goodsName !=''">
+        and g.goodsName = #{goods.goodsName}
+      </if>
+      <if test="goods.goodsSpec != null and goods.goodsSpec !=''">
+        and g.goodsSpec = #{goods.goodsSpec}
+      </if>
+      <if test="goods.flag != null and goods.flag !=''">
+        and g.flag = #{goods.flag}
+      </if>
+      <if test="goods.mark != null and goods.mark !=''">
+        and g.mark = #{goods.mark}
+      </if>
+      <if test="goods.goodsCode != null and goods.goodsCode !=''">
+        and g.goodsCode = #{goods.goodsCode}
+      </if>
+      <if test="goods.goodsName2 != null and goods.goodsName2 !=''">
+        and g.goodsName = #{goods.goodsName2}
+      </if>
+    </where>
+    order by g.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+
+  <select id="getGoodsListCount" resultType="int">
+    select count(*)
+    from BaseGoods g
+    <where>
+      <if test="goods.id != null">
+        and g.id = #{goods.id}
+      </if>
+      <if test="goods.goodsName != null and goods.goodsName !=''">
+        and g.goodsName = #{goods.goodsName}
+      </if>
+      <if test="goods.goodsSpec != null and goods.goodsSpec !=''">
+        and g.goodsSpec = #{goods.goodsSpec}
+      </if>
+      <if test="goods.flag != null and goods.flag !=''">
+        and g.flag = #{goods.flag}
+      </if>
+      <if test="goods.mark != null and goods.mark !=''">
+        and g.mark = #{goods.mark}
+      </if>
+      <if test="goods.goodsCode != null and goods.goodsCode !=''">
+        and g.goodsCode = #{goods.goodsCode}
+      </if>
+      <if test="goods.goodsName2 != null and goods.goodsName2 !=''">
+        and g.goodsName = #{goods.goodsName2}
+      </if>
+    </where>
+  </select>
+
+  <select id="checkNo" resultMap="BaseResultMap">
+    select *
+    from BaseGoods
+    where goodsCode = #{goodsCode}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+</mapper>

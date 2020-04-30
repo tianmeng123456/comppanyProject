@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseSupplierAreaMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseSupplierArea">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="areaNo" jdbcType="NVARCHAR" property="areaNo" />
+    <result column="areaName" jdbcType="NVARCHAR" property="areaName" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, areaNo, areaName, remark, flag, mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseSupplierArea
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseSupplierArea
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseSupplierArea">
+    insert into BaseSupplierArea (id, areaNo, areaName, 
+      remark, flag, mark
+      )
+    values (#{id,jdbcType=BIGINT}, #{areaNo,jdbcType=NVARCHAR}, #{areaName,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseSupplierArea">
+    insert into BaseSupplierArea
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="areaNo != null">
+        areaNo,
+      </if>
+      <if test="areaName != null">
+        areaName,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="areaNo != null">
+        #{areaNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseSupplierArea">
+    update BaseSupplierArea
+    <set>
+      <if test="areaNo != null">
+        areaNo = #{areaNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="areaName != null">
+        areaName = #{areaName,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseSupplierArea">
+    update BaseSupplierArea
+    set areaNo = #{areaNo,jdbcType=NVARCHAR},
+      areaName = #{areaName,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getSupplierAreaList" resultType="Map">
+    select * from BaseSupplierArea a
+    <where>
+      <if test="area.id != null">
+       and a.id = #{area.id}
+      </if>
+      <if test="area.areaNo != null and area.areaNo !=''">
+        and a.areaNo = #{area.areaNo}
+      </if>
+      <if test="area.areaName != null and area.areaName !=''">
+        and a.areaName = #{area.areaName}
+      </if>
+      <if test="area.remark != null and area.remark !=''">
+        and a.remark = #{area.remark}
+      </if>
+      <if test="area.flag != null and  area.flag !=''">
+        and a.flag = #{area.flag}
+      </if>
+      <if test="area.mark != null and area.mark !=''">
+        and a.mark = #{area.mark}
+      </if>
+    </where>
+    order by a.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getSupplierAreaListCount" resultType="int">
+    select count (*) from BaseSupplierArea a
+    <where>
+      <if test="area.id != null">
+        and a.id = #{area.id}
+      </if>
+      <if test="area.areaNo != null and area.areaNo !=''">
+        and a.areaNo = #{area.areaNo}
+      </if>
+      <if test="area.areaName != null and area.areaName !=''">
+        and a.areaName = #{area.areaName}
+      </if>
+      <if test="area.remark != null and area.remark !=''">
+        and a.remark = #{area.remark}
+      </if>
+      <if test="area.flag != null and  area.flag !=''">
+        and a.flag = #{area.flag}
+      </if>
+      <if test="area.mark != null and area.mark !=''">
+        and a.mark = #{area.mark}
+      </if>
+    </where>
+  </select>
+
+  <select id="checkNo" resultType="com.boyo.wuhang.entity.base.BaseSupplierArea">
+    select *
+    from BaseSupplierArea
+    where areaNo = #{areaNo}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+</mapper>

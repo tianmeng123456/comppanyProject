@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseSupplierMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseSupplier">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="supplierNo" jdbcType="NVARCHAR" property="supplierNo" />
+    <result column="supplierName" jdbcType="NVARCHAR" property="supplierName" />
+    <result column="identityCard" jdbcType="VARCHAR" property="identityCard" />
+    <result column="balance" jdbcType="NUMERIC" property="balance" />
+    <result column="arrears" jdbcType="NUMERIC" property="arrears" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="contact" jdbcType="NVARCHAR" property="contact" />
+    <result column="conpanyAddress" jdbcType="NVARCHAR" property="conpanyAddress" />
+    <result column="company" jdbcType="NVARCHAR" property="company" />
+    <result column="legalRepresentative" jdbcType="NVARCHAR" property="legalRepresentative" />
+    <result column="entrustedAgent" jdbcType="NVARCHAR" property="entrustedAgent" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="zipCode" jdbcType="VARCHAR" property="zipCode" />
+    <result column="taxNumber" jdbcType="NVARCHAR" property="taxNumber" />
+    <result column="areaId" jdbcType="BIGINT" property="areaId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, supplierNo, supplierName, identityCard, balance, arrears,
+    flag, mark,tel, contact, conpanyAddress, company, legalRepresentative,
+    entrustedAgent, fax, zipCode, taxNumber,areaId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseSupplier
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseSupplier
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseSupplier">
+    insert into BaseSupplier (id, supplierNo, supplierName, 
+      identityCard,
+      balance, arrears, flag, 
+      mark,tel, contact, conpanyAddress, company, legalRepresentative,
+    entrustedAgent, fax, zipCode, taxNumber,areaId)
+    values (#{id,jdbcType=BIGINT}, #{supplierNo,jdbcType=NVARCHAR}, #{supplierName,jdbcType=NVARCHAR},
+      #{identityCard,jdbcType=VARCHAR},
+      #{balance,jdbcType=NUMERIC}, #{arrears,jdbcType=NUMERIC}, #{flag,jdbcType=INTEGER}, 
+      #{mark,jdbcType=INTEGER},#{tel,jdbcType=NVARCHAR},#{contact,jdbcType=NVARCHAR},#{conpanyAddress,jdbcType=NVARCHAR},
+      #{company,jdbcType=NVARCHAR},#{legalRepresentative,jdbcType=NVARCHAR},#{entrustedAgent,jdbcType=NVARCHAR},
+      #{fax,jdbcType=VARCHAR},#{zipCode,jdbcType=VARCHAR},#{taxNumber,jdbcType=VARCHAR},#{areaId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseSupplier">
+    insert into BaseSupplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="supplierNo != null">
+        supplierNo,
+      </if>
+      <if test="supplierName != null">
+        supplierName,
+      </if>
+      <if test="identityCard != null">
+        identityCard,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="arrears != null">
+        arrears,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="conpanyAddress != null">
+        conpanyAddress,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="legalRepresentative != null">
+        legalRepresentative,
+      </if>
+      <if test="entrustedAgent != null">
+        entrustedAgent,
+      </if>
+      <if test="fax != null">
+        fax,
+      </if>
+      <if test="zipCode != null">
+        zipCode,
+      </if>
+      <if test="taxNumber != null">
+        taxNumber,
+      </if>
+      <if test="areaId != null">
+        areaId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="supplierNo != null">
+        #{supplierNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=NVARCHAR},
+      </if>
+      <if test="identityCard != null">
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=NUMERIC},
+      </if>
+      <if test="arrears != null">
+        #{arrears,jdbcType=NUMERIC},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=NVARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=NVARCHAR},
+      </if>
+      <if test="conpanyAddress != null">
+        #{conpanyAddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=NVARCHAR},
+      </if>
+      <if test="legalRepresentative != null">
+        #{legalRepresentative,jdbcType=NVARCHAR},
+      </if>
+      <if test="entrustedAgent != null">
+        #{entrustedAgent,jdbcType=NVARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNumber != null">
+        #{taxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseSupplier">
+    update BaseSupplier
+    <set>
+      <if test="supplierNo != null">
+        supplierNo = #{supplierNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="supplierName != null">
+        supplierName = #{supplierName,jdbcType=NVARCHAR},
+      </if>
+      <if test="identityCard != null">
+        identityCard = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=NUMERIC},
+      </if>
+      <if test="arrears != null">
+        arrears = #{arrears,jdbcType=NUMERIC},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=NVARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=NVARCHAR},
+      </if>
+      <if test="conpanyAddress != null">
+        conpanyAddress = #{conpanyAddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=NVARCHAR},
+      </if>
+      <if test="legalRepresentative != null">
+        legalRepresentative = #{legalRepresentative,jdbcType=NVARCHAR},
+      </if>
+      <if test="entrustedAgent != null">
+        entrustedAgent = #{entrustedAgent,jdbcType=NVARCHAR},
+      </if>
+      <if test="fax != null">
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        zipCode = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNumber != null">
+        taxNumber = #{taxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        areaId = #{areaId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseSupplier">
+    update BaseSupplier
+    set supplierNo = #{supplierNo,jdbcType=NVARCHAR},
+      supplierName = #{supplierName,jdbcType=NVARCHAR},
+      identityCard = #{identityCard,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=NUMERIC},
+      arrears = #{arrears,jdbcType=NUMERIC},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=NVARCHAR},
+      contact = #{contact,jdbcType=NVARCHAR},
+      conpanyAddress = #{conpanyAddress,jdbcType=NVARCHAR},
+      company = #{company,jdbcType=NVARCHAR},
+      legalRepresentative = #{legalRepresentative,jdbcType=NVARCHAR},
+      entrustedAgent = #{entrustedAgent,jdbcType=NVARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      zipCode = #{zipCode,jdbcType=VARCHAR},
+      taxNumber = #{taxNumber,jdbcType=VARCHAR},
+      areaId = #{areaId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="checkNo" resultMap="BaseResultMap">
+    select *
+    from BaseSupplier
+    where supplierNo = #{supplierNo}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+
+  <select id="checkTel" resultMap="BaseResultMap">
+    select *
+    from BaseSupplier
+    where tel = #{tel}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+	
+	<select id="checkName" resultMap="BaseResultMap">
+		select *
+		from BaseSupplier
+		where supplierName = #{supplierName}
+		<if test="id != null">
+			and id != #{id}
+		</if>
+	</select>
+
+  <select id="getSupplierList" resultType="Map">
+    select *
+    from BaseSupplier s
+    <where>
+      <if test="supplier.supplierNo != null and supplier.supplierNo != ''">
+        and s.supplierNo = #{supplier.supplierNo}
+      </if>
+      <if test="supplier.supplierName != null and supplier.supplierName !=''">
+        and s.supplierName like CONCAT('%',#{supplier.supplierName},'%')
+      </if>
+      <if test="supplier.identityCard != null and supplier.identityCard !=''">
+        and s.identityCard = #{supplier.identityCard}
+      </if>
+      <if test="supplier.balance != null and supplier.balance !=''">
+        and s.balance = #{supplier.balance}
+      </if>
+      <if test="supplier.arrears != null and supplier.arrears !=''">
+        and s.arrears = #{supplier.arrears}
+      </if>
+      <if test="supplier.flag != null and supplier.flag !=''">
+        and s.flag = #{supplier.flag}
+      </if>
+      <if test="supplier.mark != null and supplier.mark !=''">
+        and s.mark = #{supplier.mark}
+      </if>
+      <if test="supplier.id != null">
+        and s.id = #{supplier.id}
+      </if>
+      <if test="supplier.tel != null and supplier.tel !=''">
+        and s.tel = #{supplier.tel}
+      </if>
+    </where>
+    order by s.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getSupplierListCount" resultType="int">
+    select count(*)
+    from BaseSupplier s
+    <where>
+      <if test="supplier.supplierNo != null and supplier.supplierNo != ''">
+        and s.supplierNo = #{supplier.supplierNo}
+      </if>
+      <if test="supplier.supplierName != null and supplier.supplierName !=''">
+        and s.supplierName = #{supplier.supplierName}
+      </if>
+      <if test="supplier.identityCard != null and supplier.identityCard !=''">
+        and s.identityCard = #{supplier.identityCard}
+      </if>
+      <if test="supplier.balance != null and supplier.balance !=''">
+        and s.balance = #{supplier.balance}
+      </if>
+      <if test="supplier.arrears != null and supplier.arrears !=''">
+        and s.arrears = #{supplier.arrears}
+      </if>
+      <if test="supplier.flag != null and supplier.flag !=''">
+        and s.flag = #{supplier.flag}
+      </if>
+      <if test="supplier.mark != null and supplier.mark !=''">
+        and s.mark = #{supplier.mark}
+      </if>
+      <if test="supplier.id != null">
+        and s.id = #{supplier.id}
+      </if>
+      <if test="supplier.tel != null and supplier.tel !=''">
+        and s.tel = #{supplier.tel}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByAreaId" resultType="com.boyo.wuhang.entity.base.BaseSupplier">
+    select * from BaseSupplier
+    where areaId = #{areaId}
+  </select>
+  
+  <select id="selectByTel" resultType="com.boyo.wuhang.entity.base.BaseSupplier">
+    select * from BaseSupplier
+    where tel = #{tel}
+  </select>
+	
+	<select id="selectByName" resultType="com.boyo.wuhang.entity.base.BaseSupplier">
+		select * from BaseSupplier
+		where supplierName = #{supplierName}
+	</select>
+</mapper>

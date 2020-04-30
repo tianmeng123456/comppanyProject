@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wuhang:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>wuhang</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="wuhang.war">
+      <element id="artifact" artifact-name="wuhang:war exploded" />
+    </root>
+  </artifact>
+</component>

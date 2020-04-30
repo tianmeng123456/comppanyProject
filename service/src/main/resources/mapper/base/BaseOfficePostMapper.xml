@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseOfficePostMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseOfficePost">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="postName" jdbcType="NVARCHAR" property="postName" />
+    <result column="postNo" jdbcType="NVARCHAR" property="postNo" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, postName, postNo, remark, flag, mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseOfficePost
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseOfficePost
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseOfficePost">
+    insert into BaseOfficePost (id, postName, postNo, 
+      remark, flag, mark
+      )
+    values (#{id,jdbcType=BIGINT}, #{postName,jdbcType=NVARCHAR}, #{postNo,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseOfficePost">
+    insert into BaseOfficePost
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="postName != null">
+        postName,
+      </if>
+      <if test="postNo != null">
+        postNo,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="postName != null">
+        #{postName,jdbcType=NVARCHAR},
+      </if>
+      <if test="postNo != null">
+        #{postNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseOfficePost">
+    update BaseOfficePost
+    <set>
+      <if test="postName != null">
+        postName = #{postName,jdbcType=NVARCHAR},
+      </if>
+      <if test="postNo != null">
+        postNo = #{postNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseOfficePost">
+    update BaseOfficePost
+    set postName = #{postName,jdbcType=NVARCHAR},
+      postNo = #{postNo,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getOfficePostList" resultType="map">
+    select *
+    from BaseOfficePost o
+    <where>
+      <if test="post.id != null">
+        and o.id = #{post.id}
+      </if>
+      <if test="post.postName != null and post.postName !=''">
+        and o.postName = #{post.postName}
+      </if>
+      <if test="post.postNo != null and post.postNo !=''">
+        and o.postNo = #{post.postNo}
+      </if>
+      <if test="post.remark != null and post.remark != ''">
+        and o.remark = #{post.remark}
+      </if>
+      <if test="post.flag != null and post.flag != ''">
+        and o.flag = #{post.flag}
+      </if>
+      <if test="post.mark != null and post.mark != ''">
+        and o.mark = #{post.mark}
+      </if>
+    </where>
+    order by o.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getOfficePostListCount" resultType="int">
+    select count(*)
+    from BaseOfficePost o
+    <where>
+      <if test="post.id != null">
+        and o.id = #{post.id}
+      </if>
+      <if test="post.postName != null and post.postName !=''">
+        and o.postName = #{post.postName}
+      </if>
+      <if test="post.postNo != null and post.postNo !=''">
+        and o.postNo = #{post.postNo}
+      </if>
+      <if test="post.remark != null and post.remark != ''">
+        and o.remark = #{post.remark}
+      </if>
+      <if test="post.flag != null and post.flag != ''">
+        and o.flag = #{post.flag}
+      </if>
+      <if test="post.mark != null and post.mark != ''">
+        and o.mark = #{post.mark}
+      </if>
+    </where>
+  </select>
+
+  <select id="checkNo" resultType="com.boyo.wuhang.entity.base.BaseOfficePost">
+    select * from BaseOfficePost
+    where postNo = #{postNo}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+</mapper>

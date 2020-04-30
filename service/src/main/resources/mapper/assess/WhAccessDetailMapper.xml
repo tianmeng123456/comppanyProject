@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhAccessDetailMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhAccessDetail">
+    <id column="ord" jdbcType="BIGINT" property="ord" />
+    <result column="wRank" jdbcType="NVARCHAR" property="wRank" />
+    <result column="grade" jdbcType="NVARCHAR" property="grade" />
+    <result column="wLevel" jdbcType="NVARCHAR" property="wLevel" />
+    <result column="proportion" jdbcType="NUMERIC" property="proportion" />
+    <result column="priceAdjust" jdbcType="NUMERIC" property="priceAdjust" />
+    <result column="accessId" jdbcType="BIGINT" property="accessId" />
+    <result column="rankId" jdbcType="BIGINT" property="rankId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ord, wRank, grade, wLevel, proportion, priceAdjust, accessId, rankId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhAccessDetail
+    where ord = #{ord,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhAccessDetail
+    where ord = #{ord,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhAccessDetail">
+    insert into WhAccessDetail (ord, wRank, grade,
+      wLevel, proportion, priceAdjust,
+      accessId, rankId)
+    values (#{ord,jdbcType=BIGINT}, #{wRank,jdbcType=NVARCHAR}, #{grade,jdbcType=NVARCHAR}, 
+      #{wLevel,jdbcType=NVARCHAR}, #{proportion,jdbcType=NUMERIC}, #{priceAdjust,jdbcType=NUMERIC}, 
+      #{accessId,jdbcType=BIGINT}, #{rankId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhAccessDetail">
+    insert into WhAccessDetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ord != null">
+        ord,
+      </if>
+      <if test="wRank != null">
+        wRank,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="wLevel != null">
+        wLevel,
+      </if>
+      <if test="proportion != null">
+        proportion,
+      </if>
+      <if test="priceAdjust != null">
+        priceAdjust,
+      </if>
+      <if test="accessId != null">
+        accessId,
+      </if>
+      <if test="rankId != null">
+        rankId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ord != null">
+        #{ord,jdbcType=BIGINT},
+      </if>
+      <if test="wRank != null">
+        #{wRank,jdbcType=NVARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=NVARCHAR},
+      </if>
+      <if test="wLevel != null">
+        #{wLevel,jdbcType=NVARCHAR},
+      </if>
+      <if test="proportion != null">
+        #{proportion,jdbcType=NUMERIC},
+      </if>
+      <if test="priceAdjust != null">
+        #{priceAdjust,jdbcType=NUMERIC},
+      </if>
+      <if test="accessId != null">
+        #{accessId,jdbcType=BIGINT},
+      </if>
+      <if test="rankId != null">
+        #{rankId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhAccessDetail">
+    update WhAccessDetail
+    <set>
+      <if test="wRank != null">
+        wRank = #{wRank,jdbcType=NVARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=NVARCHAR},
+      </if>
+      <if test="wLevel != null">
+        wLevel = #{wLevel,jdbcType=NVARCHAR},
+      </if>
+      <if test="proportion != null">
+        proportion = #{proportion,jdbcType=NUMERIC},
+      </if>
+      <if test="priceAdjust != null">
+        priceAdjust = #{priceAdjust,jdbcType=NUMERIC},
+      </if>
+      <if test="accessId != null">
+        accessId = #{accessId,jdbcType=BIGINT},
+      </if>
+      <if test="rankId != null">
+        rankId = #{rankId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ord = #{ord,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhAccessDetail">
+    update WhAccessDetail
+    set wRank = #{wRank,jdbcType=NVARCHAR},
+      grade = #{grade,jdbcType=NVARCHAR},
+      wLevel = #{wLevel,jdbcType=NVARCHAR},
+      proportion = #{proportion,jdbcType=NUMERIC},
+      priceAdjust = #{priceAdjust,jdbcType=NUMERIC},
+      accessId = #{accessId,jdbcType=BIGINT},
+      rankId = #{rankId,jdbcType=BIGINT}
+    where ord = #{ord,jdbcType=BIGINT}
+  </update>
+	
+	<select id="getAccessDetailById" resultMap="BaseResultMap">
+		select * from WhAccessDetail where accessId = #{accessId}
+	</select>
+	
+	<delete id="deleteAccessDetailById">
+		delete from WhAccessDetail where accessId = #{accessId}
+	</delete>
+
+  <select id="getAccessDetailByRank" resultType="com.boyo.wuhang.entity.assess.WhAccessDetail">
+    select *
+    from WhAccessDetail
+    where rankId = #{rankId} and accessId = #{accessId}
+  </select>
+</mapper>

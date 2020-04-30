@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.WhCarRecordMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.WhCarRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="carNo" jdbcType="NVARCHAR" property="carNo" />
+    <result column="driverLicense" jdbcType="NVARCHAR" property="driverLicense" />
+    <result column="travelLicense" jdbcType="NVARCHAR" property="travelLicense" />
+    <result column="driverName" jdbcType="NVARCHAR" property="driverName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, carNo, driverLicense, travelLicense, driverName, phone, createTime, editTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhCarRecord
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhCarRecord
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.WhCarRecord">
+    insert into WhCarRecord (id, carNo, driverLicense, 
+      travelLicense, driverName, phone, 
+      createTime, editTime)
+    values (#{id,jdbcType=BIGINT}, #{carNo,jdbcType=NVARCHAR}, #{driverLicense,jdbcType=NVARCHAR}, 
+      #{travelLicense,jdbcType=NVARCHAR}, #{driverName,jdbcType=NVARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.WhCarRecord">
+    insert into WhCarRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="carNo != null">
+        carNo,
+      </if>
+      <if test="driverLicense != null">
+        driverLicense,
+      </if>
+      <if test="travelLicense != null">
+        travelLicense,
+      </if>
+      <if test="driverName != null">
+        driverName,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="editTime != null">
+        editTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="carNo != null">
+        #{carNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverLicense != null">
+        #{driverLicense,jdbcType=NVARCHAR},
+      </if>
+      <if test="travelLicense != null">
+        #{travelLicense,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverName != null">
+        #{driverName,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.WhCarRecord">
+    update WhCarRecord
+    <set>
+      <if test="carNo != null">
+        carNo = #{carNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverLicense != null">
+        driverLicense = #{driverLicense,jdbcType=NVARCHAR},
+      </if>
+      <if test="travelLicense != null">
+        travelLicense = #{travelLicense,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverName != null">
+        driverName = #{driverName,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null">
+        editTime = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.WhCarRecord">
+    update WhCarRecord
+    set carNo = #{carNo,jdbcType=NVARCHAR},
+      driverLicense = #{driverLicense,jdbcType=NVARCHAR},
+      travelLicense = #{travelLicense,jdbcType=NVARCHAR},
+      driverName = #{driverName,jdbcType=NVARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      editTime = #{editTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getWhCarRecordList" resultType="map">
+    select *
+    from WhCarRecord c
+    <where>
+      <if test="record.carNo != null and record.carNo !=''">
+        and c.carNo like CONCAT('%', #{record.carNo},'%')
+      </if>
+      <if test="record.driverLicense != null and record.driverLicense !=''">
+        and c.driverLicense = #{record.driverLicense}
+      </if>
+      <if test="record.travelLicense != null and record.travelLicense !=''">
+        and c.travelLicense = #{record.travelLicense}
+      </if>
+      <if test="record.driverName != null and record.driverName !=''">
+        and c.driverName like CONCAT('%', #{record.driverName},'%')
+      </if>
+      <if test="record.phone != null and record.phone !=''">
+        and c.phone = #{record.phone}
+      </if>
+      <if test="record.createTime != null">
+        and c.createTime = #{record.createTime}
+      </if>
+      <if test="record.editTime != null">
+        and c.editTime = #{record.editTime}
+      </if>
+      <if test="record.id != null">
+        and c.id = #{record.id}
+      </if>
+    </where>
+    order by c.id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getWhCarRecordListCount" resultType="int">
+    select count(*)
+    from WhCarRecord c
+    <where>
+      <if test="record.carNo != null and record.carNo !=''">
+        and c.carNo like CONCAT('%', #{record.carNo},'%')
+      </if>
+      <if test="record.driverLicense != null and record.driverLicense !=''">
+        and c.driverLicense = #{record.driverLicense}
+      </if>
+      <if test="record.travelLicense != null and record.travelLicense !=''">
+        and c.travelLicense = #{record.travelLicense}
+      </if>
+      <if test="record.driverName != null and record.driverName !=''">
+        and c.driverName like CONCAT('%', #{record.driverName},'%')
+      </if>
+      <if test="record.phone != null and record.phone !=''">
+        and c.phone = #{record.phone}
+      </if>
+      <if test="record.createTime != null">
+        and c.createTime = #{record.createTime}
+      </if>
+      <if test="record.editTime != null">
+        and c.editTime = #{record.editTime}
+      </if>
+      <if test="record.id != null">
+        and c.id = #{record.id}
+      </if>
+    </where>
+  </select>
+
+  <select id="checkNo" resultMap="BaseResultMap">
+    select *
+    from WhCarRecord
+    where carNo = #{carNo}
+    <if test="id != null">
+      and id = #{id}
+    </if>
+  </select>
+	
+	<select id="getCarRecordByNo" resultMap="BaseResultMap">
+		select * from WhCarRecord where carNo = #{carNo}
+	</select>
+</mapper>

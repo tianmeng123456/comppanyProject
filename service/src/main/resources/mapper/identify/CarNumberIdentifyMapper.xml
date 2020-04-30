@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.identify.CarNumberIdentifyMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.identify.CarNumberIdentify">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="carNumber" jdbcType="NVARCHAR" property="carNumber" />
+    <result column="arriveTime" jdbcType="TIMESTAMP" property="arriveTime" />
+    <result column="leaveTime" jdbcType="TIMESTAMP" property="leaveTime" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="createId" jdbcType="BIGINT" property="createId" />
+    <result column="createName" jdbcType="NVARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, carNumber, arriveTime, leaveTime, flag, createId, createName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CarNumberIdentify
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from CarNumberIdentify
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.identify.CarNumberIdentify">
+    insert into CarNumberIdentify (id, carNumber, arriveTime, 
+      leaveTime, flag, createId, 
+      createName)
+    values (#{id,jdbcType=BIGINT}, #{carNumber,jdbcType=NVARCHAR}, #{arriveTime,jdbcType=TIMESTAMP}, 
+      #{leaveTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{createId,jdbcType=BIGINT}, 
+      #{createName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.identify.CarNumberIdentify">
+    insert into CarNumberIdentify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="carNumber != null">
+        carNumber,
+      </if>
+      <if test="arriveTime != null">
+        arriveTime,
+      </if>
+      <if test="leaveTime != null">
+        leaveTime,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="createId != null">
+        createId,
+      </if>
+      <if test="createName != null">
+        createName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="arriveTime != null">
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveTime != null">
+        #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.identify.CarNumberIdentify">
+    update CarNumberIdentify
+    <set>
+      <if test="carNumber != null">
+        carNumber = #{carNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="arriveTime != null">
+        arriveTime = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveTime != null">
+        leaveTime = #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null">
+        createId = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        createName = #{createName,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.identify.CarNumberIdentify">
+    update CarNumberIdentify
+    set carNumber = #{carNumber,jdbcType=NVARCHAR},
+      arriveTime = #{arriveTime,jdbcType=TIMESTAMP},
+      leaveTime = #{leaveTime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      createId = #{createId,jdbcType=BIGINT},
+      createName = #{createName,jdbcType=NVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="checkNo" resultMap="BaseResultMap">
+    select * from CarNumberIdentify
+    where carNumber = #{carNumber}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+
+  <select id="getIdentifyList" resultType="Map">
+    select *
+    from CarNumberIdentify
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="carNumber != null">
+        and carNumber = #{carNumber}
+      </if>
+      <if test="arriveTime != null">
+        and arriveTime = #{arriveTime}
+      </if>
+      <if test="leaveTime != null">
+        and leaveTime = #{leaveTime}
+      </if>
+      <if test="flag != null">
+        and flag = #{flag}
+      </if>
+      <if test="createId != null">
+        and createId = #{createId}
+      </if>
+      <if test="createName != null">
+        and createName = #{createName}
+      </if>
+    </where>
+    order by id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getIdentifyListCount" resultType="int">
+    select count(*)
+    from CarNumberIdentify
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="carNumber != null">
+        and carNumber = #{carNumber}
+      </if>
+      <if test="arriveTime != null">
+        and arriveTime = #{arriveTime}
+      </if>
+      <if test="leaveTime != null">
+        and leaveTime = #{leaveTime}
+      </if>
+      <if test="flag != null">
+        and flag = #{flag}
+      </if>
+      <if test="createId != null">
+        and createId = #{createId}
+      </if>
+      <if test="createName != null">
+        and createName = #{createName}
+      </if>
+    </where>
+  </select>
+</mapper>

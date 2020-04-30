@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseDepartureMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseDeparture">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dCode" jdbcType="NVARCHAR" property="dCode" />
+    <result column="dName" jdbcType="NVARCHAR" property="dName" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dCode, dName, remark, flag, mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BaseDeparture
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BaseDeparture
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseDeparture">
+    insert into BaseDeparture (id, dCode, dName, 
+      remark, flag, mark
+      )
+    values (#{id,jdbcType=BIGINT}, #{dCode,jdbcType=NVARCHAR}, #{dName,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseDeparture">
+    insert into BaseDeparture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dCode != null">
+        dCode,
+      </if>
+      <if test="dName != null">
+        dName,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dCode != null">
+        #{dCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="dName != null">
+        #{dName,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseDeparture">
+    update BaseDeparture
+    <set>
+      <if test="dCode != null">
+        dCode = #{dCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="dName != null">
+        dName = #{dName,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseDeparture">
+    update BaseDeparture
+    set dCode = #{dCode,jdbcType=NVARCHAR},
+      dName = #{dName,jdbcType=NVARCHAR},
+      remark = #{remark,jdbcType=NVARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="checkNo" resultMap="BaseResultMap">
+    select *
+    from BaseDeparture
+    where dCode = #{dCode}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+
+  <select id="checkName" resultMap="BaseResultMap">
+    select *
+    from BaseDeparture
+    where dName = #{dName}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+	
+	<select id="getAllDeparture" resultMap="BaseResultMap">
+		select distinct d.* from  WhRankEvaluation r join WhRankPrice p on r.id = p.rankId
+		                                             join BaseDeparture d on p.departureId = d.id
+		where r.evaluationId = #{evaluationId}
+		order by  d.dCode
+	</select>
+	
+	<select id="getEffectDeparture" resultMap="BaseResultMap">
+		select d.*
+		from BaseDeparture d
+		where mark = 0
+	</select>
+
+  <select id="getDepartureList" resultType="map">
+    select *
+    from BaseDeparture d
+    where d.mark = 0
+	  <if test="departure.id != null">
+		  and d.id = #{departure.id}
+	  </if>
+	  <if test="departure.dCode != null and departure.dCode != ''">
+		  and d.dCode = #{departure.dCode}
+	  </if>
+	  <if test="departure.dName != null and departure.dName !=''">
+		  and d.dName = #{departure.dName}
+	  </if>
+	  <if test="departure.remark != null and departure.remark != ''">
+		  and d.remark = #{departure.remark}
+	  </if>
+	  <if test="departure.flag != null and departure.flag != ''">
+		  and d.flag = #{departure.flag}
+	  </if>
+	  <if test="departure.mark != null and departure.mark != ''">
+		  and d.mark = #{departure.mark}
+	  </if>
+  </select>
+  
+  <select id="getDepartureListCount" resultType="int">
+    select count(*)
+    from BaseDeparture d
+    <where>
+      <if test="departure.id != null ">
+        and d.id = #{departure.id}
+      </if>
+      <if test="departure.dCode != null and departure.dCode != ''">
+        and d.dCode = #{departure.dCode}
+      </if>
+      <if test="departure.dName != null and departure.dName !=''">
+        and d.dName = #{departure.dName}
+      </if>
+      <if test="departure.remark != null and departure.remark != ''">
+        and d.remark = #{departure.remark}
+      </if>
+      <if test="departure.flag != null and departure.flag != ''">
+        and d.flag = #{departure.flag}
+      </if>
+      <if test="departure.mark != null and departure.mark != ''">
+        and d.mark = #{departure.mark}
+      </if>
+    </where>
+  </select>
+	
+	<select id="getNewestDeparture" resultMap="BaseResultMap">
+		select t.* from
+			(
+				select distinct d.*from
+					(
+						select top 1 * from WhEvaluation
+						where ( getdate() > execDate and endDate > getdate()) or
+							( getdate() > execDate and endDate is null) and flag > 1
+					) e join WhRankEvaluation r on e.id = r.evaluationId
+					    join WhRankPrice p on r.id = p.rankId
+					    join BaseDeparture d on p.departureId = d.id
+			) as t order by t.dCode
+	</select>
+
+    <select id="getDepartureByFlag" resultType="com.boyo.wuhang.entity.base.BaseDeparture">
+        select * from BaseDeparture
+        where flag = #{flag}
+    </select>
+</mapper>

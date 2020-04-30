@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhWeighMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhWeigh">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="weighNo" jdbcType="NVARCHAR" property="weighNo" />
+    <result column="deliverId" jdbcType="BIGINT" property="deliverId" />
+    <result column="arriveWeigh" jdbcType="NUMERIC" property="arriveWeigh" />
+    <result column="arriveWeighTime" jdbcType="TIMESTAMP" property="arriveWeighTime" />
+    <result column="leaveWeigh" jdbcType="NUMERIC" property="leaveWeigh" />
+    <result column="leaveWeighTime" jdbcType="TIMESTAMP" property="leaveWeighTime" />
+    <result column="netWeigh" jdbcType="NUMERIC" property="netWeigh" />
+    <result column="Impurities" jdbcType="NUMERIC" property="impurities" />
+    <result column="weighPerson" jdbcType="NVARCHAR" property="weighPerson" />
+    <result column="employeeId" jdbcType="BIGINT" property="employeeId" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+	  <result column="gpsPicture" jdbcType="NVARCHAR" property="gpsPicture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, weighNo, deliverId, arriveWeigh, arriveWeighTime, leaveWeigh, leaveWeighTime, 
+    netWeigh, Impurities, weighPerson, employeeId, flag, mark, gpsPicture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhWeigh
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhWeigh
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhWeigh">
+    insert into WhWeigh (id, weighNo, deliverId, 
+      arriveWeigh, arriveWeighTime, leaveWeigh, 
+      leaveWeighTime, netWeigh, Impurities, 
+      weighPerson, employeeId, flag, 
+      mark)
+    values (#{id,jdbcType=BIGINT}, #{weighNo,jdbcType=NVARCHAR}, #{deliverId,jdbcType=BIGINT}, 
+      #{arriveWeigh,jdbcType=NUMERIC}, #{arriveWeighTime,jdbcType=TIMESTAMP}, #{leaveWeigh,jdbcType=NUMERIC}, 
+      #{leaveWeighTime,jdbcType=TIMESTAMP}, #{netWeigh,jdbcType=NUMERIC}, #{impurities,jdbcType=NUMERIC}, 
+      #{weighPerson,jdbcType=NVARCHAR}, #{employeeId,jdbcType=BIGINT}, #{flag,jdbcType=INTEGER}, 
+      #{mark,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhWeigh"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhWeigh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="weighNo != null">
+        weighNo,
+      </if>
+      <if test="deliverId != null">
+        deliverId,
+      </if>
+      <if test="arriveWeigh != null">
+        arriveWeigh,
+      </if>
+      <if test="arriveWeighTime != null">
+        arriveWeighTime,
+      </if>
+      <if test="leaveWeigh != null">
+        leaveWeigh,
+      </if>
+      <if test="leaveWeighTime != null">
+        leaveWeighTime,
+      </if>
+      <if test="netWeigh != null">
+        netWeigh,
+      </if>
+      <if test="impurities != null">
+        Impurities,
+      </if>
+      <if test="weighPerson != null">
+        weighPerson,
+      </if>
+      <if test="employeeId != null">
+        employeeId,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+	    <if test="gpsPicture != null">
+		    gpsPicture,
+	    </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="weighNo != null">
+        #{weighNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="deliverId != null">
+        #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="arriveWeigh != null">
+        #{arriveWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="arriveWeighTime != null">
+        #{arriveWeighTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveWeigh != null">
+        #{leaveWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="leaveWeighTime != null">
+        #{leaveWeighTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="netWeigh != null">
+        #{netWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="impurities != null">
+        #{impurities,jdbcType=NUMERIC},
+      </if>
+      <if test="weighPerson != null">
+        #{weighPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+	    <if test="gpsPicture != null">
+		    #{gpsPicture,jdbcType=NVARCHAR},
+	    </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhWeigh">
+    update WhWeigh
+    <set>
+      <if test="weighNo != null">
+        weighNo = #{weighNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="deliverId != null">
+        deliverId = #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="arriveWeigh != null">
+        arriveWeigh = #{arriveWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="arriveWeighTime != null">
+        arriveWeighTime = #{arriveWeighTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveWeigh != null">
+        leaveWeigh = #{leaveWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="leaveWeighTime != null">
+        leaveWeighTime = #{leaveWeighTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="netWeigh != null">
+        netWeigh = #{netWeigh,jdbcType=NUMERIC},
+      </if>
+      <if test="impurities != null">
+        Impurities = #{impurities,jdbcType=NUMERIC},
+      </if>
+      <if test="weighPerson != null">
+        weighPerson = #{weighPerson,jdbcType=NVARCHAR},
+      </if>
+      <if test="employeeId != null">
+        employeeId = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+	    <if test="gpsPicture != null">
+		    gpsPicture = #{gpsPicture,jdbcType=NVARCHAR},
+	    </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhWeigh">
+    update WhWeigh
+    set weighNo = #{weighNo,jdbcType=NVARCHAR},
+      deliverId = #{deliverId,jdbcType=BIGINT},
+      arriveWeigh = #{arriveWeigh,jdbcType=NUMERIC},
+      arriveWeighTime = #{arriveWeighTime,jdbcType=TIMESTAMP},
+      leaveWeigh = #{leaveWeigh,jdbcType=NUMERIC},
+      leaveWeighTime = #{leaveWeighTime,jdbcType=TIMESTAMP},
+      netWeigh = #{netWeigh,jdbcType=NUMERIC},
+      Impurities = #{impurities,jdbcType=NUMERIC},
+      weighPerson = #{weighPerson,jdbcType=NVARCHAR},
+      employeeId = #{employeeId,jdbcType=BIGINT},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<select id="checkNo" resultMap="BaseResultMap">
+		select * from WhWeigh where weighNo = #{weighNo}
+	</select>
+	
+	<select id="getTodayCount" resultType="int">
+		select count(*) from WhWeigh
+		where convert(nvarchar(10),arriveWeighTime,120) = convert(nvarchar(10),getDate(),120)
+	</select>
+	
+	<select id="getWeighByDeliverId" resultMap="BaseResultMap">
+		select * from WhWeigh where deliverId = #{deliverId}
+	</select>
+
+    <select id="getWeighByDeliverIdList" resultType="Map">
+        select  * from WhWeigh where deliverId = #{deliverId}
+    </select>
+	
+	<select id="getWeighList" resultType="Map">
+        select w.*, d.carNumber,CONVERT(varchar(100), w.arriveWeighTime, 120) as arriveWeighDate,
+        CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighDate,d.deliverNo,d.consignorId,d.consignorName,
+        d.goodsName,d.goodsId,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,d.placeId,d.placeName,s.supplierName,
+        b.grossWeight,b.tareWeight
+        from WhWeigh w join WhDeliver d on w.deliverId = d.id
+        left join WhDeliveryDetails b on b.deliverId=d.id
+        left join BaseGoods g on g.id=d.goodsId
+        left join BaseSupplier s on s.id=d.supplierId
+		<where>
+			<if test="record.id != null">
+				and w.id = #{record.id}
+			</if>
+			<if test="record.weighNo != null and record.weighNo != ''">
+				and w.weighNo like concat('%',#{record.weighNo},'%')
+			</if>
+			<if test="record.employeeId != null">
+				and w.employeeId = #{record.employeeId}
+			</if>
+			<if test="record.flag != null">
+				and w.flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and w.mark = #{record.mark}
+			</if>
+            <if test="record.startDate != null and record.endDate != null">
+                and d.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and d.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > d.createTime
+            </if>
+            <if test="record.arriveWeighStartDate != null and record.arriveWeighEndDate != null">
+                and w.arriveWeighTime between #{record.arriveWeighStartDate} and #{record.arriveWeighEndDate}
+            </if>
+            <if test="record.arriveWeighStartDate != null and record.arriveWeighEndDate == null">
+                and w.arriveWeighTime > #{record.arriveWeighStartDate}
+            </if>
+            <if test="record.arriveWeighStartDate == null and record.arriveWeighEndDate != null">
+                and #{record.arriveWeighEndDate} > w.arriveWeighTime
+            </if>
+            <if test="record.leaveWeighStartTime != null and record.leaveWeighEndTime != null">
+                and w.leaveWeighTime between #{record.leaveWeighStartTime} and #{record.leaveWeighEndTime}
+            </if>
+            <if test="record.leaveWeighStartTime != null and record.leaveWeighEndTime == null">
+                and w.leaveWeighTime > #{record.leaveWeighStartTime}
+            </if>
+            <if test="record.leaveWeighStartTime == null and record.leaveWeighEndTime != null">
+                and #{record.leaveWeighEndTime} > w.leaveWeighTime
+            </if>
+            <if test="record.carNumber != null and record.carNumber !=''">
+                and d.carNumber = #{record.carNumber}
+            </if>
+            <if test="record.supplierName != null and record.supplierName !=''">
+                and s.supplierName like CONCAT('%', #{record.supplierName},'%')
+            </if>
+            <if test="record.consignorName != null and record.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{record.consignorName},'%')
+            </if>
+		</where>
+		order by w.id desc
+		offset #{page.start, jdbcType=NUMERIC} rows
+		fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+	</select>
+	
+	<select id="getWeighListCount" resultType="int">
+		select count(*)
+        from WhWeigh w join WhDeliver d on w.deliverId = d.id
+        left join BaseGoods g on g.id=d.goodsId
+        left join BaseSupplier s on s.id=d.supplierId
+		<where>
+            <if test="record.id != null">
+                and w.id = #{record.id}
+            </if>
+            <if test="record.weighNo != null and record.weighNo != ''">
+                and w.weighNo like concat('%',#{record.weighNo},'%')
+            </if>
+            <if test="record.employeeId != null">
+                and w.employeeId = #{record.employeeId}
+            </if>
+            <if test="record.flag != null">
+                and w.flag = #{record.flag}
+            </if>
+            <if test="record.mark != null">
+                and w.mark = #{record.mark}
+            </if>
+            <if test="record.startDate != null and record.endDate != null">
+                and d.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and d.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > d.createTime
+            </if>
+            <if test="record.arriveWeighStartDate != null and record.arriveWeighEndDate != null">
+                and w.arriveWeighTime between #{record.arriveWeighStartDate} and #{record.arriveWeighEndDate}
+            </if>
+            <if test="record.arriveWeighStartDate != null and record.arriveWeighEndDate == null">
+                and w.arriveWeighTime > #{record.arriveWeighStartDate}
+            </if>
+            <if test="record.arriveWeighStartDate == null and record.arriveWeighEndDate != null">
+                and #{record.arriveWeighEndDate} > w.arriveWeighTime
+            </if>
+            <if test="record.leaveWeighStartTime != null and record.leaveWeighEndTime != null">
+                and w.leaveWeighTime between #{record.leaveWeighStartTime} and #{record.leaveWeighEndTime}
+            </if>
+            <if test="record.leaveWeighStartTime != null and record.leaveWeighEndTime == null">
+                and w.leaveWeighTime > #{record.leaveWeighStartTime}
+            </if>
+            <if test="record.leaveWeighStartTime == null and record.leaveWeighEndTime != null">
+                and #{record.leaveWeighEndTime} > w.leaveWeighTime
+            </if>
+            <if test="record.carNumber != null and record.carNumber !=''">
+                and d.carNumber = #{record.carNumber}
+            </if>
+            <if test="record.supplierName != null and record.supplierName !=''">
+                and s.supplierName like CONCAT('%', #{record.supplierName},'%')
+            </if>
+            <if test="record.consignorName != null and record.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{record.consignorName},'%')
+            </if>
+		</where>
+	</select>
+</mapper>

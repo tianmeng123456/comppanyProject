@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhDeliveryDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="carNo" jdbcType="NVARCHAR" property="carNo" />
+    <result column="driver" jdbcType="NVARCHAR" property="driver" />
+    <result column="driverTel" jdbcType="NVARCHAR" property="driverTel" />
+    <result column="planStartDate" jdbcType="TIMESTAMP" property="planStartDate" />
+    <result column="planEndDate" jdbcType="TIMESTAMP" property="planEndDate" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="remark" jdbcType="NVARCHAR" property="remark" />
+    <result column="deliverId" jdbcType="BIGINT" property="deliverId" />
+    <result column="tareWeight" jdbcType="NUMERIC" property="tareWeight" />
+    <result column="grossWeight" jdbcType="NUMERIC" property="grossWeight" />
+    <result column="placeId" jdbcType="BIGINT" property="placeId" />
+    <result column="placeName" jdbcType="BIGINT" property="placeName"/>
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+    <result column="accessId" jdbcType="BIGINT" property="accessId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, carNo, driver, driverTel, planStartDate, planEndDate, flag, remark, deliverId, 
+    tareWeight, grossWeight, placeId,placeName,mark,accessId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhDeliveryDetails
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhDeliveryDetails
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    insert into WhDeliveryDetails (id, carNo, driver, 
+      driverTel, planStartDate, planEndDate, 
+      flag, remark, deliverId,
+      tareWeight, grossWeight,placeId,placeName,mark,accessId)
+    values (#{id,jdbcType=BIGINT}, #{carNo,jdbcType=NVARCHAR}, #{driver,jdbcType=NVARCHAR},
+      #{driverTel,jdbcType=NVARCHAR}, #{planStartDate,jdbcType=TIMESTAMP}, #{planEndDate,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=INTEGER}, #{remark,jdbcType=NVARCHAR}, #{deliverId,jdbcType=BIGINT},
+      #{tareWeight,jdbcType=NUMERIC}, #{grossWeight,jdbcType=NUMERIC}, #{placeId,jdbcType=BIGINT},
+      #{placeName,jdbcType=NVARCHAR},#{mark,jdbcType=INTEGER},#{accessId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    insert into WhDeliveryDetails
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="carNo != null">
+        carNo,
+      </if>
+      <if test="driver != null">
+        driver,
+      </if>
+      <if test="driverTel != null">
+        driverTel,
+      </if>
+      <if test="planStartDate != null">
+        planStartDate,
+      </if>
+      <if test="planEndDate != null">
+        planEndDate,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="deliverId != null">
+        deliverId,
+      </if>
+      <if test="tareWeight != null">
+        tareWeight,
+      </if>
+      <if test="grossWeight != null">
+        grossWeight,
+      </if>
+      <if test="placeId != null">
+        placeId,
+      </if>
+      <if test="placeName != null">
+        placeName,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="accessId != null">
+        accessId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="carNo != null">
+        #{carNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="driver != null">
+        #{driver,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverTel != null">
+        #{driverTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="planStartDate != null">
+        #{planStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="deliverId != null">
+        #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="tareWeight != null">
+        #{tareWeight,jdbcType=NUMERIC},
+      </if>
+      <if test="grossWeight != null">
+        #{grossWeight,jdbcType=NUMERIC},
+      </if>
+      <if test="placeId != null">
+        #{placeId,jdbcType=BIGINT},
+      </if>
+      <if test="placeName != null">
+        #{placeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="accessId != null">
+        #{accessId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    update WhDeliveryDetails
+    <set>
+      <if test="carNo != null">
+        carNo = #{carNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="driver != null">
+        driver = #{driver,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverTel != null">
+        driverTel = #{driverTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="planStartDate != null">
+        planStartDate = #{planStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        planEndDate = #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="deliverId != null">
+        deliverId = #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="tareWeight != null">
+        tareWeight = #{tareWeight,jdbcType=NUMERIC},
+      </if>
+      <if test="grossWeight != null">
+        grossWeight = #{grossWeight,jdbcType=NUMERIC},
+      </if>
+      <if test="placeId != null">
+        placeId = #{placeId,jdbcType=BIGINT},
+      </if>
+      <if test="placeName != null">
+        placeName = #{placeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="accessId != null">
+        accessId = #{accessId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    update WhDeliveryDetails
+    set carNo = #{carNo,jdbcType=NVARCHAR},
+      driver = #{driver,jdbcType=NVARCHAR},
+      driverTel = #{driverTel,jdbcType=NVARCHAR},
+      planStartDate = #{planStartDate,jdbcType=TIMESTAMP},
+      planEndDate = #{planEndDate,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=NVARCHAR},
+      deliverId = #{deliverId,jdbcType=BIGINT},
+      tareWeight = #{tareWeight,jdbcType=NUMERIC},
+      grossWeight = #{grossWeight,jdbcType=NUMERIC},
+      placeId = #{placeId,jdbcType=BIGINT},
+      placeName = #{placeName,jdbcType=NVARCHAR},
+      mark = #{mark,jdbcType=INTEGER},
+      accessId = #{accessId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByDeliverId" parameterType="java.lang.Long" resultType="list">
+    select
+    <include refid="Base_Column_List"/>
+    from WhDeliveryDetails
+    where  deliverId = #{deliverId,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByDeliverPage" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select
+    <include refid="Base_Column_List"/>
+    from WhDeliveryDetails
+    <where>
+      <if test="detail.carNo != null and detail.carNo != ''">
+        and carNo = #{detail.carNo,jdbcType=NVARCHAR}
+      </if>
+      <if test="detail.driver != null and detail.driver != ''">
+        and driver = #{detail.driver,jdbcType=NVARCHAR}
+      </if>
+      <if test="detail.driverTel != null and detail.driverTel != ''">
+        and driverTel = #{detail.driverTel,jdbcType=NVARCHAR}
+      </if>
+      <if test="detail.planStartDate != null">
+        and planStartDate = #{detail.planStartDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="detail.planEndDate != null">
+        and planEndDate = #{detail.planEndDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="detail.flag != null">
+        and flag = #{detail.flag,jdbcType=INTEGER}
+      </if>
+      <if test="detail.deliverId != null">
+        and deliverId = #{detail.deliverId,jdbcType=BIGINT}
+      </if>
+      <if test="detail.tareWeight != null">
+        and tareWeight = #{detail.tareWeight,jdbcType=NUMERIC}
+      </if>
+      <if test="detail.grossWeight != null">
+        and grossWeight = #{detail.grossWeight,jdbcType=NUMERIC}
+      </if>
+    </where>
+    order by id
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="selectCountDetails" resultType="int">
+    select count(id) from WhDeliveryDetails where deliverId = #{detail.deliverId}
+  </select>
+
+  <update id="updateByDeliverIdSelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    update WhDeliveryDetails
+    <set>
+      <if test="carNo != null">
+        carNo = #{carNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="driver != null">
+        driver = #{driver,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverTel != null">
+        driverTel = #{driverTel,jdbcType=NVARCHAR},
+      </if>
+      <if test="planStartDate != null">
+        planStartDate = #{planStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        planEndDate = #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="tareWeight != null">
+        tareWeight = #{tareWeight,jdbcType=NUMERIC},
+      </if>
+      <if test="grossWeight != null">
+        grossWeight = #{grossWeight,jdbcType=NUMERIC},
+      </if>
+      <if test="placeId != null">
+        placeId = #{placeId,jdbcType=BIGINT},
+      </if>
+      <if test="placeName != null">
+        placeName = #{placeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="accessId !=null">
+        accessId = #{accessId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where deliverId = #{deliverId,jdbcType=BIGINT} and carNo = #{carNo,jdbcType=NVARCHAR}
+  </update>
+
+  <select id="selectByDetail" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select
+      <include refid="Base_Column_List"/>
+    from
+      WhDeliveryDetails
+    <where>
+      <if test="detail.carNo != null and detail.carNo != ''">
+        and carNo = #{detail.carNo,jdbcType=NVARCHAR}
+      </if>
+      <if test="detail.driver != null and detail.driver != ''">
+        and driver = #{detail.driver,jdbcType=NVARCHAR}
+      </if>
+      <if test="detail.driverTel != null and detail.driverTel != ''">
+        and driverTel = #{detail.driverTel,jdbcType=NVARCHAR}
+      </if>
+      <if test="detail.planStartDate != null">
+        and planStartDate = #{detail.planStartDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="detail.planEndDate != null">
+        and planEndDate = #{detail.planEndDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="detail.flag != null">
+        and flag = #{detail.flag,jdbcType=INTEGER}
+      </if>
+      <if test="detail.deliverId != null">
+        and deliverId = #{detail.deliverId,jdbcType=BIGINT}
+      </if>
+      <if test="detail.tareWeight != null">
+        and tareWeight = #{detail.tareWeight,jdbcType=NUMERIC}
+      </if>
+      <if test="detail.grossWeight != null">
+        and grossWeight = #{detail.grossWeight,jdbcType=NUMERIC}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateTareWeighAndPlace">
+    update
+     WhDeliveryDetails
+    set tareWeight = #{detail.tareWeight},placeId = #{detail.placeId}, placeName = #{detail.placeName},mark = #{detail.mark},
+    planEndDate = #{detail.planEndDate},flag = #{detail.flag}
+    where
+      carNo = #{detail.carNo}
+    and
+      deliverId = #{detail.deliverId}
+    and
+      planStartDate between  #{detail.planStartDate}  and DATEADD(second ,1,getdate())
+  </update>
+
+  <select id="getNewDetail" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select
+     top 1
+     <include refid="Base_Column_List"/>
+    from
+      WhDeliveryDetails
+    where
+      deliverId = #{detail.deliverId} and
+      carNo = #{detail.carNo}
+    order by
+      planStartDate
+    desc
+  </select>
+
+  <select id="getStartDetail" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select
+    top 1
+    <include refid="Base_Column_List"/>
+    from
+    WhDeliveryDetails
+    where
+    deliverId = #{deliverId}
+    order by
+    planStartDate
+    desc
+  </select>
+
+  <select id="getShipRank" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select
+    top 1
+    <include refid="Base_Column_List"/>
+    from
+    WhDeliveryDetails
+    where
+    deliverId = #{deliverId}
+    order by
+    planStartDate
+    asc
+  </select>
+
+  <select id="getWeight" resultType="java.util.HashMap">
+    select
+      sum(tareWeight) as tareWeight,
+      sum(grossWeight) as grossWeight,
+      (sum(grossWeight) - sum(tareWeight)) as netWeight
+    from
+      WhDeliveryDetails
+    where
+      deliverId = #{id}
+  </select>
+
+  <select id="countDetailByDeliverId" resultType="int">
+    select
+      count(deliverId)
+    from
+      WhDeliveryDetails
+    where
+      deliverId = #{deliverId}
+  </select>
+
+  <select id="getDetailById" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select * from WhDeliveryDetails
+    where deliverId = #{deliverId}
+  </select>
+
+
+  <select id="selectDetailByDeliverId" resultType="com.boyo.wuhang.entity.assess.WhDeliveryDetails">
+    select * from WhDeliveryDetails
+    where carNo = #{carNo} and deliverId = #{deliverId}
+    and planEndDate is null
+  </select>
+</mapper>

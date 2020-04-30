@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.editLog.WhAccessEditDetailLogMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.editLog.WhAccessEditDetailLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="d_wRank_log" jdbcType="NVARCHAR" property="d_wRank_log" />
+    <result column="d_grade_log" jdbcType="NVARCHAR" property="d_grade_log" />
+    <result column="d_wLevel_log" jdbcType="INTEGER" property="d_wLevel_log" />
+    <result column="d_proportion_log" jdbcType="NUMERIC" property="d_proportion_log" />
+    <result column="d_priceAdjust_log" jdbcType="NUMERIC" property="d_priceAdjust_log" />
+    <result column="d_accessId_log" jdbcType="BIGINT" property="d_accessId_log" />
+    <result column="d_rankId_log" jdbcType="BIGINT" property="d_rankId_log" />
+    <result column="accessEditId" jdbcType="BIGINT" property="accessEditId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, d_wRank_log, d_grade_log, d_wLevel_log, d_proportion_log, d_priceAdjust_log, 
+    d_accessId_log, d_rankId_log, accessEditId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhAccessEditDetailLog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhAccessEditDetailLog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditDetailLog">
+    insert into WhAccessEditDetailLog (id, d_wRank_log, d_grade_log, 
+      d_wLevel_log, d_proportion_log, d_priceAdjust_log, 
+      d_accessId_log, d_rankId_log, accessEditId
+      )
+    values (#{id,jdbcType=BIGINT}, #{d_wRank_log,jdbcType=NVARCHAR}, #{d_grade_log,jdbcType=NVARCHAR}, 
+      #{d_wLevel_log,jdbcType=INTEGER}, #{d_proportion_log,jdbcType=NUMERIC}, #{d_priceAdjust_log,jdbcType=NUMERIC}, 
+      #{d_accessId_log,jdbcType=BIGINT}, #{d_rankId_log,jdbcType=BIGINT}, #{accessEditId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditDetailLog">
+    insert into WhAccessEditDetailLog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="d_wRank_log != null">
+        d_wRank_log,
+      </if>
+      <if test="d_grade_log != null">
+        d_grade_log,
+      </if>
+      <if test="d_wLevel_log != null">
+        d_wLevel_log,
+      </if>
+      <if test="d_proportion_log != null">
+        d_proportion_log,
+      </if>
+      <if test="d_priceAdjust_log != null">
+        d_priceAdjust_log,
+      </if>
+      <if test="d_accessId_log != null">
+        d_accessId_log,
+      </if>
+      <if test="d_rankId_log != null">
+        d_rankId_log,
+      </if>
+      <if test="accessEditId != null">
+        accessEditId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="d_wRank_log != null">
+        #{d_wRank_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_grade_log != null">
+        #{d_grade_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_wLevel_log != null">
+        #{d_wLevel_log,jdbcType=INTEGER},
+      </if>
+      <if test="d_proportion_log != null">
+        #{d_proportion_log,jdbcType=NUMERIC},
+      </if>
+      <if test="d_priceAdjust_log != null">
+        #{d_priceAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="d_accessId_log != null">
+        #{d_accessId_log,jdbcType=BIGINT},
+      </if>
+      <if test="d_rankId_log != null">
+        #{d_rankId_log,jdbcType=BIGINT},
+      </if>
+      <if test="accessEditId != null">
+        #{accessEditId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditDetailLog">
+    update WhAccessEditDetailLog
+    <set>
+      <if test="d_wRank_log != null">
+        d_wRank_log = #{d_wRank_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_grade_log != null">
+        d_grade_log = #{d_grade_log,jdbcType=NVARCHAR},
+      </if>
+      <if test="d_wLevel_log != null">
+        d_wLevel_log = #{d_wLevel_log,jdbcType=INTEGER},
+      </if>
+      <if test="d_proportion_log != null">
+        d_proportion_log = #{d_proportion_log,jdbcType=NUMERIC},
+      </if>
+      <if test="d_priceAdjust_log != null">
+        d_priceAdjust_log = #{d_priceAdjust_log,jdbcType=NUMERIC},
+      </if>
+      <if test="d_accessId_log != null">
+        d_accessId_log = #{d_accessId_log,jdbcType=BIGINT},
+      </if>
+      <if test="d_rankId_log != null">
+        d_rankId_log = #{d_rankId_log,jdbcType=BIGINT},
+      </if>
+      <if test="accessEditId != null">
+        accessEditId = #{accessEditId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.editLog.WhAccessEditDetailLog">
+    update WhAccessEditDetailLog
+    set d_wRank_log = #{d_wRank_log,jdbcType=NVARCHAR},
+      d_grade_log = #{d_grade_log,jdbcType=NVARCHAR},
+      d_wLevel_log = #{d_wLevel_log,jdbcType=INTEGER},
+      d_proportion_log = #{d_proportion_log,jdbcType=NUMERIC},
+      d_priceAdjust_log = #{d_priceAdjust_log,jdbcType=NUMERIC},
+      d_accessId_log = #{d_accessId_log,jdbcType=BIGINT},
+      d_rankId_log = #{d_rankId_log,jdbcType=BIGINT},
+      accessEditId = #{accessEditId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getAccessEditDetailList" resultType="Map">
+    select *
+    from WhAccessEditDetailLog
+    <where>
+      <if test="detailLog.id != null">
+        and id = #{detailLog.id}
+      </if>
+      <if test="detailLog.d_wRank_log != null and detailLog.d_wRank_log !=''">
+        and d_wRank_log = #{detailLog.d_wRank_log}
+      </if>
+      <if test="detailLog.d_grade_log != null and detailLog.d_grade_log !=''">
+        and d_grade_log = #{detailLog.d_grade_log}
+      </if>
+      <if test="detailLog.d_wLevel_log != null">
+        and d_wLevel_log = #{detailLog.d_wLevel_log}
+      </if>
+      <if test="detailLog.d_proportion_log != null and detailLog.d_proportion_log !=''">
+        and d_proportion_log = #{detailLog.d_proportion_log}
+      </if>
+      <if test="detailLog.d_priceAdjust_log != null and detailLog.d_priceAdjust_log !=''">
+        and d_priceAdjust_log = #{detailLog.d_priceAdjust_log}
+      </if>
+      <if test="detailLog.d_accessId_log != null">
+        and d_accessId_log = #{detailLog.d_accessId_log}
+      </if>
+      <if test="detailLog.d_rankId_log != null">
+        and d_rankId_log = #{detailLog.d_rankId_log}
+      </if>
+      <if test="detailLog.accessEditId != null">
+        and accessEditId = #{detailLog.accessEditId}
+      </if>
+    </where>
+    order by id desc
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+  <select id="getAccessEditDetailListCount" resultType="int">
+    select count(*)
+    from WhAccessEditDetailLog
+    <where>
+      <if test="detailLog.id != null">
+        and id = #{detailLog.id}
+      </if>
+      <if test="detailLog.d_wRank_log != null and detailLog.d_wRank_log !=''">
+        and d_wRank_log = #{detailLog.d_wRank_log}
+      </if>
+      <if test="detailLog.d_grade_log != null and detailLog.d_grade_log !=''">
+        and d_grade_log = #{detailLog.d_grade_log}
+      </if>
+      <if test="detailLog.d_wLevel_log != null">
+        and d_wLevel_log = #{detailLog.d_wLevel_log}
+      </if>
+      <if test="detailLog.d_proportion_log != null and detailLog.d_proportion_log !=''">
+        and d_proportion_log = #{detailLog.d_proportion_log}
+      </if>
+      <if test="detailLog.d_priceAdjust_log != null and detailLog.d_priceAdjust_log !=''">
+        and d_priceAdjust_log = #{detailLog.d_priceAdjust_log}
+      </if>
+      <if test="detailLog.d_accessId_log != null">
+        and d_accessId_log = #{detailLog.d_accessId_log}
+      </if>
+      <if test="detailLog.d_rankId_log != null">
+        and d_rankId_log = #{detailLog.d_rankId_log}
+      </if>
+      <if test="detailLog.accessEditId != null">
+        and accessEditId = #{detailLog.accessEditId}
+      </if>
+    </where>
+  </select>
+</mapper>

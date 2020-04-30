@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseRoleMapper">
+	<resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseRole">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="roleName" jdbcType="NVARCHAR" property="roleName"/>
+		<result column="remark" jdbcType="NVARCHAR" property="remark"/>
+		<result column="sort" jdbcType="INTEGER" property="sort"/>
+		<result column="status" jdbcType="INTEGER" property="status"/>
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="isAdmin" jdbcType="INTEGER" property="isAdmin"/>
+		<result column="referTable" jdbcType="VARCHAR" property="referTable"/>
+		<result column="targetSystem" jdbcType="VARCHAR" property="targetSystem"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+				id, roleName, remark, sort, status, createTime, isAdmin, referTable, targetSystem
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from BaseRole
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete
+		from BaseRole
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseRole">
+		insert into BaseRole (id, roleName, remark,
+		                      sort, status, createTime,
+		                      isAdmin, referTable, targetSystem)
+		values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR},
+		        #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+		        #{isAdmin,jdbcType=INTEGER}, #{referTable,jdbcType=VARCHAR}, #{targetSystem,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseRole"
+	        useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into BaseRole
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="roleName != null">
+				roleName,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="isAdmin != null">
+				isAdmin,
+			</if>
+			<if test="referTable != null">
+				referTable,
+			</if>
+			<if test="targetSystem != null">
+				targetSystem,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="roleName != null">
+				#{roleName,jdbcType=NVARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isAdmin != null">
+				#{isAdmin,jdbcType=INTEGER},
+			</if>
+			<if test="referTable != null">
+				#{referTable,jdbcType=VARCHAR},
+			</if>
+			<if test="targetSystem != null">
+				#{targetSystem,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseRole">
+		update BaseRole
+		<set>
+			<if test="roleName != null">
+				roleName = #{roleName,jdbcType=NVARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isAdmin != null">
+				isAdmin = #{isAdmin,jdbcType=INTEGER},
+			</if>
+			<if test="referTable != null">
+				referTable = #{referTable,jdbcType=VARCHAR},
+			</if>
+			<if test="targetSystem != null">
+				targetSystem = #{targetSystem,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseRole">
+		update BaseRole
+		set roleName     = #{roleName,jdbcType=NVARCHAR},
+		    remark       = #{remark,jdbcType=NVARCHAR},
+		    sort         = #{sort,jdbcType=INTEGER},
+		    status       = #{status,jdbcType=INTEGER},
+		    createTime   = #{createTime,jdbcType=TIMESTAMP},
+		    isAdmin      = #{isAdmin,jdbcType=INTEGER},
+		    referTable   = #{referTable,jdbcType=VARCHAR},
+		    targetSystem = #{targetSystem,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="getRoleList" resultMap="BaseResultMap">
+		select *
+		from BaseRole
+		<where>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+			<if test="targetSystem != null and targetSystem != ''">
+				and targetSystem = #{targetSystem}
+			</if>
+		</where>
+	</select>
+
+	<select id="checkName" resultMap="BaseResultMap">
+		select *
+		from BaseRole
+		where roleName = #{roleName}
+		<if test="id != null">
+			and id != #{id}
+		</if>
+	</select>
+	
+	<select id="getRoleByReferTable" resultMap="BaseResultMap">
+		select * from BaseRole where referTable = #{referTable}
+	</select>
+
+</mapper>

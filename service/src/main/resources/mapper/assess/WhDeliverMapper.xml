@@ -1,0 +1,1559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhDeliverMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhDeliver">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="deliverNo" jdbcType="NVARCHAR" property="deliverNo" />
+    <result column="arriveTime" jdbcType="TIMESTAMP" property="arriveTime" />
+    <result column="supplierId" jdbcType="BIGINT" property="supplierId" />
+    <result column="consignorName" jdbcType="NVARCHAR" property="consignorName" />
+    <result column="consignorId" jdbcType="BIGINT" property="consignorId" />
+    <result column="carNumber" jdbcType="NVARCHAR" property="carNumber" />
+    <result column="weigh" jdbcType="NUMERIC" property="weigh" />
+    <result column="goodsName" jdbcType="NVARCHAR" property="goodsName" />
+    <result column="driverName" jdbcType="NVARCHAR" property="driverName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
+    <result column="departureId" jdbcType="BIGINT" property="departureId" />
+    <result column="departureName" jdbcType="NVARCHAR" property="departureName" />
+    <result column="personId" jdbcType="BIGINT" property="personId" />
+    <result column="personName" jdbcType="NVARCHAR" property="personName" />
+    <result column="contractNo" jdbcType="NVARCHAR" property="contractNo" />
+    <result column="valueMethod" jdbcType="INTEGER" property="valueMethod" />
+    <result column="contractPrice" jdbcType="NUMERIC" property="contractPrice" />
+      <result column="contractAmount" jdbcType="NUMERIC" property="contractAmount" />
+      <result column="goodsId" jdbcType="BIGINT" property="goodsId" />
+      <result column="remark" jdbcType="NVARCHAR" property="remark" />
+      <result column="checkFlag" jdbcType="INTEGER" property="checkFlag" />
+      <result column="settleNo" jdbcType="NVARCHAR" property="settleNo" />
+      <result column="settleTime" jdbcType="TIMESTAMP" property="settleTime" />
+      <result column="settleId" jdbcType="BIGINT" property="settleId" />
+      <result column="settleName" jdbcType="NVARCHAR" property="settleName" />
+      <result column="settleFlag" jdbcType="INTEGER" property="settleFlag" />
+      <result column="editFlag" jdbcType="INTEGER" property="editFlag" />
+      <result column="priceEditId" jdbcType="BIGINT" property="priceEditId" />
+      <result column="priceEditName" jdbcType="NVARCHAR" property="priceEditName" />
+      <result column="priceEditTime" jdbcType="TIMESTAMP" property="priceEditTime" />
+      <result column="priceCheckId" jdbcType="BIGINT" property="priceCheckId" />
+      <result column="priceCheckName" jdbcType="NVARCHAR" property="priceCheckName" />
+      <result column="priceCheckTime" jdbcType="TIMESTAMP" property="priceCheckTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, deliverNo, arriveTime, supplierId, consignorName, consignorId, carNumber, weigh, 
+    goodsName, driverName, phone, createTime, flag, mark, departureId, departureName,
+    personId,personName,contractNo,valueMethod,contractPrice,contractAmount
+    goodsName,goodsId, driverName, phone, createTime, flag, mark, departureId, departureName,
+    personId,personName,contractNo,valueMethod,contractPrice,remark,checkFlag,settleNo,settleTime,
+    settleId,settleName,settleFlag,editFlag,priceEditId,priceEditName,priceEditTime,priceCheckId,
+    priceCheckName,priceCheckTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhDeliver
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhDeliver
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhDeliver">
+    insert into WhDeliver (id, deliverNo, arriveTime, 
+      supplierId, consignorName, consignorId, 
+      carNumber, weigh, goodsName, goodsId,
+      driverName, phone, createTime, 
+      flag, mark, departureId, 
+      departureName,personId,personName,contractNo,
+      valueMethod,contractPrice,contractAmount,remark,checkFlag,
+      settleNo,settleTime,settleId,settleName,settleFlag,editFlag,
+      priceEditId,priceEditName,priceEditTime,priceCheckId,
+        priceCheckName,priceCheckTime)
+    values (#{id,jdbcType=BIGINT}, #{deliverNo,jdbcType=NVARCHAR}, #{arriveTime,jdbcType=TIMESTAMP},
+      #{supplierId,jdbcType=BIGINT}, #{consignorName,jdbcType=NVARCHAR}, #{consignorId,jdbcType=BIGINT},
+      #{goodsId,jdbcType=BIGINT},
+      #{carNumber,jdbcType=NVARCHAR}, #{weigh,jdbcType=NUMERIC}, #{goodsName,jdbcType=NVARCHAR}, 
+      #{driverName,jdbcType=NVARCHAR}, #{phone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}, #{departureId,jdbcType=BIGINT},
+      #{departureName,jdbcType=NVARCHAR} , #{personId,jdbcType=BIGINT},#{personName,jdbcType=NVARCHAR} ,
+      #{contractNo,jdbcType=NVARCHAR}, #{valueMethod,jdbcType=INTEGER},#{contractPrice,jdbcType=NUMERIC},
+      #{contractAmount,jdbcType=NUMERIC},#{remark,jdbcType=NVARCHAR},#{checkFlag,jdbcType=INTEGER},
+      #{settleNo,jdbcType=NVARCHAR},#{settleTime,jdbcType=TIMESTAMP},#{settleId,jdbcType=BIGINT},
+       #{settleName,jdbcType=NVARCHAR},#{settleFlag,jdbcType=INTEGER},#{editFlag,jdbcType=INTEGER},
+       #{priceEditId,jdbcType=BIGINT},#{priceEditName,jdbcType=NVARCHAR},#{priceEditTime,jdbcType=TIMESTAMP},
+       #{priceCheckId,jdbcType=BIGINT},#{priceCheckName,jdbcType=NVARCHAR},#{priceCheckTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliver"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhDeliver
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deliverNo != null">
+        deliverNo,
+      </if>
+      <if test="arriveTime != null">
+        arriveTime,
+      </if>
+      <if test="supplierId != null">
+        supplierId,
+      </if>
+      <if test="consignorName != null">
+        consignorName,
+      </if>
+      <if test="consignorId != null">
+        consignorId,
+      </if>
+      <if test="carNumber != null">
+        carNumber,
+      </if>
+      <if test="weigh != null">
+        weigh,
+      </if>
+      <if test="goodsName != null">
+        goodsName,
+      </if>
+      <if test="driverName != null">
+        driverName,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="departureId != null">
+        departureId,
+      </if>
+      <if test="departureName != null">
+        departureName,
+      </if>
+        <if test="personId != null">
+            personId,
+        </if>
+        <if test="personName != null">
+            personName,
+        </if>
+        <if test="contractNo != null">
+            contractNo,
+        </if>
+        <if test="valueMethod != null">
+            valueMethod,
+        </if>
+        <if test="contractPrice != null">
+            contractPrice,
+        </if>
+        <if test="contractAmount != null">
+            contractAmount,
+        </if>
+        <if test="goodsId != null">
+            goodsId,
+        </if>
+        <if test="remark != null">
+            remark,
+        </if>
+        <if test="checkFlag != null">
+            checkFlag,
+        </if>
+        <if test="settleNo != null">
+            settleNo,
+        </if>
+        <if test="settleTime != null">
+            settleTime,
+        </if>
+        <if test="settleId != null">
+            settleId,
+        </if>
+        <if test="settleName != null">
+            settleName,
+        </if>
+        <if test="settleFlag != null">
+            settleFlag,
+        </if>
+        <if test="editFlag != null">
+          editFlag,
+        </if>
+        <if test="priceEditId != null">
+          priceEditId,
+        </if>
+        <if test="priceEditName != null">
+          priceEditName,
+        </if>
+        <if test="priceEditTime != null">
+          priceEditTime,
+        </if>
+        <if test="priceCheckId != null">
+          priceCheckId,
+        </if>
+        <if test="priceCheckName != null">
+          priceCheckName,
+        </if>
+        <if test="priceCheckTime != null">
+          priceCheckTime,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deliverNo != null">
+        #{deliverNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="arriveTime != null">
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="consignorName != null">
+        #{consignorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="consignorId != null">
+        #{consignorId,jdbcType=BIGINT},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="weigh != null">
+        #{weigh,jdbcType=NUMERIC},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverName != null">
+        #{driverName,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="departureId != null">
+        #{departureId,jdbcType=BIGINT},
+      </if>
+      <if test="departureName != null">
+        #{departureName,jdbcType=NVARCHAR},
+      </if>
+        <if test="personId != null">
+            #{personId,jdbcType=BIGINT},
+        </if>
+        <if test="personName != null">
+            #{personName,jdbcType=NVARCHAR},
+        </if>
+        <if test="contractNo != null">
+            #{contractNo,jdbcType=NVARCHAR},
+        </if>
+        <if test="valueMethod != null">
+            #{valueMethod,jdbcType=INTEGER},
+        </if>
+        <if test="contractPrice  != null">
+            #{contractPrice,jdbcType=NUMERIC},
+        </if>
+        <if test="contractAmount != null">
+            #{contractAmount,jdbcType=NUMERIC},
+        </if>
+        <if test="goodsId != null">
+            #{goodsId,jdbcType=BIGINT},
+        </if>
+        <if test="remark != null">
+            #{remark,jdbcType=NVARCHAR},
+        </if>
+        <if test="checkFlag != null">
+            #{checkFlag,jdbcType=INTEGER},
+        </if>
+        <if test="settleNo != null">
+            #{settleNo,jdbcType=NVARCHAR},
+        </if>
+        <if test="settleTime != null">
+            #{settleTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="settleId != null">
+            #{settleId,jdbcType=BIGINT},
+        </if>
+        <if test="settleName != null">
+            #{settleName,jdbcType=NVARCHAR},
+        </if>
+        <if test="settleFlag != null">
+            #{settleFlag,jdbcType=INTEGER},
+        </if>
+        <if test="editFlag != null">
+          #{editFlag,jdbcType=INTEGER},
+        </if>
+        <if test="priceEditId != null">
+          #{priceEditId,jdbcType=BIGINT},
+        </if>
+        <if test="priceEditName != null">
+          #{priceEditName,jdbcType=NVARCHAR},
+        </if>
+        <if test="priceEditTime != null">
+          #{priceEditTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="priceCheckId != null">
+          #{priceCheckId,jdbcType=BIGINT},
+        </if>
+        <if test="priceCheckName != null">
+          #{priceCheckName,jdbcType=NVARCHAR},
+        </if>
+        <if test="priceCheckTime != null">
+          #{priceCheckTime,jdbcType=TIMESTAMP},
+        </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhDeliver">
+    update WhDeliver
+    <set>
+      <if test="deliverNo != null">
+        deliverNo = #{deliverNo,jdbcType=NVARCHAR},
+      </if>
+      <if test="arriveTime != null">
+        arriveTime = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplierId != null">
+        supplierId = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="consignorName != null">
+        consignorName = #{consignorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="consignorId != null">
+        consignorId = #{consignorId,jdbcType=BIGINT},
+      </if>
+      <if test="carNumber != null">
+        carNumber = #{carNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="weigh != null">
+        weigh = #{weigh,jdbcType=NUMERIC},
+      </if>
+      <if test="goodsName != null">
+        goodsName = #{goodsName,jdbcType=NVARCHAR},
+      </if>
+        <if test="goodsId != null">
+            goodsId = #{goodsId,jdbcType=BIGINT},
+        </if>
+      <if test="driverName != null">
+        driverName = #{driverName,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="departureId != null">
+        departureId = #{departureId,jdbcType=BIGINT},
+      </if>
+      <if test="departureName != null">
+        departureName = #{departureName,jdbcType=NVARCHAR},
+      </if>
+        <if test="personId != null">
+            personId = #{personId,jdbcType=BIGINT},
+        </if>
+        <if test="personName != null">
+            personName = #{personName,jdbcType=NVARCHAR},
+        </if>
+        <if test="contractNo != null">
+            contractNo = #{contractNo,jdbcType=NVARCHAR},
+        </if>
+        <if test="valueMethod != null">
+            valueMethod = #{valueMethod,jdbcType=INTEGER},
+        </if>
+        <if test="contractPrice != null">
+            contractPrice = #{contractPrice,jdbcType=NUMERIC},
+        </if>
+        <if test="contractAmount != null">
+            contractAmount = #{contractAmount,jdbcType=NUMERIC},
+        </if>
+        <if test="remark != null">
+            remark = #{remark,jdbcType=NVARCHAR},
+        </if>
+        <if test="checkFlag != null">
+            checkFlag = #{checkFlag,jdbcType=INTEGER},
+        </if>
+        <if test="settleNo != null">
+            settleNo = #{settleNo,jdbcType=NVARCHAR},
+        </if>
+        <if test="settleTime != null">
+            settleTime = #{settleTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="settleId != null">
+            settleId = #{settleId,jdbcType=BIGINT},
+        </if>
+        <if test="settleName != null">
+            settleName = #{settleName,jdbcType=NVARCHAR},
+        </if>
+        <if test="settleFlag != null">
+            settleFlag = #{settleFlag,jdbcType=INTEGER},
+        </if>
+        <if test="editFlag != null">
+            editFlag = #{editFlag,jdbcType=INTEGER},
+        </if>
+        <if test="priceEditId != null">
+          priceEditId = #{priceEditId,jdbcType=BIGINT},
+        </if>
+        <if test="priceEditName != null">
+          priceEditName = #{priceEditName,jdbcType=NVARCHAR},
+        </if>
+        <if test="priceEditTime != null">
+          priceEditTime = #{priceEditTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="priceCheckId != null">
+          priceCheckId = #{priceCheckId,jdbcType=BIGINT},
+        </if>
+        <if test="priceCheckName != null">
+          priceCheckName = #{priceCheckName,jdbcType=NVARCHAR},
+        </if>
+        <if test="priceCheckTime != null">
+          priceCheckTime = #{priceCheckTime,jdbcType=TIMESTAMP},
+        </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhDeliver">
+    update WhDeliver
+    set deliverNo = #{deliverNo,jdbcType=NVARCHAR},
+      arriveTime = #{arriveTime,jdbcType=TIMESTAMP},
+      supplierId = #{supplierId,jdbcType=BIGINT},
+      consignorName = #{consignorName,jdbcType=NVARCHAR},
+      consignorId = #{consignorId,jdbcType=BIGINT},
+      carNumber = #{carNumber,jdbcType=NVARCHAR},
+      weigh = #{weigh,jdbcType=NUMERIC},
+      goodsName = #{goodsName,jdbcType=NVARCHAR},
+      goodsId = #{goodsId,jdbcType=BIGINT},
+      driverName = #{driverName,jdbcType=NVARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER},
+      departureId = #{departureId,jdbcType=BIGINT},
+      departureName = #{departureName,jdbcType=NVARCHAR},
+      personId = #{personId,jdbcType=BIGINT},
+      personName = #{personName,jdbcType=NVARCHAR},
+      contractNo = #{contractNo,jdbcType=NVARCHAR},
+      valueMethod = #{valueMethod, jdbcType = INTEGER},
+      contractPrice = #{contractPrice，jdbcType = NUMERIC},
+      contractAmount = #{contractAmount,jdbcType=NUMERIC},
+      remark = #{remark,jdbcType=NVARCHAR},
+      checkFlag = #{checkFlag,jdbcType=INTEGER},
+      settleNo = #{settleNo,jdbcType=NVARCHAR},
+      settleTime = #{settleTime,jdbcType=TIMESTAMP},
+      settleId = #{settleId,jdbcType=BIGINT},
+       settleName = #{settleName,jdbcType=NVARCHAR},
+       settleFlag = #{settleFlag,jdbcType=INTEGER},
+       editFlag = #{editFlag,jdbcType=INTEGER},
+       priceEditId = #{priceEditId,jdbcType=BIGINT},
+        priceEditName = #{priceEditName,jdbcType=NVARCHAR},
+        priceEditTime = #{priceEditTime,jdbcType=TIMESTAMP},
+        priceCheckId = #{priceCheckId,jdbcType=BIGINT},
+        priceCheckName = #{priceCheckName,jdbcType=NVARCHAR},
+        priceCheckTime = #{priceCheckTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<select id="checkNo" resultMap="BaseResultMap">
+		select * from WhDeliver where deliverNo = #{deliverNo}
+	</select>
+	
+	<select id="getTodayCount" resultType="int">
+		select count(*) from WhDeliver
+		where convert(nvarchar(10),createTime,120) = convert(nvarchar(10),getDate(),120)
+	</select>
+	
+	<select id="getDeliverList" resultType="Map">
+        select d.*, s.supplierName,c.driverLicense,c.travelLicense,CONVERT(varchar(100), d.createTime, 120) as createDate,
+        CONVERT(varchar(100), d.arriveTime, 120) as arriveDate,CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighDate,
+        w.id,w.gpsPicture
+        from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+        left join WhWeigh w on w.deliverId=d.id
+        left join WhCarRecord c on c.carNo=d.carNumber
+        <where>
+			<if test="record.id != null">
+				and d.id = #{record.id}
+			</if>
+			<if test="record.deliverNo != null and record.deliverNo != ''">
+				and d.deliverNo like concat('%',#{record.deliverNo},'%')
+			</if>
+			<if test="record.supplierId != null">
+				and d.supplierId = #{record.supplierId}
+			</if>
+			<if test="record.consignorName != null and record.consignorName != ''">
+				and d.consignorName like concat('%',#{record.consignorName},'%')
+			</if>
+			<if test="record.consignorId != null">
+				and d.consignorId = #{record.consignorId}
+			</if>
+			<if test="record.carNumber != null and record.carNumber != ''">
+				and d.carNumber like concat('%',#{record.carNumber},'%')
+			</if>
+			<if test="record.goodsName != null and record.goodsName != ''">
+				and d.goodsName = #{record.goodsName}
+			</if>
+			<if test="record.driverName != null and record.driverName != ''">
+				and d.driverName = #{record.driverName}
+			</if>
+			<if test="record.flag != null">
+				and d.flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and d.mark = #{record.mark}
+			</if>
+			<if test="record.departureId != null">
+				and d.departureId = #{record.departureId}
+			</if>
+			<if test="record.departureName != null and record.departureName != ''">
+				and d.departureName like concat('%',#{record.departureName},'%')
+			</if>
+            <if test="record.startDate != null and record.endDate != null">
+                and d.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and d.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > d.createTime
+            </if>
+            <if test="record.flagStart != null and record.flagEnd != null">
+                and d.flag between #{record.flagStart} and #{record.flagEnd}
+            </if>
+        </where>
+		order by d.id desc
+		offset #{page.start, jdbcType=NUMERIC} rows
+		fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+	</select>
+	
+	<select id="getDeliverListCount" resultType="int">
+		select count(*)
+        from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+        left join WhWeigh w on w.deliverId=d.id
+        left join WhCarRecord c on c.carNo=d.carNumber
+        <where>
+        <if test="record.id != null">
+				and d.id = #{record.id}
+			</if>
+			<if test="record.deliverNo != null and record.deliverNo != ''">
+				and d.deliverNo like concat('%',#{record.deliverNo},'%')
+			</if>
+			<if test="record.supplierId != null">
+				and d.supplierId = #{record.supplierId}
+			</if>
+			<if test="record.consignorName != null and record.consignorName != ''">
+				and d.consignorName like concat('%',#{record.consignorName},'%')
+			</if>
+			<if test="record.consignorId != null">
+				and d.consignorId = #{record.consignorId}
+			</if>
+			<if test="record.carNumber != null and record.carNumber != ''">
+				and d.carNumber like concat('%',#{record.carNumber},'%')
+			</if>
+			<if test="record.goodsName != null and record.goodsName != ''">
+				and d.goodsName = #{record.goodsName}
+			</if>
+			<if test="record.driverName != null and record.driverName != ''">
+				and d.driverName = #{record.driverName}
+			</if>
+			<if test="record.flag != null">
+				and d.flag = #{record.flag}
+			</if>
+			<if test="record.mark != null">
+				and d.mark = #{record.mark}
+			</if>
+			<if test="record.departureId != null">
+				and d.departureId = #{record.departureId}
+			</if>
+			<if test="record.departureName != null and record.departureName != ''">
+				and d.departureName like concat('%',#{record.departureName},'%')
+			</if>
+            <if test="record.startDate != null and record.endDate != null">
+                and d.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and d.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > d.createTime
+            </if>
+            <if test="record.flagStart != null and record.flagEnd != null">
+                and d.flag between #{record.flagStart} and #{record.flagEnd}
+            </if>
+        </where>
+	</select>
+	
+	<select id="getDeliverByFlag" resultType="Map">
+		select d.id, d.deliverNo, s.supplierName, d.consignorName, d.carNumber, d.driverName, d.phone,
+		       d.supplierId, d.consignorId,c.driverLicense,c.travelLicense,d.goodsName,d.departureId,d.departureName
+		from WhDeliver d
+		join BaseSupplier s on d.supplierId = s.id
+		join WhCarRecord c on c.carNo=d.carNumber
+		where d.flag = #{deliver.flag} and d.mark=0
+		<if test="deliver.deliverNo != null and deliver.deliverNo !=''">
+            and d.deliverNo = #{deliver.deliverNo}
+        </if>
+        <if test="deliver.carNumber != null and deliver.carNumber != ''">
+            and d.carNumber like CONCAT('%', #{deliver.carNumber},'%')
+        </if>
+	</select>
+
+
+
+  <select id="getShipDeliverByFlag" resultType="Map">
+        select d.id, d.deliverNo, s.supplierName, d.consignorName, d.carNumber, d.driverName, d.phone,
+       d.supplierId, d.consignorId,d.goodsName,b.carNo,b.*
+        from WhDeliver d
+             join BaseSupplier s on d.supplierId = s.id
+             left join WhDeliveryDetails b on b.deliverId=d.id
+        where  d.mark=1
+        <if test="record.shipFlag != null and record.shipFlag !=''">
+          and d.flag &lt;  #{record.shipFlag}
+        </if>
+        <if test="record.shipAccessFlag != null and record.shipAccessFlag !=''">
+          and b.flag &lt;  #{record.shipAccessFlag}
+        </if>
+    </select>
+
+
+    <select id="selectBySupplierId" resultType="com.boyo.wuhang.entity.assess.WhDeliver">
+        select * from WhDeliver
+        where supplierId = #{supplierId}
+    </select>
+	
+	<select id="getConsignorSchedule" resultType="Map">
+		select t.supplierId,t.consignorId,c.consignorName,t.cnt
+		from (
+			     select c1.consignorId, c1.supplierId, isnull(d1.times,0) as cnt
+			     from (select d.consignorId, d.supplierId, count(*) as times
+			           from WhDeliver d join WhWeigh w on d.id = w.deliverId
+			           where d.flag > 1 and datediff(month,w.arriveWeighTime,getdate())=0
+			     		<if test="supplierId != null">
+					        and d.supplierId = #{supplierId}
+				        </if>
+			           group by d.consignorId, d.supplierId
+			          ) as d1
+				          right join
+			          (
+				          select c.id as consignorId, c.supplierId
+				          from BaseConsignor c
+			              <if test="supplierId != null">
+				              where c.supplierId = #{supplierId}
+			              </if>
+			          ) as c1 on d1.consignorId = c1.consignorId and d1.supplierId = c1.supplierId
+		     )as t join BaseConsignor c on t.consignorId = c.id
+		where 3 > cnt
+		order by cnt desc, c.sort asc
+	</select>
+	
+	<select id="getConsignorYearExclude" resultType="Map">
+		select d.consignorId, d.supplierId
+		from WhDeliver d join WhWeigh w on d.id = w.deliverId
+		where d.flag > 1 and datediff(year ,w.arriveWeighTime,getdate())=0
+		<if test="consignorId != null">
+			and d.consignorId = #{consignorId}
+		</if>
+		<if test="supplierId != null">
+			and d.supplierId = #{supplierId}
+		</if>
+		group by d.consignorId, d.supplierId
+		having count(*) >= 24
+	</select>
+	
+	<select id="getConsignorMonthExclude" resultType="Map">
+		select d.consignorId, d.supplierId
+		from WhDeliver d join WhWeigh w on d.id = w.deliverId
+		where d.flag > 1 and datediff(month,w.arriveWeighTime,getdate())=0
+		<if test="consignorId != null">
+			and d.consignorId = #{consignorId}
+		</if>
+		<if test="supplierId != null">
+			and d.supplierId = #{supplierId}
+		</if>
+		group by d.consignorId, d.supplierId
+		having count(*) >= 3
+	</select>
+
+
+    <select id="getDeliverReportList" resultType="map">
+        select d.id,s.supplierName,d.consignorName,d.deliverNo,
+        CONVERT(varchar(100), w.arriveWeighTime, 120) as arriveWeighTime,w.arriveWeigh,
+        CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighTime,w.leaveWeigh,w.netWeigh,
+        CONVERT(varchar(100), d.createTime, 120) as createTime
+        ,d.carNumber,CONVERT(varchar(100), d.arriveTime, 120) as arriveTime
+        from WhDeliver d
+        join WhWeigh w on w.deliverId=d.id
+        join BaseSupplier s on d.supplierId=s.id
+        <where>
+            <if test="deliverForm.startDate != null and deliverForm.endDate != null">
+                and d.createTime between #{deliverForm.startDate} and #{deliverForm.endDate}
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate == null">
+                and d.createTime > #{deliverForm.startDate}
+            </if>
+            <if test="deliverForm.startDate == null and deliverForm.endDate != null">
+                and #{deliverForm.endDate} > d.createTime
+            </if>
+            <if test="deliverForm.supplierName != null and deliverForm.supplierName !=''">
+                and s.supplierName like CONCAT('%',#{deliverForm.supplierName},'%')
+            </if>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName != ''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.carNumber != null and deliverForm.carNumber != ''">
+                and d.carNumber = #{deliverForm.carNumber}
+            </if>
+            <if test="deliverForm.deliverNo != null and deliverForm.deliverNo !=''">
+                and d.deliverNo = #{deliverForm.deliverNo}
+            </if>
+            <if test="deliverForm.arriveWeighStartDate != null and deliverForm.arriveWeighEndDate != null">
+                and w.arriveWeighTime between #{deliverForm.arriveWeighStartDate} and #{deliverForm.arriveWeighEndDate}
+            </if>
+            <if test="deliverForm.arriveWeighStartDate != null and deliverForm.arriveWeighEndDate == null">
+                and w.arriveWeighTime > #{deliverForm.arriveWeighStartDate}
+            </if>
+            <if test="deliverForm.arriveWeighStartDate == null and deliverForm.arriveWeighEndDate != null">
+                and #{deliverForm.arriveWeighEndDate} > w.arriveWeighTime
+            </if>
+            <if test="deliverForm.leaveWeighStartTime != null and deliverForm.leaveWeighEndTime != null">
+                and w.leaveWeighTime between #{deliverForm.leaveWeighStartTime} and #{deliverForm.leaveWeighEndTime}
+            </if>
+            <if test="deliverForm.leaveWeighStartTime != null and deliverForm.leaveWeighEndTime == null">
+                and w.leaveWeighTime > #{deliverForm.leaveWeighStartTime}
+            </if>
+            <if test="deliverForm.leaveWeighStartTime == null and deliverForm.leaveWeighEndTime != null">
+                and #{deliverForm.leaveWeighEndTime} > w.leaveWeighTime
+            </if>
+        </where>
+        order by d.id
+        offset #{page.start, jdbcType=NUMERIC} rows
+        fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+    </select>
+    
+    <select id="getDeliverReportListCount" resultType="int">
+        select count(*) from (
+        select d.id,s.supplierName,d.consignorName,d.deliverNo,
+        CONVERT(varchar(100), w.arriveWeighTime, 120) as arriveWeighTime,w.arriveWeigh,
+        CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighTime,w.leaveWeigh,w.netWeigh,
+        CONVERT(varchar(100), d.createTime, 120) as createTime
+        ,d.carNumber,CONVERT(varchar(100), d.arriveTime, 120) as arriveTime
+        from WhDeliver d
+        join WhWeigh w on w.deliverId=d.id
+        join BaseSupplier s on d.supplierId=s.id
+        <where>
+            <if test="deliverForm.startDate != null and deliverForm.endDate != null">
+                and d.createTime between #{deliverForm.startDate} and #{deliverForm.endDate}
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate == null">
+                and d.createTime > #{deliverForm.startDate}
+            </if>
+            <if test="deliverForm.startDate == null and deliverForm.endDate != null">
+                and #{deliverForm.endDate} > d.createTime
+            </if>
+            <if test="deliverForm.supplierName != null and deliverForm.supplierName !=''">
+                and s.supplierName like CONCAT('%',#{deliverForm.supplierName},'%')
+            </if>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName != ''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.carNumber != null and deliverForm.carNumber != ''">
+                and d.carNumber = #{deliverForm.carNumber}
+            </if>
+            <if test="deliverForm.deliverNo != null and deliverForm.deliverNo !=''">
+                and d.deliverNo = #{deliverForm.deliverNo}
+            </if>
+            <if test="deliverForm.arriveWeighStartDate != null and deliverForm.arriveWeighEndDate != null">
+                and w.arriveWeighTime between #{deliverForm.arriveWeighStartDate} and #{deliverForm.arriveWeighEndDate}
+            </if>
+            <if test="deliverForm.arriveWeighStartDate != null and deliverForm.arriveWeighEndDate == null">
+                and w.arriveWeighTime > #{deliverForm.arriveWeighStartDate}
+            </if>
+            <if test="deliverForm.arriveWeighStartDate == null and deliverForm.arriveWeighEndDate != null">
+                and #{deliverForm.arriveWeighEndDate} > w.arriveWeighTime
+            </if>
+            <if test="deliverForm.leaveWeighStartTime != null and deliverForm.leaveWeighEndTime != null">
+                and w.leaveWeighTime between #{deliverForm.leaveWeighStartTime} and #{deliverForm.leaveWeighEndTime}
+            </if>
+            <if test="deliverForm.leaveWeighStartTime != null and deliverForm.leaveWeighEndTime == null">
+                and w.leaveWeighTime > #{deliverForm.leaveWeighStartTime}
+            </if>
+            <if test="deliverForm.leaveWeighStartTime == null and deliverForm.leaveWeighEndTime != null">
+                and #{deliverForm.leaveWeighEndTime} > w.leaveWeighTime
+            </if>
+        </where>
+        ) as f
+    </select>
+    
+    <select id="getPriceStatementList" resultType="map">
+        select consignorName,departureName,goodsName,accessNo,createTime,priceAdjust,remark,
+        sum(isnull(isquantity,0)) as isquantity, sum(Impurities) as Impurities, sum(isnull(netWeigh,0)) as netWeigh,
+        sum(mixed2) as mixed2,sum(mixed3) as mixed3,sum(mixed4) as mixed4,sum(mixed5) as mixed5,
+        sum([material1]) as material1,sum([material2]) as material2,sum([Newlightscrap]) as Newlightscrap,
+        sum([medium_pressure]) as medium_pressure,  sum([scrapiron]) as scrapiron,sum(price) as price,
+        sum(isnull(amount,0)) as amount,placeName,goodsSpec,goodsSpec2,model1,model2,supplierName,carNo,accessPerson,accessPerson2,carNumber
+        from (
+        select d.id,0 as price,0 as amount,(w.netWeigh-isnull(w.Impurities,0)) as isquantity,d.consignorName as consignorName,d.goodsName as goodsName,
+        d.departureName as departureName,a.accessNo as accessNo,
+        CONVERT(varchar(100), a.createTime, 120) as createTime,isnull(a.priceAdjust,0) as priceAdjust,
+        w.Impurities as Impurities,w.netWeigh as netWeigh,
+        max(case grade when '混2' then proportion else 0 end) as mixed2,
+        max(case grade when '混3' then proportion else 0 end) as mixed3,
+        max(case grade when '混4' then proportion else 0 end) as mixed4,
+        max(case grade when '混5' then proportion else 0 end) as mixed5,
+        max(case grade when '统料1' then proportion else 0 end) as material1,
+        max(case grade when '统料2' then proportion else 0 end) as material2,
+        MAX(case  wRank when '新轻废' then proportion else 0 end) as Newlightscrap,
+        MAX(case  wRank when '中压' then proportion else 0 end) as medium_pressure,
+        max(case wRank when '铁屑' then proportion else 0 end) as scrapiron,
+        a.remark as remark,d.placeName,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,s.supplierName,dd.carNo,a.accessPerson2,a.accessPerson,
+        d.carNumber
+        from WhAccessDetail b
+        join WhAccess a on a.id=b.accessId
+        join WhDeliver d on d.id=a.deliverId
+        left join WhDeliveryDetails dd on dd.deliverId=d.id
+        join BaseSupplier s on s.id=d.supplierId
+        join WhWeigh w on w.deliverId=d.id
+        left join BaseGoods g on g.id=d.goodsId
+        <where>
+            <if test="deliverForm.accessNo != null and deliverForm.accessNo !=''">
+                and a.accessNo = #{deliverForm.accessNo}
+            </if>
+            <if test="deliverForm.departureName != null and deliverForm.departureName !=''">
+                and d.departureName like CONCAT('%',#{deliverForm.departureName},'%')
+            </if>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate != null">
+                and a.createTime between #{deliverForm.startDate} and #{deliverForm.endDate}
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate == null">
+                and a.createTime > #{deliverForm.startDate}
+            </if>
+            <if test="deliverForm.startDate == null and deliverForm.endDate != null">
+                and #{deliverForm.endDate} > a.createTime
+            </if>
+        </where>
+        group by w.netWeigh,d.consignorName,d.departureName,a.accessNo,a.createTime,a.priceAdjust,w.Impurities,a.remark,d.goodsName,
+        d.placeName,d.id,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,s.supplierName,dd.carNo,a.accessPerson2,a.accessPerson,d.carNumber
+
+        union all
+
+        select d.id,sum(sumPrice),sum((t.sumPrice*(w.netWeigh-t.Impurities))- isnull(t.priceAdjust,0)) as amount,
+        0 as isquantity,d.consignorName as consignorName,d.goodsName as goodsName,
+        d.departureName as departureName,t.accessNo as accessNo,t.createTime as createTime,0 as priceAdjust,
+        0 as Impurities,0 as netWeigh,0 as mixed2,0 as mixed3,0 as mixed4,0 as mixed5,0 as material1,0 as material2,
+        0 as Newlightscrap,0 as medium_pressure,0 as scrapiron,
+        t.remark as remark,d.placeName,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,s.supplierName,dd.carNo,t.accessPerson,t.accessPerson2,
+        d.carNumber
+        from WhDeliver d
+        join (
+        select a.deliverId,a.Impurities,isnull(b.priceAdjust,0) as priceAdjust,a.accessNo,a.remark,a.accessPerson2,a.accessPerson,
+        CONVERT(varchar(100), a.createTime, 120) as createTime,
+        sum(isnull(b.proportion,0)*p.price+ isnull(b.priceAdjust,0)) as sumPrice
+        from WhAccess a join WhAccessDetail b on b.accessId=a.id join WhDeliver d on d.id = a.deliverId
+        join WhRankPrice p on p.departureId=d.departureId and p.rankId=b.rankId
+        <where>
+            <if test="deliverForm.accessNo != null and deliverForm.accessNo !=''">
+                and a.accessNo = #{deliverForm.accessNo}
+            </if>
+            <if test="deliverForm.departureName != null and deliverForm.departureName !=''">
+                and d.departureName like CONCAT('%',#{deliverForm.departureName},'%')
+            </if>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate != null">
+                and a.createTime between #{deliverForm.startDate} and #{deliverForm.endDate}
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate == null">
+                and a.createTime > #{deliverForm.startDate}
+            </if>
+            <if test="deliverForm.startDate == null and deliverForm.endDate != null">
+                and #{deliverForm.endDate} > a.createTime
+            </if>
+        </where>
+        group by a.deliverId,a.Impurities,b.priceAdjust,a.accessNo,a.remark,a.createTime,a.accessPerson2,a.accessPerson
+        )as t on t.deliverId = d.id
+        left join WhDeliveryDetails dd on dd.deliverId=d.id
+        join WhWeigh w on w.deliverId=d.id
+        join BaseSupplier s on s.id=d.supplierId
+        left join BaseGoods g on g.id=d.goodsId
+        group by d.consignorName,d.departureName,w.netWeigh,d.goodsName,t.accessNo,t.remark,t.createTime,d.placeName,d.id,g.goodsSpec,
+        g.goodsSpec2,g.model1,g.model2,s.supplierName,t.accessPerson,t.accessPerson2,dd.carNo,d.carNumber
+        ) as f
+        group by f.consignorName, f.departureName,f.accessNo,f.createTime,f.priceAdjust,f.remark,f.goodsName,f.placeName,f.id,f.goodsSpec,
+        f.goodsSpec2,f.model1,f.model2,f.supplierName,f.carNo,f.accessPerson,f.accessPerson2,f.carNumber
+        order by f.id
+        offset #{page.start, jdbcType=NUMERIC} rows
+        fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+    </select>
+
+    <select id="getPriceStatementListCount" resultType="int">
+    select count(*) from (
+        select consignorName,departureName,goodsName,accessNo,createTime,priceAdjust,remark,
+        sum(isnull(isquantity,0)) as isquantity, sum(Impurities) as Impurities, sum(isnull(netWeigh,0)) as netWeigh,
+        sum(mixed2) as mixed2,sum(mixed3) as mixed3,sum(mixed4) as mixed4,sum(mixed5) as mixed5,
+        sum([material1]) as material1,sum([material2]) as material2,sum([Newlightscrap]) as Newlightscrap,
+        sum([medium_pressure]) as medium_pressure,  sum([scrapiron]) as scrapiron,sum(price) as price,
+        sum(isnull(amount,0)) as amount,placeName,goodsSpec,goodsSpec2,model1,model2,supplierName,carNo,accessPerson,accessPerson2,carNumber
+        from (
+        select d.id,0 as price,0 as amount,(w.netWeigh-isnull(w.Impurities,0)) as isquantity,d.consignorName as consignorName,d.goodsName as goodsName,
+        d.departureName as departureName,a.accessNo as accessNo,
+        CONVERT(varchar(100), a.createTime, 120) as createTime,isnull(a.priceAdjust,0) as priceAdjust,
+        w.Impurities as Impurities,w.netWeigh as netWeigh,
+        max(case grade when '混2' then proportion else 0 end) as mixed2,
+        max(case grade when '混3' then proportion else 0 end) as mixed3,
+        max(case grade when '混4' then proportion else 0 end) as mixed4,
+        max(case grade when '混5' then proportion else 0 end) as mixed5,
+        max(case grade when '统料1' then proportion else 0 end) as material1,
+        max(case grade when '统料2' then proportion else 0 end) as material2,
+        MAX(case  wRank when '新轻废' then proportion else 0 end) as Newlightscrap,
+        MAX(case  wRank when '中压' then proportion else 0 end) as medium_pressure,
+        max(case wRank when '铁屑' then proportion else 0 end) as scrapiron,
+        a.remark as remark,d.placeName,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,s.supplierName,dd.carNo,a.accessPerson2,a.accessPerson,
+        d.carNumber
+        from WhAccessDetail b
+        join WhAccess a on a.id=b.accessId
+        join WhDeliver d on d.id=a.deliverId
+        left join WhDeliveryDetails dd on dd.deliverId=d.id
+        join BaseSupplier s on s.id=d.supplierId
+        join WhWeigh w on w.deliverId=d.id
+        left join BaseGoods g on g.id=d.goodsId
+        <where>
+            <if test="deliverForm.accessNo != null and deliverForm.accessNo !=''">
+                and a.accessNo = #{deliverForm.accessNo}
+            </if>
+            <if test="deliverForm.departureName != null and deliverForm.departureName !=''">
+                and d.departureName like CONCAT('%',#{deliverForm.departureName},'%')
+            </if>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate != null">
+                and a.createTime between #{deliverForm.startDate} and #{deliverForm.endDate}
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate == null">
+                and a.createTime > #{deliverForm.startDate}
+            </if>
+            <if test="deliverForm.startDate == null and deliverForm.endDate != null">
+                and #{deliverForm.endDate} > a.createTime
+            </if>
+        </where>
+        group by w.netWeigh,d.consignorName,d.departureName,a.accessNo,a.createTime,a.priceAdjust,w.Impurities,a.remark,d.goodsName,
+        d.placeName,d.id,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,s.supplierName,dd.carNo,a.accessPerson2,a.accessPerson,d.carNumber
+
+        union all
+
+        select d.id,sum(sumPrice),sum((t.sumPrice*(w.netWeigh-t.Impurities))- isnull(t.priceAdjust,0)) as amount,
+        0 as isquantity,d.consignorName as consignorName,d.goodsName as goodsName,
+        d.departureName as departureName,t.accessNo as accessNo,t.createTime as createTime,0 as priceAdjust,
+        0 as Impurities,0 as netWeigh,0 as mixed2,0 as mixed3,0 as mixed4,0 as mixed5,0 as material1,0 as material2,
+        0 as Newlightscrap,0 as medium_pressure,0 as scrapiron,
+        t.remark as remark,d.placeName,g.goodsSpec,g.goodsSpec2,g.model1,g.model2,s.supplierName,dd.carNo,t.accessPerson,t.accessPerson2,
+        d.carNumber
+        from WhDeliver d
+        join (
+        select a.deliverId,a.Impurities,isnull(b.priceAdjust,0) as priceAdjust,a.accessNo,a.remark,a.accessPerson2,a.accessPerson,
+        CONVERT(varchar(100), a.createTime, 120) as createTime,
+        sum(isnull(b.proportion,0)*p.price+ isnull(b.priceAdjust,0)) as sumPrice
+        from WhAccess a join WhAccessDetail b on b.accessId=a.id join WhDeliver d on d.id = a.deliverId
+        join WhRankPrice p on p.departureId=d.departureId and p.rankId=b.rankId
+        <where>
+            <if test="deliverForm.accessNo != null and deliverForm.accessNo !=''">
+                and a.accessNo = #{deliverForm.accessNo}
+            </if>
+            <if test="deliverForm.departureName != null and deliverForm.departureName !=''">
+                and d.departureName like CONCAT('%',#{deliverForm.departureName},'%')
+            </if>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate != null">
+                and a.createTime between #{deliverForm.startDate} and #{deliverForm.endDate}
+            </if>
+            <if test="deliverForm.startDate != null and deliverForm.endDate == null">
+                and a.createTime > #{deliverForm.startDate}
+            </if>
+            <if test="deliverForm.startDate == null and deliverForm.endDate != null">
+                and #{deliverForm.endDate} > a.createTime
+            </if>
+        </where>
+        group by a.deliverId,a.Impurities,b.priceAdjust,a.accessNo,a.remark,a.createTime,a.accessPerson2,a.accessPerson
+        )as t on t.deliverId = d.id
+        left join WhDeliveryDetails dd on dd.deliverId=d.id
+        join WhWeigh w on w.deliverId=d.id
+        join BaseSupplier s on s.id=d.supplierId
+        left join BaseGoods g on g.id=d.goodsId
+        group by d.consignorName,d.departureName,w.netWeigh,d.goodsName,t.accessNo,t.remark,t.createTime,d.placeName,d.id,g.goodsSpec,
+        g.goodsSpec2,g.model1,g.model2,s.supplierName,t.accessPerson,t.accessPerson2,dd.carNo,d.carNumber
+        ) as f
+        group by f.consignorName, f.departureName,f.accessNo,f.createTime,f.priceAdjust,f.remark,f.goodsName,f.placeName,f.id,f.goodsSpec,
+        f.goodsSpec2,f.model1,f.model2,f.supplierName,f.carNo,f.accessPerson,f.accessPerson2,f.carNumber
+    ) as a
+    </select>
+
+    <!-- 查询某月中每天收购量 -->
+    <select id="getDeliverByDayList" resultType="map">
+        select s.supplierName,d.consignorName,
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=1 then w.netWeigh else 0 end) as '1号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=2 then w.netWeigh else 0 end) as '2号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=3 then w.netWeigh else 0 end) as '3号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=4 then w.netWeigh else 0 end) as '4号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=5 then w.netWeigh else 0 end) as '5号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=6 then w.netWeigh else 0 end) as '6号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=7 then w.netWeigh else 0 end) as '7号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=8 then w.netWeigh else 0 end) as '8号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=9 then w.netWeigh else 0 end) as '9号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=10 then w.netWeigh else 0 end) as '10号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=11 then w.netWeigh else 0 end) as '11号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=12 then w.netWeigh else 0 end) as '12号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=13 then w.netWeigh else 0 end) as '13号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=14 then w.netWeigh else 0 end) as '14号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=15 then w.netWeigh else 0 end) as '15号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=16 then w.netWeigh else 0 end) as '16号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=17 then w.netWeigh else 0 end) as '17号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=18 then w.netWeigh else 0 end) as '18号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=19 then w.netWeigh else 0 end) as '19号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=20 then w.netWeigh else 0 end) as '20号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=21 then w.netWeigh else 0 end) as '21号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=22 then w.netWeigh else 0 end) as '22号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=23 then w.netWeigh else 0 end) as '23号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=24 then w.netWeigh else 0 end) as '24号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=25 then w.netWeigh else 0 end) as '25号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=26 then w.netWeigh else 0 end) as '26号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=27 then w.netWeigh else 0 end) as '27号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=28 then w.netWeigh else 0 end) as '28号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=29 then w.netWeigh else 0 end) as '29号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=30 then w.netWeigh else 0 end) as '30号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=31 then w.netWeigh else 0 end) as '31号'
+        from WhDeliver d
+        join WhWeigh w on w.deliverId=d.id
+        join WhAccess a on a.deliverId=d.id
+        join BaseSupplier s on d.supplierId=s.id
+        where CONVERT(varchar(7), d.createTime, 120 )=#{createMonth} and a.mark=1
+        <if test="deliverForm.supplierName != null and deliverForm.supplierName !=''">
+            and s.supplierName like CONCAT('%',#{deliverForm.supplierName},'%')
+        </if>
+        <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+            and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+        </if>
+        <if test="deliverForm.deliverNo != null and deliverForm.deliverNo !=''">
+            and d.deliverNo = #{deliverForm.deliverNo}
+        </if>
+        group by s.supplierName,d.consignorName
+        order by d.consignorName
+        offset #{page.start, jdbcType=NUMERIC} rows
+        fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+    </select>
+
+    <select id="getDeliverByDayListCount" resultType="int">
+        select count (*) from (
+        select s.supplierName,d.consignorName,
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=1 then w.netWeigh else 0 end) as '1号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=2 then w.netWeigh else 0 end) as '2号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=3 then w.netWeigh else 0 end) as '3号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=4 then w.netWeigh else 0 end) as '4号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=5 then w.netWeigh else 0 end) as '5号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=6 then w.netWeigh else 0 end) as '6号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=7 then w.netWeigh else 0 end) as '7号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=8 then w.netWeigh else 0 end) as '8号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=9 then w.netWeigh else 0 end) as '9号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=10 then w.netWeigh else 0 end) as '10号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=11 then w.netWeigh else 0 end) as '11号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=12 then w.netWeigh else 0 end) as '12号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=13 then w.netWeigh else 0 end) as '13号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=14 then w.netWeigh else 0 end) as '14号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=15 then w.netWeigh else 0 end) as '15号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=16 then w.netWeigh else 0 end) as '16号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=17 then w.netWeigh else 0 end) as '17号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=18 then w.netWeigh else 0 end) as '18号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=19 then w.netWeigh else 0 end) as '19号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=20 then w.netWeigh else 0 end) as '20号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=21 then w.netWeigh else 0 end) as '21号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=22 then w.netWeigh else 0 end) as '22号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=23 then w.netWeigh else 0 end) as '23号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=24 then w.netWeigh else 0 end) as '24号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=25 then w.netWeigh else 0 end) as '25号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=26 then w.netWeigh else 0 end) as '26号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=27 then w.netWeigh else 0 end) as '27号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=28 then w.netWeigh else 0 end) as '28号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=29 then w.netWeigh else 0 end) as '29号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=30 then w.netWeigh else 0 end) as '30号',
+        sum(case when  convert(varchar,datepart(dd,d.createTime))=31 then w.netWeigh else 0 end) as '31号'
+        from WhDeliver d
+        join WhWeigh w on w.deliverId=d.id
+        join WhAccess a on a.deliverId=d.id
+        join BaseSupplier s on d.supplierId=s.id
+        where CONVERT(varchar(7), d.createTime, 120 )=#{createMonth} and a.mark=1
+        <if test="deliverForm.supplierName != null and deliverForm.supplierName !=''">
+            and s.supplierName like CONCAT('%',#{deliverForm.supplierName},'%')
+        </if>
+        <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+            and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+        </if>
+        <if test="deliverForm.deliverNo != null and deliverForm.deliverNo !=''">
+            and d.deliverNo = #{deliverForm.deliverNo}
+        </if>
+        group by s.supplierName,d.consignorName
+        ) as f
+    </select>
+    
+    <select id="getPaymentSummaryList" resultType="map">
+    select d.consignorName,s.supplierName,s.arrears,
+      sum((t.sumPrice*(w.netWeigh-t.Impurities))-t.priceAdjust) as amount,
+	  arrears+sum((t.sumPrice*(w.netWeigh-t.Impurities))-t.priceAdjust) as balanceAmount
+    from WhDeliver d
+       join (
+         select a.deliverId,a.Impurities,b.priceAdjust,
+            sum(isnull(b.proportion,0)*p.price+b.priceAdjust) as sumPrice
+         from WhAccess a join WhAccessDetail b on b.accessId=a.id join WhDeliver d on d.id = a.deliverId
+                         join WhRankPrice p on p.departureId=d.departureId and p.rankId=b.rankId
+         /*where a.mark = 1*/
+         group by a.deliverId,a.Impurities,b.priceAdjust
+    )as t on t.deliverId = d.id
+       join WhWeigh w on w.deliverId=d.id
+       join BaseSupplier s on s.id=d.supplierId
+       <where>
+           <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+               and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+           </if>
+           <if test="deliverForm.supplierName != null and deliverForm.supplierName !=''">
+               and s.supplierName like CONCAT('%',#{deliverForm.supplierName},'%')
+           </if>
+       </where>
+    group by d.consignorName,s.supplierName,s.arrears
+    order by d.consignorName
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+    </select>
+
+    <select id="getPaymentSummaryListCount" resultType="int">
+        select count (*) from (
+        select d.consignorName,s.supplierName,s.arrears,
+        sum((t.sumPrice*(w.netWeigh-t.Impurities))-t.priceAdjust) as amount,
+        arrears+sum((t.sumPrice*(w.netWeigh-t.Impurities))-t.priceAdjust) as balanceAmount
+        from WhDeliver d
+        join (
+        select a.deliverId,a.Impurities,b.priceAdjust,
+        sum(isnull(b.proportion,0)*p.price+b.priceAdjust) as sumPrice
+        from WhAccess a join WhAccessDetail b on b.accessId=a.id join WhDeliver d on d.id = a.deliverId
+        join WhRankPrice p on p.departureId=d.departureId and p.rankId=b.rankId
+        /*where a.mark = 1*/
+        group by a.deliverId,a.Impurities,b.priceAdjust
+        )as t on t.deliverId = d.id
+        join WhWeigh w on w.deliverId=d.id
+        join BaseSupplier s on s.id=d.supplierId
+        <where>
+            <if test="deliverForm.consignorName != null and deliverForm.consignorName !=''">
+                and d.consignorName like CONCAT('%',#{deliverForm.consignorName},'%')
+            </if>
+            <if test="deliverForm.supplierName != null and deliverForm.supplierName !=''">
+                and s.supplierName like CONCAT('%',#{deliverForm.supplierName},'%')
+            </if>
+        </where>
+        group by d.consignorName,s.supplierName,s.arrears
+        ) as f
+    </select>
+
+    <select id="getDeliverStatusList" resultType="Map">
+        select d.*, s.supplierName,c.driverLicense,c.travelLicense,CONVERT(varchar(100), d.createTime, 120) as createDate,
+        CONVERT(varchar(100), d.arriveTime, 120) as arriveDate,CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighTime,
+        w.id as weighId , w.gpsPicture,w.netWeigh,w.Impurities,w.arriveWeigh,s.supplierName,
+        (select count(*) from WhDeliveryDetails where deliverId=d.id) as countShipCar,
+        (select count(carNumber) from WhDeliver where mark=0 and deliverNo=d.deliverNo) as countCar,
+        dd.flag as detailFlag
+        from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+        left join WhDeliveryDetails dd on dd.deliverId=d.id
+        left join WhWeigh w on w.deliverId=d.id
+        left join WhCarRecord c on c.carNo=d.carNumber
+        <where>
+            <if test="record.id != null">
+                and d.id = #{record.id}
+            </if>
+            <if test="record.deliverNo != null and record.deliverNo != ''">
+                and d.deliverNo like concat('%',#{record.deliverNo},'%')
+            </if>
+            <if test="record.supplierId != null">
+                and d.supplierId = #{record.supplierId}
+            </if>
+            <if test="record.consignorName != null and record.consignorName != ''">
+                and d.consignorName like concat('%',#{record.consignorName},'%')
+            </if>
+            <if test="record.consignorId != null">
+                and d.consignorId = #{record.consignorId}
+            </if>
+            <if test="record.carNumber != null and record.carNumber != ''">
+                and d.carNumber like concat('%',#{record.carNumber},'%')
+            </if>
+            <if test="record.goodsName != null and record.goodsName != ''">
+                and d.goodsName = #{record.goodsName}
+            </if>
+            <if test="record.driverName != null and record.driverName != ''">
+                and d.driverName = #{record.driverName}
+            </if>
+            <if test="record.flag != null">
+                and d.flag = #{record.flag}
+            </if>
+            <if test="record.mark != null">
+                and d.mark = #{record.mark}
+            </if>
+            <if test="record.departureId != null">
+                and d.departureId = #{record.departureId}
+            </if>
+            <if test="record.departureName != null and record.departureName != ''">
+                and d.departureName like concat('%',#{record.departureName},'%')
+            </if>
+            <if test="record.startDate != null and record.endDate != null">
+                and d.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and d.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > d.createTime
+            </if>
+            <if test="record.supplierName != null and record.supplierName !=''">
+                and s.supplierName like CONCAT('%',#{record.supplierName},'%')
+            </if>
+            <if test="record.detailFlag != null and record.detailFlag != ''">
+                and dd.flag = #{record.detailFlag}
+            </if>
+        </where>
+        order by d.id desc
+        offset #{page.start, jdbcType=NUMERIC} rows
+        fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+    </select>
+
+    <select id="getDeliverStatusListCount" resultType="int">
+        select count (*)
+        from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+        left join WhWeigh w on w.deliverId=d.id
+        left join WhCarRecord c on c.carNo=d.carNumber
+        <where>
+            <if test="record.id != null">
+                and d.id = #{record.id}
+            </if>
+            <if test="record.deliverNo != null and record.deliverNo != ''">
+                and d.deliverNo like concat('%',#{record.deliverNo},'%')
+            </if>
+            <if test="record.supplierId != null">
+                and d.supplierId = #{record.supplierId}
+            </if>
+            <if test="record.consignorName != null and record.consignorName != ''">
+                and d.consignorName like concat('%',#{record.consignorName},'%')
+            </if>
+            <if test="record.consignorId != null">
+                and d.consignorId = #{record.consignorId}
+            </if>
+            <if test="record.carNumber != null and record.carNumber != ''">
+                and d.carNumber like concat('%',#{record.carNumber},'%')
+            </if>
+            <if test="record.goodsName != null and record.goodsName != ''">
+                and d.goodsName = #{record.goodsName}
+            </if>
+            <if test="record.driverName != null and record.driverName != ''">
+                and d.driverName = #{record.driverName}
+            </if>
+            <if test="record.flag != null">
+                and d.flag = #{record.flag}
+            </if>
+            <if test="record.mark != null">
+                and d.mark = #{record.mark}
+            </if>
+            <if test="record.departureId != null">
+                and d.departureId = #{record.departureId}
+            </if>
+            <if test="record.departureName != null and record.departureName != ''">
+                and d.departureName like concat('%',#{record.departureName},'%')
+            </if>
+            <if test="record.startDate != null and record.endDate != null">
+                and d.createTime between #{record.startDate} and #{record.endDate}
+            </if>
+            <if test="record.startDate != null and record.endDate == null">
+                and d.createTime > #{record.startDate}
+            </if>
+            <if test="record.startDate == null and record.endDate != null">
+                and #{record.endDate} > d.createTime
+            </if>
+            <if test="record.supplierName != null and record.supplierName !=''">
+                and s.supplierName like CONCAT('%',#{record.supplierName},'%')
+            </if>
+            <if test="record.detailFlag != null and record.detailFlag != ''">
+              and dd.flag = #{record.detailFlag}
+            </if>
+        </where>
+    </select>
+
+    <select id="getCarSettle" resultType="com.boyo.wuhang.entity.WhDeliverForm">
+    select sum(sumPrice) as contractPrice,
+    sum((t.sumPrice*(w.netWeigh-t.Impurities))-isnull(t.priceAdjust,0)) as contractAmount,
+    d.id, d.goodsName,t.deliverId
+    from WhDeliver d
+    join (
+    select a.deliverId,SUM(a.Impurities/1000) as Impurities,b.priceAdjust,a.accessNo,a.remark,
+    CONVERT(varchar(100), a.createTime, 120) as createTime,
+    sum((isnull(b.proportion,0))/100*p.price+isnull(b.proportion,0)) as sumPrice
+    from WhAccess a join WhAccessDetail b on b.accessId=a.id join WhDeliver d on d.id = a.deliverId
+    join WhRankPrice p on p.departureId=d.departureId and p.rankId=b.rankId
+    where a.mark = 1
+    group by a.deliverId,a.Impurities,b.priceAdjust,a.accessNo,a.remark,a.createTime
+    )as t on t.deliverId = d.id
+    join WhWeigh w on w.deliverId=d.id
+    join BaseSupplier s on s.id=d.supplierId
+    where  d.flag &gt;= 4 and d.id = #{deliverId}
+    group by w.netWeigh,d.goodsName,t.accessNo,t.remark,t.createTime,t.deliverId,d.id
+    </select>
+
+    <select id="selectShipNonSettleList" resultType="Map">
+        select
+           d.*,dd.carNo
+        from
+          WhDeliver d
+		  join WhDeliveryDetails dd on dd.deliverId=d.id
+        where
+          d.flag &lt; #{record.flag} and d.mark = #{record.mark}
+    </select>
+
+    <select id="getDeliverByCarNumber" resultType="com.boyo.wuhang.entity.assess.WhDeliver">
+        select *
+        from WhDeliver
+        where carNumber = #{carNumber}
+        order by createTime asc
+    </select>
+
+    <select id="getSettleList" resultType="map">
+        select d.settleFlag,d.settleId,d.settleName,d.settleNo,CONVERT(varchar(100), d.settleTime, 120) as settleTime,
+        d.id,s.supplierName,c.driverLicense,c.travelLicense,CONVERT(varchar(100), d.createTime, 120) as createDate,
+        CONVERT(varchar(100), d.arriveTime, 120) as arriveDate,CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighTime,
+        w.id as weighId , w.gpsPicture,w.netWeigh,w.Impurities,w.arriveWeigh,s.supplierName,
+        (select count(*) from WhDeliveryDetails where deliverId=d.id) as countShipCar,
+        (select count(carNumber) from WhDeliver where mark=0 and deliverNo=d.deliverNo) as countCar,
+        d.deliverNo
+        from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+        left join WhWeigh w on w.deliverId=d.id
+        left join WhCarRecord c on c.carNo=d.carNumber
+        <where>
+            <if test="enty.settleNo != null and enty.settleNo != ''">
+                and d.settleNo = #{enty.settleNo}
+            </if>
+            <if test="enty.startDate != null and enty.endDate != null">
+                and d.settleTime between #{enty.startDate} and #{enty.endDate}
+            </if>
+            <if test="enty.startDate != null and enty.endDate == null">
+                and d.settleTime > #{enty.startDate}
+            </if>
+            <if test="enty.startDate == null and enty.endDate != null">
+                and #{enty.endDate} > d.settleTime
+            </if>
+            <if test="enty.settleId != null">
+                and d.settleId = #{enty.settleId}
+            </if>
+            <if test="enty.settleName != null and enty.settleName !=''">
+                and d.settleName = #{enty.settleName}
+            </if>
+            <if test="enty.settleFlag != null and enty.settleFlag != ''">
+                and d.settleFlag = #{enty.settleFlag}
+            </if>
+            <if test="enty.id != null">
+                and d.id = #{enty.id}
+            </if>
+        </where>
+        order by d.id desc
+        offset #{page.start, jdbcType=NUMERIC} rows
+        fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+    </select>
+
+  <select id="getSettleListCount" resultType="int">
+    select count(*)
+    from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+        left join WhWeigh w on w.deliverId=d.id
+        left join WhCarRecord c on c.carNo=d.carNumber
+    <where>
+      <if test="enty.settleNo != null and enty.settleNo != ''">
+        and d.settleNo = #{enty.settleNo}
+      </if>
+      <if test="enty.startDate != null and enty.endDate != null">
+        and d.settleTime between #{enty.startDate} and #{enty.endDate}
+      </if>
+      <if test="enty.startDate != null and enty.endDate == null">
+        and d.settleTime > #{enty.startDate}
+      </if>
+      <if test="enty.startDate == null and enty.endDate != null">
+        and #{enty.endDate} > d.settleTime
+      </if>
+      <if test="enty.settleId != null">
+        and d.settleId = #{enty.settleId}
+      </if>
+      <if test="enty.settleName != null and enty.settleName !=''">
+        and d.settleName = #{enty.settleName}
+      </if>
+      <if test="enty.settleFlag != null and enty.settleFlag != ''">
+        and d.settleFlag = #{enty.settleFlag}
+      </if>
+      <if test="enty.id != null">
+        and d.id = #{enty.id}
+      </if>
+    </where>
+  </select>
+
+  <!-- 单价结算列表 -->
+  <select id="getPriceSettleList" resultType="Map">
+    select d.*,d.settleFlag,d.settleId,d.settleName,d.settleNo,CONVERT(varchar(100), d.settleTime, 120) as settleTime,
+       d.id,s.supplierName,c.driverLicense,c.travelLicense,CONVERT(varchar(100), d.createTime, 120) as createDate,
+       CONVERT(varchar(100), d.arriveTime, 120) as arriveDate,CONVERT(varchar(100), w.leaveWeighTime, 120) as leaveWeighTime,
+       w.id as weighId , w.gpsPicture,w.netWeigh,w.Impurities,w.arriveWeigh,s.supplierName,
+       (select count(*) from WhDeliveryDetails where deliverId=d.id) as countShipCar,
+       (select count(carNumber) from WhDeliver where mark=0 and deliverNo=d.deliverNo) as countCar
+    from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+                 left join WhWeigh w on w.deliverId=d.id
+                 left join WhCarRecord c on c.carNo=d.carNumber
+    <where>
+      <if test="enty.id != null">
+        and d.id = #{enty.id}
+      </if>
+      <if test="enty.deliverNo != null and enty.deliverNo != ''">
+        and d.deliverNo like concat('%',#{enty.deliverNo},'%')
+      </if>
+      <if test="enty.supplierId != null">
+        and d.supplierId = #{enty.supplierId}
+      </if>
+      <if test="enty.consignorName != null and enty.consignorName != ''">
+        and d.consignorName like concat('%',#{enty.consignorName},'%')
+      </if>
+      <if test="enty.consignorId != null">
+        and d.consignorId = #{enty.consignorId}
+      </if>
+      <if test="enty.carNumber != null and enty.carNumber != ''">
+        and d.carNumber like concat('%',#{enty.carNumber},'%')
+      </if>
+      <if test="enty.goodsName != null and enty.goodsName != ''">
+        and d.goodsName = #{enty.goodsName}
+      </if>
+      <if test="enty.driverName != null and enty.driverName != ''">
+        and d.driverName = #{enty.driverName}
+      </if>
+      <if test="enty.flag != null">
+        and d.flag = #{enty.flag}
+      </if>
+      <if test="enty.mark != null">
+        and d.mark = #{enty.mark}
+      </if>
+      <if test="enty.departureId != null">
+        and d.departureId = #{enty.departureId}
+      </if>
+      <if test="enty.departureName != null and enty.departureName != ''">
+        and d.departureName like concat('%',#{enty.departureName},'%')
+      </if>
+      <if test="enty.startDate != null and enty.endDate != null">
+        and d.createTime between #{enty.startDate} and #{enty.endDate}
+      </if>
+      <if test="enty.startDate != null and enty.endDate == null">
+        and d.createTime > #{enty.startDate}
+      </if>
+      <if test="enty.startDate == null and enty.endDate != null">
+        and #{enty.endDate} > d.createTime
+      </if>
+      <if test="enty.supplierName != null and enty.supplierName !=''">
+        and s.supplierName like CONCAT('%',#{enty.supplierName},'%')
+      </if>
+      <if test="enty.editFlag1 != null and enty.editFlag2 != ''">
+        and d.editFlag = #{enty.editFlag1} or d.editFlag = #{enty.editFlag2}
+      </if>
+      <if test="enty.editFlag != null and enty.editFlag != ''">
+        and d.editFlag = #{enty.editFlag}
+      </if>
+    </where>
+    order by d.id desc
+    offset #{page.start, jdbcType=NUMERIC} rows
+    fetch next #{page.pageSize, jdbcType=NUMERIC} rows only
+  </select>
+
+  <select id="getPriceSettleListCount" resultType="int">
+    select count(*)
+    from WhDeliver d left join BaseSupplier s on d.supplierId = s.id
+    left join WhWeigh w on w.deliverId=d.id
+    left join WhCarRecord c on c.carNo=d.carNumber
+    <where>
+      <if test="enty.id != null">
+        and d.id = #{enty.id}
+      </if>
+      <if test="enty.deliverNo != null and enty.deliverNo != ''">
+        and d.deliverNo like concat('%',#{enty.deliverNo},'%')
+      </if>
+      <if test="enty.supplierId != null">
+        and d.supplierId = #{enty.supplierId}
+      </if>
+      <if test="enty.consignorName != null and enty.consignorName != ''">
+        and d.consignorName like concat('%',#{enty.consignorName},'%')
+      </if>
+      <if test="enty.consignorId != null">
+        and d.consignorId = #{enty.consignorId}
+      </if>
+      <if test="enty.carNumber != null and enty.carNumber != ''">
+        and d.carNumber like concat('%',#{enty.carNumber},'%')
+      </if>
+      <if test="enty.goodsName != null and enty.goodsName != ''">
+        and d.goodsName = #{enty.goodsName}
+      </if>
+      <if test="enty.driverName != null and enty.driverName != ''">
+        and d.driverName = #{enty.driverName}
+      </if>
+      <if test="enty.flag != null">
+        and d.flag = #{enty.flag}
+      </if>
+      <if test="enty.mark != null">
+        and d.mark = #{enty.mark}
+      </if>
+      <if test="enty.departureId != null">
+        and d.departureId = #{enty.departureId}
+      </if>
+      <if test="enty.departureName != null and enty.departureName != ''">
+        and d.departureName like concat('%',#{enty.departureName},'%')
+      </if>
+      <if test="enty.startDate != null and enty.endDate != null">
+        and d.createTime between #{enty.startDate} and #{enty.endDate}
+      </if>
+      <if test="enty.startDate != null and enty.endDate == null">
+        and d.createTime > #{enty.startDate}
+      </if>
+      <if test="enty.startDate == null and enty.endDate != null">
+        and #{enty.endDate} > d.createTime
+      </if>
+      <if test="enty.supplierName != null and enty.supplierName !=''">
+        and s.supplierName like CONCAT('%',#{enty.supplierName},'%')
+      </if>
+      <if test="enty.editFlag1 != null and enty.editFlag2 != ''">
+        and d.editFlag = #{enty.editFlag1} or d.editFlag = #{enty.editFlag2}
+      </if>
+      <if test="enty.editFlag != null and enty.editFlag != ''">
+        and d.editFlag = #{enty.editFlag}
+      </if>
+    </where>
+  </select>
+
+  <!--批量更新送货单结算编号-->
+  <update id="updateBatch" parameterType="list">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      update WhDeliver
+      <set>
+        settleNo=${item.settleNo}
+      </set>
+      where id = ${item.id}
+    </foreach>
+  </update>
+</mapper>

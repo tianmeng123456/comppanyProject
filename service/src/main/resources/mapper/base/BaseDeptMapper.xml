@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.base.BaseDeptMapper">
+	<resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.base.BaseDept">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="deptNo" jdbcType="VARCHAR" property="deptNo"/>
+		<result column="deptName" jdbcType="NVARCHAR" property="deptName"/>
+		<result column="parentId" jdbcType="BIGINT" property="parentId"/>
+		<result column="manager" jdbcType="NVARCHAR" property="manager"/>
+		<result column="tel" jdbcType="VARCHAR" property="tel"/>
+		<result column="deptAddress" jdbcType="NVARCHAR" property="deptAddress"/>
+		<result column="allName" jdbcType="NVARCHAR" property="allName"/>
+		<result column="deptLevel" jdbcType="INTEGER" property="deptLevel"/>
+		<result column="deptType" jdbcType="NVARCHAR" property="deptType"/>
+		<result column="bank" jdbcType="NVARCHAR" property="bank"/>
+		<result column="remark" jdbcType="NVARCHAR" property="remark"/>
+		<result column="flag" jdbcType="INTEGER" property="flag"/>
+		<result column="mark" jdbcType="INTEGER" property="mark"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+				id, deptNo, deptName, parentId, manager, tel, deptAddress, allName, deptLevel, deptType,
+				bank, remark, flag, mark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from BaseDept
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete
+		from BaseDept
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.boyo.wuhang.entity.base.BaseDept">
+		insert into BaseDept (id, deptNo, deptName,
+		                      parentId, manager, tel,
+		                      deptAddress, allName, deptLevel,
+		                      deptType, bank, remark,
+		                      flag, mark)
+		values (#{id,jdbcType=BIGINT}, #{deptNo,jdbcType=VARCHAR}, #{deptName,jdbcType=NVARCHAR},
+		        #{parentId,jdbcType=BIGINT}, #{manager,jdbcType=NVARCHAR}, #{tel,jdbcType=VARCHAR},
+		        #{deptAddress,jdbcType=NVARCHAR}, #{allName,jdbcType=NVARCHAR}, #{deptLevel,jdbcType=INTEGER},
+		        #{deptType,jdbcType=NVARCHAR}, #{bank,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR},
+		        #{flag,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.boyo.wuhang.entity.base.BaseDept"
+	        useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into BaseDept
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="deptNo != null">
+				deptNo,
+			</if>
+			<if test="deptName != null">
+				deptName,
+			</if>
+			<if test="parentId != null">
+				parentId,
+			</if>
+			<if test="manager != null">
+				manager,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="deptAddress != null">
+				deptAddress,
+			</if>
+			<if test="allName != null">
+				allName,
+			</if>
+			<if test="deptLevel != null">
+				deptLevel,
+			</if>
+			<if test="deptType != null">
+				deptType,
+			</if>
+			<if test="bank != null">
+				bank,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="deptNo != null">
+				#{deptNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deptName != null">
+				#{deptName,jdbcType=NVARCHAR},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="manager != null">
+				#{manager,jdbcType=NVARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="deptAddress != null">
+				#{deptAddress,jdbcType=NVARCHAR},
+			</if>
+			<if test="allName != null">
+				#{allName,jdbcType=NVARCHAR},
+			</if>
+			<if test="deptLevel != null">
+				#{deptLevel,jdbcType=INTEGER},
+			</if>
+			<if test="deptType != null">
+				#{deptType,jdbcType=NVARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=NVARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.base.BaseDept">
+		update BaseDept
+		<set>
+			<if test="deptNo != null">
+				deptNo = #{deptNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deptName != null">
+				deptName = #{deptName,jdbcType=NVARCHAR},
+			</if>
+			<if test="parentId != null">
+				parentId = #{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="manager != null">
+				manager = #{manager,jdbcType=NVARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="deptAddress != null">
+				deptAddress = #{deptAddress,jdbcType=NVARCHAR},
+			</if>
+			<if test="allName != null">
+				allName = #{allName,jdbcType=NVARCHAR},
+			</if>
+			<if test="deptLevel != null">
+				deptLevel = #{deptLevel,jdbcType=INTEGER},
+			</if>
+			<if test="deptType != null">
+				deptType = #{deptType,jdbcType=NVARCHAR},
+			</if>
+			<if test="bank != null">
+				bank = #{bank,jdbcType=NVARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="flag != null">
+				flag = #{flag,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.base.BaseDept">
+		update BaseDept
+		set deptNo      = #{deptNo,jdbcType=VARCHAR},
+		    deptName    = #{deptName,jdbcType=NVARCHAR},
+		    parentId    = #{parentId,jdbcType=BIGINT},
+		    manager     = #{manager,jdbcType=NVARCHAR},
+		    tel         = #{tel,jdbcType=VARCHAR},
+		    deptAddress = #{deptAddress,jdbcType=NVARCHAR},
+		    allName     = #{allName,jdbcType=NVARCHAR},
+		    deptLevel   = #{deptLevel,jdbcType=INTEGER},
+		    deptType    = #{deptType,jdbcType=NVARCHAR},
+		    bank        = #{bank,jdbcType=NVARCHAR},
+		    remark      = #{remark,jdbcType=NVARCHAR},
+		    flag        = #{flag,jdbcType=INTEGER},
+		    mark        = #{mark,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="getDeptList" resultType="Map">
+		select *
+		from BaseDept
+		<where>
+			<if test="deptNo != null and deptNo != ''">
+				and deptNo like concat('%',#{deptNo},'%')
+			</if>
+			<if test="deptName != null and deptName != ''">
+				and deptName like concat('%',#{deptName},'%')
+			</if>
+			<if test="manager != null and manager != ''">
+				and manager like concat('%',#{manager},'%')
+			</if>
+			<if test="tel != null and tel != ''">
+				and tel like concat('%',#{tel},'%')
+			</if>
+			<if test="deptAddress != null and deptAddress != ''">
+				and deptAddress like concat('%',#{deptAddress},'%')
+			</if>
+			<if test="allName != null and allName != ''">
+				and allName like concat('%',#{allName},'%')
+			</if>
+			<if test="deptLevel != null">
+				and deptLevel = #{deptLevel}
+			</if>
+			<if test="deptType != null and deptType != ''">
+				and deptType like concat('%',#{deptType},'%')
+			</if>
+			<if test="bank != null and bank != ''">
+				and bank like concat('%',#{bank},'%')
+			</if>
+			<if test="flag != null">
+				and flag = #{flag}
+			</if>
+			<if test="mark != null">
+				and mark = #{mark}
+			</if>
+		</where>
+	</select>
+
+	<select id="checkNo" resultMap="BaseResultMap">
+		select *
+		from BaseDept
+		where deptNo = #{deptNo}
+		<if test="id != null">
+			and id != #{id}
+		</if>
+	</select>
+
+	<select id="getDeptChild" resultMap="BaseResultMap">
+		;
+		with cte_dept(id, deptNo, deptName, parentId, manager, tel, deptAddress, allName, deptLevel, bank, remark, flag,
+		              mark)
+			     as (
+				select id,
+				       deptNo,
+				       deptName,
+				       parentId,
+				       manager,
+				       tel,
+				       deptAddress,
+				       allName,
+				       deptLevel,
+				       bank,
+				       remark,
+				       flag,
+				       mark
+				from BaseDept as d1
+				where d1.id = #{id}
+				union all
+				select d2.id,
+				       d2.deptNo,
+				       d2.deptName,
+				       d2.parentId,
+				       d2.manager,
+				       d2.tel,
+				       d2.deptAddress,
+				       d2.allName,
+				       d2.deptLevel,
+				       d2.bank,
+				       d2.remark,
+				       d2.flag,
+				       d2.mark
+				from cte_dept
+					     join BaseDept d2 on cte_dept.id = d2.parentId
+			)
+		select *
+		from cte_dept
+	</select>
+</mapper>

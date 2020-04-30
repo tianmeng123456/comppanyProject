@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boyo.wuhang.dao.assess.WhRankPriceMapper">
+  <resultMap id="BaseResultMap" type="com.boyo.wuhang.entity.assess.WhRankPrice">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="departureId" jdbcType="BIGINT" property="departureId" />
+    <result column="rankId" jdbcType="BIGINT" property="rankId" />
+    <result column="price" jdbcType="NUMERIC" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, departureId, rankId, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WhRankPrice
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from WhRankPrice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.boyo.wuhang.entity.assess.WhRankPrice">
+    insert into WhRankPrice (id, departureId, rankId, 
+      price)
+    values (#{id,jdbcType=BIGINT}, #{departureId,jdbcType=BIGINT}, #{rankId,jdbcType=BIGINT}, 
+      #{price,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boyo.wuhang.entity.assess.WhRankPrice"
+          useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into WhRankPrice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="departureId != null">
+        departureId,
+      </if>
+      <if test="rankId != null">
+        rankId,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="departureId != null">
+        #{departureId,jdbcType=BIGINT},
+      </if>
+      <if test="rankId != null">
+        #{rankId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boyo.wuhang.entity.assess.WhRankPrice">
+    update WhRankPrice
+    <set>
+      <if test="departureId != null">
+        departureId = #{departureId,jdbcType=BIGINT},
+      </if>
+      <if test="rankId != null">
+        rankId = #{rankId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boyo.wuhang.entity.assess.WhRankPrice">
+    update WhRankPrice
+    set departureId = #{departureId,jdbcType=BIGINT},
+      rankId = #{rankId,jdbcType=BIGINT},
+      price = #{price,jdbcType=NUMERIC}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+	
+	<delete id="deleteByRankId">
+		delete from WhRankPrice where rankId = #{rankId}
+	</delete>
+	
+	<delete id="deleteByDepartureId">
+		delete from WhRankPrice where departureId = #{departureId}
+	</delete>
+	
+	<select id="getPriceByRankId" resultMap="BaseResultMap">
+		select p.* from WhRankPrice p join BaseDeparture d on p.departureId = d.id
+		where rankId = #{rankId}
+		order by d.dCode
+	</select>
+	
+	<select id="getPriceByRankAndDeparture" resultMap="BaseResultMap">
+		select * from WhRankPrice where departureId = #{departureId} and rankId = #{rankId}
+	</select>
+</mapper>
